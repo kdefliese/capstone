@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160222202751) do
+ActiveRecord::Schema.define(version: 20160222214604) do
 
   create_table "users", force: :cascade do |t|
     t.string   "uid"
@@ -23,9 +23,9 @@ ActiveRecord::Schema.define(version: 20160222202751) do
     t.string   "known_intolerances"
     t.string   "watching"
     t.string   "medical_disorders"
-    t.boolean  "notifications_preference"
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.boolean  "notifications_preference", default: true
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
   end
 
 end
