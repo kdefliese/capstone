@@ -16,7 +16,6 @@ class SessionsController < ApplicationController
     else
       flash[:notice] = "Failed to authenticate"
     end
-    binding.pry
     redirect_to root_path
   end
 
