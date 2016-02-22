@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  root 'welcome#index'
+  get 'login' => 'sessions#new'
+  get "/auth/:provider/callback" => 'sessions#create', as: :auth
+  post "/auth/developer/callback" => 'sessions#create', as: :developer_auth
+  delete 'logout' => 'sessions#destroy'
+  post 'users' => 'users#create'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
