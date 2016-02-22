@@ -16,7 +16,7 @@
 # users commonly want.
 #
 require 'simplecov'
-SimpleCov.start 'rails' 
+SimpleCov.start 'rails'
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate
@@ -42,6 +42,21 @@ RSpec.configure do |config|
     mocks.verify_partial_doubles = true
   end
 
+  config.before(:suite) do
+      # Once you have enabled test mode, all requests
+      # to OmniAuth will be short circuited
+      # to use the mock authentication hash.
+      # A request to /auth/provider will redirect
+      # immediately to /auth/provider/callback.
+
+      OmniAuth.config.test_mode = true
+
+      # The mock_auth configuration allows you to
+      # set per-provider (or default) authentication
+      # hashes to return during testing.
+
+      OmniAuth.config.mock_auth[:prov] = OmniAuth::AuthHash.new({:provider => 'prov', :uid => '123545', info: {image: "http://thecabbagepatch.us/wp-content/uploads/2012/03/Peanuts-50x50.jpg", name: "Peanut"}})
+    end
 # The settings below are suggested to provide a good initial experience
 # with RSpec, but feel free to customize to your heart's content.
 =begin
