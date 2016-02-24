@@ -100,8 +100,17 @@
         1,
         null
       ],
+      "/Users/katherinedefliese/Documents/Ada_homework/capstone_stuff/capstone/app/models/symptom.rb": [
+        1,
+        1,
+        1,
+        1,
+        null
+      ],
       "/Users/katherinedefliese/Documents/Ada_homework/capstone_stuff/capstone/app/models/user.rb": [
         1,
+        1,
+        null,
         1,
         1,
         null,
@@ -130,6 +139,6 @@
         null
       ]
     },
-    "timestamp": 1456352720
+    "timestamp": 1456353931
   }
 }
