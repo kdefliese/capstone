@@ -53,7 +53,51 @@
         1,
         1,
         null,
+        1,
+        0,
         null,
+        null
+      ],
+      "/Users/katherinedefliese/Documents/Ada_homework/capstone_stuff/capstone/lib/factual_wrapper/factual_wrapper.rb": [
+        1,
+        null,
+        1,
+        null,
+        1,
+        null,
+        0,
+        null,
+        0,
+        0,
+        0,
+        0,
+        null,
+        null,
+        null
+      ],
+      "/Users/katherinedefliese/Documents/Ada_homework/capstone_stuff/capstone/app/models/food.rb": [
+        1,
+        1,
+        1,
+        null,
+        1,
+        null,
+        null
+      ],
+      "/Users/katherinedefliese/Documents/Ada_homework/capstone_stuff/capstone/app/models/ingredient.rb": [
+        1,
+        1,
+        1,
+        null,
+        1,
+        null
+      ],
+      "/Users/katherinedefliese/Documents/Ada_homework/capstone_stuff/capstone/app/models/meal.rb": [
+        1,
+        1,
+        1,
+        null,
+        1,
         null
       ],
       "/Users/katherinedefliese/Documents/Ada_homework/capstone_stuff/capstone/app/models/user.rb": [
@@ -86,6 +130,6 @@
         null
       ]
     },
-    "timestamp": 1456184218
+    "timestamp": 1456352720
   }
 }
