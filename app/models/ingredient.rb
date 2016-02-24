@@ -1,5 +1,6 @@
 class Ingredient < ActiveRecord::Base
-  belongs_to :foodlike, polymorphic: true
-  
+  has_and_belongs_to_many :foods
+  has_and_belongs_to_many :meals
+
   validates :name, presence: true
 end

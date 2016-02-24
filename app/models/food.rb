@@ -1,6 +1,6 @@
 class Food < ActiveRecord::Base
-  has_many :ingredients, as: :foodlike
-  belongs_to :meals
+  has_and_belongs_to_many :ingredients
+  has_and_belongs_to_many :meals
 
   validates :product_name, presence: true
 
