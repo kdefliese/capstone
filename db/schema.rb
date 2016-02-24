@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160224195319) do
+ActiveRecord::Schema.define(version: 20160224220633) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,10 +29,23 @@ ActiveRecord::Schema.define(version: 20160224195319) do
     t.string   "sensitivity_groups",              array: true
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
-    t.integer  "meal_id"
   end
 
-  add_index "foods", ["meal_id"], name: "index_foods_on_meal_id", using: :btree
+  create_table "foods_ingredients", id: false, force: :cascade do |t|
+    t.integer "food_id"
+    t.integer "ingredient_id"
+  end
+
+  add_index "foods_ingredients", ["food_id"], name: "index_foods_ingredients_on_food_id", using: :btree
+  add_index "foods_ingredients", ["ingredient_id"], name: "index_foods_ingredients_on_ingredient_id", using: :btree
+
+  create_table "foods_meals", id: false, force: :cascade do |t|
+    t.integer "food_id"
+    t.integer "meal_id"
+  end
+
+  add_index "foods_meals", ["food_id"], name: "index_foods_meals_on_food_id", using: :btree
+  add_index "foods_meals", ["meal_id"], name: "index_foods_meals_on_meal_id", using: :btree
 
   create_table "ingredients", force: :cascade do |t|
     t.string   "name"
@@ -40,6 +53,14 @@ ActiveRecord::Schema.define(version: 20160224195319) do
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
   end
+
+  create_table "ingredients_meals", id: false, force: :cascade do |t|
+    t.integer "ingredient_id"
+    t.integer "meal_id"
+  end
+
+  add_index "ingredients_meals", ["ingredient_id"], name: "index_ingredients_meals_on_ingredient_id", using: :btree
+  add_index "ingredients_meals", ["meal_id"], name: "index_ingredients_meals_on_meal_id", using: :btree
 
   create_table "meals", force: :cascade do |t|
     t.string   "name"
