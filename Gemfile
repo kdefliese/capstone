@@ -1,9 +1,13 @@
 source 'https://rubygems.org'
 
+# gems for OAuth
 gem "omniauth"
 gem 'omniauth-oauth2', '~> 1.3.1'
 gem "omniauth-twitter"
 gem "omniauth-github"
+
+# gem for the Factual Product API
+gem 'factual-api'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.4'
 # Use postgres as the database for Active Record
