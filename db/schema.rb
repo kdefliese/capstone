@@ -23,6 +23,14 @@ ActiveRecord::Schema.define(version: 20160225000129) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "days_meals", id: false, force: :cascade do |t|
+    t.integer "day_id"
+    t.integer "meal_id"
+  end
+
+  add_index "days_meals", ["day_id"], name: "index_days_meals_on_day_id", using: :btree
+  add_index "days_meals", ["meal_id"], name: "index_days_meals_on_meal_id", using: :btree
+
   create_table "foods", force: :cascade do |t|
     t.string   "brand"
     t.string   "product_name"
@@ -77,14 +85,6 @@ ActiveRecord::Schema.define(version: 20160225000129) do
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
   end
-
-  create_table "meals_users", id: false, force: :cascade do |t|
-    t.integer "meal_id"
-    t.integer "user_id"
-  end
-
-  add_index "meals_users", ["meal_id"], name: "index_meals_users_on_meal_id", using: :btree
-  add_index "meals_users", ["user_id"], name: "index_meals_users_on_user_id", using: :btree
 
   create_table "symptoms", force: :cascade do |t|
     t.string   "name"

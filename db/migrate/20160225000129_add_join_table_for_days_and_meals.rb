@@ -1,11 +1,11 @@
 class AddJoinTableForDaysAndMeals < ActiveRecord::Migration
   def change
-    create_table :meals_users, id: false do |t|
+    create_table :days_meals, id: false do |t|
+      t.integer :day_id
       t.integer :meal_id
-      t.integer :user_id
     end
 
-    add_index :meals_users, :meal_id
-    add_index :meals_users, :user_id
+    add_index :days_meals, :day_id
+    add_index :days_meals, :meal_id
   end
 end
