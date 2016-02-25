@@ -1,9 +1,27 @@
 Rails.application.routes.draw do
   root "welcome#index"
+  get "/login" => "welcome#login"
   get "/auth/:provider/callback" => "sessions#create", as: :auth
-  post "/auth/developer/callback" => "sessions#create", as: :developer_auth
   delete "logout" => "sessions#destroy"
+
   post "users" => "users#create"
+  get "users/:id/stats" => "users#stats", as: :user_stats
+  get "users/:id/edit" => "users#edit"
+  get "users/:id" => "users#show"
+  patch "users/:id" => "users#update"
+
+  get "day/:id" => "days#show"
+
+  resources :meals
+  resources :foods
+  resources :ingredients
+  resources :symptoms
+
+
+
+
+
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
