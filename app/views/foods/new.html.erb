@@ -1,0 +1,23 @@
+<%= form_for @food, :html => {:class => "form-inline"} do |f| %>
+  <fieldset>
+    <%= f.label :product_name %>
+    <%= f.text_field :product_name %>
+    <%= f.label :ingredients_list %>
+    <%= f.text_field :ingredients_list %>
+    <%= f.label :manufacturer %>
+    <%= f.text_field :manufacturer %>
+    <%= f.label :category %>
+    <%= f.text_field :category %>
+    <%= f.label :ean13 %>
+    <%= f.text_field :ean13 %>
+    <%= f.label :upc %>
+    <%= f.text_field :upc %>
+    <%= f.label :image_urls %>
+    <%= f.text_field :image_urls %>
+    <%= f.label :sensitivity_groups %>
+    <%= f.text_field :sensitivity_groups %>
+    <%= f.submit value: "Create new food", class: "new_button"%>
+  </fieldset>
+<% end %>
+
+   
