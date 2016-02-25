@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160225225039) do
+ActiveRecord::Schema.define(version: 20160225230128) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,6 +37,30 @@ ActiveRecord::Schema.define(version: 20160225225039) do
 
   add_index "entries", ["day_id"], name: "index_entries_on_day_id", using: :btree
   add_index "entries", ["user_id"], name: "index_entries_on_user_id", using: :btree
+
+  create_table "entries_foods", id: false, force: :cascade do |t|
+    t.integer "entry_id"
+    t.integer "food_id"
+  end
+
+  add_index "entries_foods", ["entry_id"], name: "index_entries_foods_on_entry_id", using: :btree
+  add_index "entries_foods", ["food_id"], name: "index_entries_foods_on_food_id", using: :btree
+
+  create_table "entries_ingredients", id: false, force: :cascade do |t|
+    t.integer "entry_id"
+    t.integer "ingredient_id"
+  end
+
+  add_index "entries_ingredients", ["entry_id"], name: "index_entries_ingredients_on_entry_id", using: :btree
+  add_index "entries_ingredients", ["ingredient_id"], name: "index_entries_ingredients_on_ingredient_id", using: :btree
+
+  create_table "entries_meals", id: false, force: :cascade do |t|
+    t.integer "entry_id"
+    t.integer "meal_id"
+  end
+
+  add_index "entries_meals", ["entry_id"], name: "index_entries_meals_on_entry_id", using: :btree
+  add_index "entries_meals", ["meal_id"], name: "index_entries_meals_on_meal_id", using: :btree
 
   create_table "foods", force: :cascade do |t|
     t.string   "brand"
@@ -93,6 +117,8 @@ ActiveRecord::Schema.define(version: 20160225225039) do
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
   end
+
+  add_index "meals", ["user_id"], name: "index_meals_on_user_id", using: :btree
 
   create_table "symptoms", force: :cascade do |t|
     t.string   "name"
