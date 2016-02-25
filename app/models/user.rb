@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
   has_many :days
+  has_many :entries
+  has_many :symptoms
 
   validates :uid, presence: true, uniqueness: true
   validates :provider, presence: true
