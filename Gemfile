@@ -6,6 +6,8 @@ gem 'omniauth-oauth2', '~> 1.3.1'
 gem "omniauth-twitter"
 gem "omniauth-github"
 
+# gem for getting ERD
+gem 'rails-erd'
 # gem for the Factual Product API
 gem 'factual-api'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
