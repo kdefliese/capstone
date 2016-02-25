@@ -5,8 +5,11 @@ class CreateMeals < ActiveRecord::Migration
       t.string :foods, array: true
       t.string :ingredients, array: true
       t.string :category
+      t.integer :user_id
 
       t.timestamps null: false
     end
+
+    add_index(:meals, :user_id)
   end
 end

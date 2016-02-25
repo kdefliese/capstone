@@ -89,6 +89,7 @@ ActiveRecord::Schema.define(version: 20160225225039) do
     t.string   "foods_list",                    array: true
     t.string   "ingredients_list",              array: true
     t.string   "category"
+    t.integer  "user_id"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
   end
@@ -102,9 +103,11 @@ ActiveRecord::Schema.define(version: 20160225225039) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "day_id"
+    t.integer  "user_id"
   end
 
   add_index "symptoms", ["day_id"], name: "index_symptoms_on_day_id", using: :btree
+  add_index "symptoms", ["user_id"], name: "index_symptoms_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "uid"
