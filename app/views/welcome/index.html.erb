@@ -1,2 +1,10 @@
 <h1>This is the index page</h1>
-<%= @results %>
+<% @ingredients.each do |i| %>
+<%= i.name %>
+<% end %>
+<% @foods.each do |f| %>
+<%= f.product_name %>
+<% end %>
+<% @meals.each do |m| %>
+<%= m.name %>
+<% end %>

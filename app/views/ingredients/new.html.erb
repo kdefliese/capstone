@@ -1,0 +1,9 @@
+<%= form_for @ingredient, :html => {:class => "form-inline"} do |f| %>
+  <fieldset>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+    <%= f.label :sensitivity_groups %>
+    <%= f.text_field :sensitivity_groups %>
+    <%= f.submit value: "Create new ingredient", class: "new_button"%>
+  </fieldset>
+<% end %>

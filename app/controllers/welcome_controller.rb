@@ -7,6 +7,8 @@ class WelcomeController < ApplicationController
   end
 
   def index
-    @results = get_product
+    @ingredients = Ingredient.all
+    @foods = Food.all
+    @meals = Meal.all
   end
 end
