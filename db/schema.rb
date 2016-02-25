@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160225000129) do
+ActiveRecord::Schema.define(version: 20160225224231) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,13 +23,7 @@ ActiveRecord::Schema.define(version: 20160225000129) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "days_meals", id: false, force: :cascade do |t|
-    t.integer "day_id"
-    t.integer "meal_id"
-  end
-
-  add_index "days_meals", ["day_id"], name: "index_days_meals_on_day_id", using: :btree
-  add_index "days_meals", ["meal_id"], name: "index_days_meals_on_meal_id", using: :btree
+  add_index "days", ["user_id"], name: "index_days_on_user_id", using: :btree
 
   create_table "foods", force: :cascade do |t|
     t.string   "brand"
@@ -94,10 +88,10 @@ ActiveRecord::Schema.define(version: 20160225000129) do
     t.text     "notes"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer  "user_id"
+    t.integer  "day_id"
   end
 
-  add_index "symptoms", ["user_id"], name: "index_symptoms_on_user_id", using: :btree
+  add_index "symptoms", ["day_id"], name: "index_symptoms_on_day_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "uid"
