@@ -75,6 +75,12 @@
         null,
         null
       ],
+      "/Users/katherinedefliese/Documents/Ada_homework/capstone_stuff/capstone/app/models/day.rb": [
+        1,
+        1,
+        1,
+        null
+      ],
       "/Users/katherinedefliese/Documents/Ada_homework/capstone_stuff/capstone/app/models/food.rb": [
         1,
         1,
@@ -93,6 +99,7 @@
         null
       ],
       "/Users/katherinedefliese/Documents/Ada_homework/capstone_stuff/capstone/app/models/meal.rb": [
+        1,
         1,
         1,
         1,
@@ -139,6 +146,6 @@
         null
       ]
     },
-    "timestamp": 1456353931
+    "timestamp": 1456359695
   }
 }
