@@ -50,3 +50,26 @@ Meal.find(1).ingredients << [Ingredient.find(1),Ingredient.find(2)]
 
 Meal.find(2).foods << [Food.find(1),Food.find(2),Food.find(3)]
 Meal.find(2).ingredients << [Ingredient.find(1),Ingredient.find(2)]
+
+
+seed_days = [
+  {day: DateTime.new(2016,2,1), user_id: 1},
+]
+
+seed_days.each do |d|
+  Day.create(d)
+end
+
+seed_entries = [
+  {time: DateTime.new(2016,2,1,1,2,3), user_id: 1, day_id: 1, category: "Breakfast", notes: "Mmm food"},
+  {time: DateTime.new(2016,2,1,4,5,6), user_id: 1, day_id: 1, category: "Lunch", notes: "Good notes"}
+]
+
+seed_entries.each do |e|
+  Entry.create(e)
+end
+
+Day.find(1).entries << [Entry.find(1),Entry.find(2)]
+
+Entry.find(1).meals << Meal.find(1)
+Entry.find(2).meals << Meal.find(2)

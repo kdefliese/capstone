@@ -1,4 +1,16 @@
 <h1><%= @day.day %></h1>
+<% @entries.each do |e| %>
+  <%= e.category %>
+  <br />
+  <%= e.time %>
+  <br />
+  <%= e.notes %>
+  <br />
+    <% e.meals.each do |m| %>
+      <%= m.name %>
+    <% end %>
+    <br />
+<% end %>
 
 <%= form_for @entry, :html => {:class => "form-inline"} do |f| %>
   <fieldset>
