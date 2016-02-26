@@ -5,12 +5,140 @@
         1,
         null
       ],
+      "/Users/katherinedefliese/Documents/Ada_homework/capstone_stuff/capstone/app/helpers/days_helper.rb": [
+        1,
+        null
+      ],
+      "/Users/katherinedefliese/Documents/Ada_homework/capstone_stuff/capstone/app/helpers/foods_helper.rb": [
+        1,
+        null
+      ],
+      "/Users/katherinedefliese/Documents/Ada_homework/capstone_stuff/capstone/app/helpers/ingredients_helper.rb": [
+        1,
+        null
+      ],
+      "/Users/katherinedefliese/Documents/Ada_homework/capstone_stuff/capstone/app/helpers/meals_helper.rb": [
+        1,
+        null
+      ],
       "/Users/katherinedefliese/Documents/Ada_homework/capstone_stuff/capstone/app/helpers/sessions_helper.rb": [
         1,
         null
       ],
       "/Users/katherinedefliese/Documents/Ada_homework/capstone_stuff/capstone/app/helpers/welcome_helper.rb": [
         1,
+        null
+      ],
+      "/Users/katherinedefliese/Documents/Ada_homework/capstone_stuff/capstone/app/controllers/days_controller.rb": [
+        1,
+        null,
+        1,
+        0,
+        null,
+        null,
+        null
+      ],
+      "/Users/katherinedefliese/Documents/Ada_homework/capstone_stuff/capstone/app/controllers/application_controller.rb": [
+        1,
+        null,
+        null,
+        1,
+        null,
+        1,
+        0,
+        null,
+        null,
+        1,
+        0,
+        0,
+        0,
+        null,
+        null,
+        null
+      ],
+      "/Users/katherinedefliese/Documents/Ada_homework/capstone_stuff/capstone/app/controllers/foods_controller.rb": [
+        1,
+        1,
+        0,
+        null,
+        null,
+        1,
+        0,
+        0,
+        0,
+        null,
+        0,
+        null,
+        null,
+        null,
+        1,
+        0,
+        0,
+        null,
+        null,
+        1,
+        null,
+        1,
+        0,
+        null,
+        null
+      ],
+      "/Users/katherinedefliese/Documents/Ada_homework/capstone_stuff/capstone/app/controllers/ingredients_controller.rb": [
+        1,
+        null,
+        1,
+        0,
+        null,
+        null,
+        1,
+        0,
+        0,
+        0,
+        null,
+        0,
+        null,
+        null,
+        null,
+        1,
+        0,
+        0,
+        null,
+        null,
+        1,
+        null,
+        1,
+        0,
+        null,
+        null,
+        null
+      ],
+      "/Users/katherinedefliese/Documents/Ada_homework/capstone_stuff/capstone/app/controllers/meals_controller.rb": [
+        1,
+        null,
+        1,
+        0,
+        null,
+        null,
+        1,
+        0,
+        0,
+        0,
+        null,
+        0,
+        null,
+        null,
+        null,
+        1,
+        0,
+        0,
+        null,
+        null,
+        1,
+        null,
+        1,
+        0,
+        null,
+        null,
         null
       ],
       "/Users/katherinedefliese/Documents/Ada_homework/capstone_stuff/capstone/app/controllers/sessions_controller.rb": [
@@ -42,18 +170,18 @@
         null,
         null
       ],
-      "/Users/katherinedefliese/Documents/Ada_homework/capstone_stuff/capstone/app/controllers/application_controller.rb": [
-        1,
-        null,
-        null,
-        1,
-        null
-      ],
       "/Users/katherinedefliese/Documents/Ada_homework/capstone_stuff/capstone/app/controllers/welcome_controller.rb": [
         1,
         1,
+        1,
+        null,
         null,
         1,
+        null,
+        null,
+        1,
+        0,
+        0,
         0,
         null,
         null
@@ -79,9 +207,21 @@
         1,
         1,
         1,
+        1,
+        1,
+        null
+      ],
+      "/Users/katherinedefliese/Documents/Ada_homework/capstone_stuff/capstone/app/models/entry.rb": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
         null
       ],
       "/Users/katherinedefliese/Documents/Ada_homework/capstone_stuff/capstone/app/models/food.rb": [
+        1,
         1,
         1,
         1,
@@ -94,11 +234,13 @@
         1,
         1,
         1,
+        1,
         null,
         1,
         null
       ],
       "/Users/katherinedefliese/Documents/Ada_homework/capstone_stuff/capstone/app/models/meal.rb": [
+        1,
         1,
         1,
         1,
@@ -112,9 +254,13 @@
         1,
         1,
         1,
+        1,
         null
       ],
       "/Users/katherinedefliese/Documents/Ada_homework/capstone_stuff/capstone/app/models/user.rb": [
+        1,
+        1,
+        1,
         1,
         1,
         null,
@@ -146,6 +292,6 @@
         null
       ]
     },
-    "timestamp": 1456359695
+    "timestamp": 1456445349
   }
 }

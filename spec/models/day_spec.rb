@@ -15,7 +15,7 @@ RSpec.describe Day, type: :model do
 
     it "requires an day to have a date" do
       expect(bad_day).to be_invalid
-      expect(bad_day.errors.keys).to include :date
+      expect(bad_day.errors.keys).to include :day
     end
   end
 end
