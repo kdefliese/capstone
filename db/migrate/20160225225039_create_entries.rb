@@ -1,7 +1,7 @@
 class CreateEntries < ActiveRecord::Migration
   def change
     create_table :entries do |t|
-      t.time :time
+      t.datetime :time
       t.integer :user_id
       t.integer :day_id
       t.string :category

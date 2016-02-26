@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 20160225230128) do
   enable_extension "plpgsql"
 
   create_table "days", force: :cascade do |t|
-    t.time     "date"
+    t.datetime "day"
     t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 20160225230128) do
   add_index "days", ["user_id"], name: "index_days_on_user_id", using: :btree
 
   create_table "entries", force: :cascade do |t|
-    t.time     "time"
+    t.datetime "time"
     t.integer  "user_id"
     t.integer  "day_id"
     t.string   "category"
@@ -123,8 +123,8 @@ ActiveRecord::Schema.define(version: 20160225230128) do
   create_table "symptoms", force: :cascade do |t|
     t.string   "name"
     t.integer  "severity"
-    t.time     "start_time"
-    t.time     "end_time"
+    t.datetime "start_time"
+    t.datetime "end_time"
     t.text     "notes"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

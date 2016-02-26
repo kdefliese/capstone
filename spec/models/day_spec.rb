@@ -4,7 +4,7 @@ RSpec.describe Day, type: :model do
   describe "model validations" do
     let(:good_day) do
       Day.create({
-      date: Time.new(2016, 01, 30),
+      day: Time.new(2016, 01, 30),
       user_id: 1
       })
     end
