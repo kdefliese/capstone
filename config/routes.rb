@@ -10,8 +10,9 @@ Rails.application.routes.draw do
   get "users/:id" => "users#show"
   patch "users/:id" => "users#update"
 
-  get "days/:id" => "days#show"
+  get "days/:id" => "days#show", as: :day
 
+  resources :entries
   resources :meals
   resources :foods
   resources :ingredients
