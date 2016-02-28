@@ -11,6 +11,6 @@ class WelcomeController < ApplicationController
     @ingredients = Ingredient.all
     @foods = Food.all
     @meals = Meal.all
-    UserMailer.test_email(@current_user).deliver_now
+    # UserMailer.reminder_email(@current_user).deliver_now
   end
 end
