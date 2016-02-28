@@ -2,6 +2,6 @@ class SendEmailJob < ActiveJob::Base
   queue_as :default
 
   def perform(*args)
-    # Do something later
+    # UserMailer.reminder_email(@current_user).deliver_now
   end
 end
