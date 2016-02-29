@@ -20,12 +20,14 @@
       <option value="Snack">Snack</option>
     </select>
     <select id="food-type-select">
-      <option value="Meals" selected="selected">Meals</option>
       <option value="Foods" selected="selected">Foods</option>
       <option value="Ingredients" selected="selected">Ingredients</option>
+      <option value="Meals" selected="selected">Meals</option>
     </select>
-    <select>
-      <option value="dynamic objects here">Dynamic objects here</option>
+    <select id="dynamic-food-list">
+      <% @select_arr.each do |item| %>
+        <%= item.html_safe %>
+      <% end %>
     </select>
     <%= f.label :notes %>
     <%= f.text_field :notes %>
