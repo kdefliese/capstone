@@ -13,11 +13,21 @@
 <% end %>
 
 <%= form_for @entry, :html => {:class => "form-inline"} do |f| %>
-  <fieldset>
-    <%= f.label :category %>
-    <%= f.text_field :category %>
+    <select>
+      <option value="Breakfast">Breakfast</option>
+      <option value="Lunch">Lunch</option>
+      <option value="Dinner">Dinner</option>
+      <option value="Snack">Snack</option>
+    </select>
+    <select>
+      <option value="Meals">Meals</option>
+      <option value="Foods">Foods</option>
+      <option value="Ingredients">Ingredients</option>
+    </select>
+    <select>
+      <option value="dynamic objects here">Dynamic objects here</option>
+    </select>
     <%= f.label :notes %>
     <%= f.text_field :notes %>
     <%= f.submit value: "Add food entry", class: "new_button"%>
-  </fieldset>
 <% end %>
