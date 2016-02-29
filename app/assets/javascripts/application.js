@@ -33,6 +33,14 @@ $(document).on('ready', function() {
       .done(function(data) {
         console.log("success");
         console.log(data);
+        var replace_html = "<select id=\"dynamic-food-list\">";
+        for (var i = 0; i < data.length; i++) {
+          replace_html += "<option value=\"" + data[i].name + "\">" + data[i].name + "</option>";
+        }
+        replace_html += "</select>";
+        $("#dynamic-food-list").replaceWith(
+          replace_html
+        );
       })
       .fail(function() {
         console.log("failure");
