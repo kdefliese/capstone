@@ -17,6 +17,10 @@ class FoodsController < ApplicationController
     @food = Food.find(id)
   end
 
+  def all
+    render :json => Food.all.as_json, :status => :ok
+  end
+
   private
 
   def food_params

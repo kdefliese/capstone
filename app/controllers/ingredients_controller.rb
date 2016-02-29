@@ -18,6 +18,10 @@ class IngredientsController < ApplicationController
     @ingredient = Ingredient.find(id)
   end
 
+  def all
+    render :json => Ingredient.all.as_json, :status => :ok
+  end
+
   private
 
   def ingredient_params

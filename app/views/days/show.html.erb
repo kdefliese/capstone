@@ -25,8 +25,8 @@
       <option value="Meals" selected="selected">Meals</option>
     </select>
     <select id="dynamic-food-list">
-      <% @select_arr.each do |item| %>
-        <%= item.html_safe %>
+      <% @all_meals.each do |m| %>
+        <option value="<%= m.name %>" selected="selected"><%= m.name %></option>
       <% end %>
     </select>
     <%= f.label :notes %>

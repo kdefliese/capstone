@@ -18,6 +18,10 @@ class MealsController < ApplicationController
     @meal = Meal.find(id)
   end
 
+  def all
+    render :json => Meal.all.as_json, :status => :ok
+  end
+
   private
 
   def meal_params

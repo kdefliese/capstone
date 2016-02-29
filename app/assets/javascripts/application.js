@@ -18,7 +18,25 @@ $(document).on('ready', function() {
   $("#food-type-select")
   .change(function() {
     $("#food-type-select option:selected").each(function() {
-      console.log($("#food-type-select option:selected").val());
+      var select_val = $("#food-type-select option:selected").val();
+      var url = "";
+      if (select_val == "Meals") {
+        url = "/meals/all";
+      }
+      else if (select_val == "Foods") {
+        url = "/foods/all";
+      }
+      else if (select_val == "Ingredients") {
+        url = "/ingredients/all";
+      }
+      $.ajax(url)
+      .done(function(data) {
+        console.log("success");
+        console.log(data);
+      })
+      .fail(function() {
+        console.log("failure");
+      });
     });
   })
   .trigger("change");
