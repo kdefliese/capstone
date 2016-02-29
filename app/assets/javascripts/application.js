@@ -14,3 +14,12 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+$(document).on('ready', function() {
+  $("#food-type-select")
+  .change(function() {
+    $("#food-type-select option:selected").each(function() {
+      console.log($("#food-type-select option:selected").val());
+    });
+  })
+  .trigger("change");
+});
