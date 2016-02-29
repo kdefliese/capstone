@@ -22,12 +22,15 @@ $(document).on('ready', function() {
       var url = "";
       if (select_val == "Meals") {
         url = "/meals/all";
+        button_word = "meal";
       }
       else if (select_val == "Foods") {
         url = "/foods/all";
+        button_word = "food";
       }
       else if (select_val == "Ingredients") {
         url = "/ingredients/all";
+        button_word = "ingredient";
       }
       $.ajax(url)
       .done(function(data) {
@@ -40,6 +43,9 @@ $(document).on('ready', function() {
         replace_html += "</select>";
         $("#dynamic-food-list").replaceWith(
           replace_html
+        );
+        $("#add-to-entry").val(
+          "Add " + button_word + " to entry"
         );
       })
       .fail(function() {

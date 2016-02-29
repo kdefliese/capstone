@@ -1,4 +1,7 @@
 <h1><%= @day.day %></h1>
+<p>
+  Eaten today:
+</p>
 <% @entries.each do |e| %>
   <%= e.category %>
   <br />
@@ -31,5 +34,11 @@
     </select>
     <%= f.label :notes %>
     <%= f.text_field :notes %>
-    <%= f.submit value: "Add food entry", class: "new_button"%>
+    <%= f.submit value: "Add food to entry", class: "new_button", id: "add-to-entry" %>
 <% end %>
+
+<p>
+  In this entry:
+</p>
+
+<button id="create-food-entry">Submit food entry</button>
