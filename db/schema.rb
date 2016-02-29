@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160225230128) do
+ActiveRecord::Schema.define(version: 20160229230157) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -64,7 +64,7 @@ ActiveRecord::Schema.define(version: 20160225230128) do
 
   create_table "foods", force: :cascade do |t|
     t.string   "brand"
-    t.string   "product_name"
+    t.string   "name"
     t.string   "ingredients_list",                array: true
     t.string   "manufacturer"
     t.string   "category"

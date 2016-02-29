@@ -1,7 +1,7 @@
 <%= form_for @food, :html => {:class => "form-inline"} do |f| %>
   <fieldset>
-    <%= f.label :product_name %>
-    <%= f.text_field :product_name %>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
     <%= f.label :ingredients_list %>
     <%= f.text_field :ingredients_list %>
     <%= f.label :manufacturer %>
@@ -19,5 +19,3 @@
     <%= f.submit value: "Create new food", class: "new_button"%>
   </fieldset>
 <% end %>
-
-   

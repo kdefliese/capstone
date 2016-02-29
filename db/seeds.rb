@@ -23,9 +23,9 @@ seed_ingredients.each do |ing|
 end
 
 seed_foods = [
-  {brand: "Amy's", product_name: "Refried Beans", ingredients_list: ["pinto beans, pork lard"], category: "Dinner", sensitivity_groups: ["beans","nitrates"]},
-  {brand: "Tostitos", product_name: "Tortillas", ingredients_list: ["flour"], category: "Dinner", sensitivity_groups: ["gluten"]},
-  {brand: "El Paso", product_name: "Taco Seasoning", ingredients_list: ["cumin","chili pepper"], category: "Dinner", sensitivity_groups: ["spicy foods"]}
+  {brand: "Amy's", name: "Refried Beans", ingredients_list: ["pinto beans, pork lard"], category: "Dinner", sensitivity_groups: ["beans","nitrates"]},
+  {brand: "Tostitos", name: "Tortillas", ingredients_list: ["flour"], category: "Dinner", sensitivity_groups: ["gluten"]},
+  {brand: "El Paso", name: "Taco Seasoning", ingredients_list: ["cumin","chili pepper"], category: "Dinner", sensitivity_groups: ["spicy foods"]}
 ]
 
 seed_foods.each do |f|

@@ -4,7 +4,7 @@ RSpec.describe Food, type: :model do
   describe "model validations" do
     let(:good_food) do
       Food.create({
-      product_name: "cheese",
+      name: "cheese",
       sensitivity_groups: ["dairy"]
       })
     end
@@ -15,7 +15,7 @@ RSpec.describe Food, type: :model do
 
     it "requires an food to have a name" do
       expect(bad_food).to be_invalid
-      expect(bad_food.errors.keys).to include :product_name
+      expect(bad_food.errors.keys).to include :name
     end
   end
 end

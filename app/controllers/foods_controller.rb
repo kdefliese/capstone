@@ -24,6 +24,6 @@ class FoodsController < ApplicationController
   private
 
   def food_params
-    params.permit(food:[:brand, :product_name, :ingredients_list, :manufacturer, :category, :ean13, :upc, :factual_id, :image_urls, :sensitivity_groups])
+    params.permit(food:[:brand, :name, :ingredients_list, :manufacturer, :category, :ean13, :upc, :factual_id, :image_urls, :sensitivity_groups])
   end
 end
