@@ -15,30 +15,33 @@
     <br />
 <% end %>
 
-<%= form_for @entry, :html => {:class => "form-inline"} do |f| %>
-    <select>
-      <option value="Breakfast">Breakfast</option>
-      <option value="Lunch">Lunch</option>
-      <option value="Dinner">Dinner</option>
-      <option value="Snack">Snack</option>
-    </select>
-    <select id="food-type-select">
-      <option value="Foods" selected="selected">Foods</option>
-      <option value="Ingredients" selected="selected">Ingredients</option>
-      <option value="Meals" selected="selected">Meals</option>
-    </select>
-    <select id="dynamic-food-list">
-      <% @all_meals.each do |m| %>
-        <option value="<%= m.name %>" selected="selected"><%= m.name %></option>
-      <% end %>
-    </select>
-    <%= f.label :notes %>
-    <%= f.text_field :notes %>
-    <%= f.submit value: "Add food to entry", class: "new_button", id: "add-to-entry" %>
-<% end %>
+<form>
+  <select>
+    <option value="Breakfast">Breakfast</option>
+    <option value="Lunch">Lunch</option>
+    <option value="Dinner">Dinner</option>
+    <option value="Snack">Snack</option>
+  </select>
+  <select id="food-type-select">
+    <option value="Foods" selected="selected">Foods</option>
+    <option value="Ingredients" selected="selected">Ingredients</option>
+    <option value="Meals" selected="selected">Meals</option>
+  </select>
+  <select id="dynamic-food-list">
+    <% @all_meals.each do |m| %>
+      <option value="<%= m.name %>" selected="selected"><%= m.name %></option>
+    <% end %>
+  </select>
+  <label>Notes:</label>
+  <input type="text">
+  <button id="add-new-entry">Add food to entry</button>
+</form>
 
 <p>
   In this entry:
 </p>
+<div id="print-new-entry">
+
+</div>
 
 <button id="create-food-entry">Submit food entry</button>

@@ -15,8 +15,9 @@
 //= require turbolinks
 //= require_tree .
 $(document).on('ready', function() {
-  $("#food-type-select")
-  .change(function() {
+
+  // updates foods/meals/ingredients dropdown based on first dropdown selection
+  $("#food-type-select").change(function() {
     $("#food-type-select option:selected").each(function() {
       var select_val = $("#food-type-select option:selected").val();
       var url = "";
@@ -52,6 +53,15 @@ $(document).on('ready', function() {
         console.log("failure");
       });
     });
-  })
-  .trigger("change");
+  });
+
+  // adds things to the food entry on the page
+  $("#add-new-entry").click(function() {
+    event.preventDefault();
+    $("#print-new-entry").html(
+      "<p>Clicked that button</p>"
+    );
+  });
+
+
 });
