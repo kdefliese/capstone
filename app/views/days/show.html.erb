@@ -37,7 +37,7 @@ Add existing foods to your entry:
   </select>
   <select id="dynamic-food-list">
     <% @all_meals.each do |m| %>
-      <option value="<%= m.name %>" selected="selected"><%= m.name %></option>
+      <option value="<%= m.name %>" selected="selected" id="<%= m.id %>"><%= m.name %></option>
     <% end %>
   </select>
   (Need to add a field for what time the food was eaten, right now it's hardcoded)

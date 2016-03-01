@@ -4,7 +4,7 @@ class EntriesController < ApplicationController
     @entry = Entry.new(entry_params)
     binding.pry
     if @entry.save
-      @entry.meals << Meal.find(entry_params[:meal_id])
+      @entry.meals << Meal.find(params[:meal_id])
       redirect_to day_path(Day.find(1))
     else
 

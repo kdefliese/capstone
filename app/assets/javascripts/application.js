@@ -43,7 +43,7 @@ $(document).on('ready', function() {
         console.log(data);
         var replace_html = "<select id=\"dynamic-food-list\">";
         for (var i = 0; i < data.length; i++) {
-          replace_html += "<option value=\"" + data[i].name + "\">" + data[i].name + "</option>";
+          replace_html += "<option value=\"" + data[i].name + "\" id=\"" + data[i].id + "\">" + data[i].name + "</option>";
         }
         replace_html += "</select>";
         $("#dynamic-food-list").replaceWith(
@@ -65,11 +65,11 @@ $(document).on('ready', function() {
     var type = $("#food-type-select option:selected").val();
     var name = $("#dynamic-food-list").val();
     entryItems[String(name)] = String(type);
-    console.log(type);
-    console.log(name);
     $("#print-new-entry").append(
       "<p>" + type + ": " + name + "</p>"
     );
+    $("#print-new-entry").data($("#food-type-select option:selected").val(), $("#dynamic-food-list option:selected")[0].id);
+    console.log($("#print-new-entry").data());
   });
 
   // submits food entry and will update it in the db
