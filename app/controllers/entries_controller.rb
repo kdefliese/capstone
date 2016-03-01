@@ -29,7 +29,17 @@ class EntriesController < ApplicationController
   end
 
   def last
-    render :json => Entry.last.as_json, :status => :ok
+    entry = Entry.last
+    # if !entry.meals.empty?
+    #   @meals = entry.meals
+    # else
+    #   @meals = []
+    # end
+    # if !entry.foods.empty?
+    # end
+    # if !entry.ingredients.empty?
+    # end
+    render :json => {:entry => entry.as_json, :meals => entry.meals.as_json, :foods => entry.foods.as_json, :ingredients => entry.ingredients.as_json}, :status => :ok
   end
 
   private

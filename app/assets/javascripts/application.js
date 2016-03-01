@@ -95,7 +95,6 @@ $(document).on('ready', function() {
         $.ajax("/entries/last")
           .done(function(data) {
             console.log("last entry success");
-            console.log(data);
             $("#existing-entries").after(
               "<div>" + data.category + "<br />" + data.time + "<br />" + data.notes + "<br />" + "</div>"
             );
