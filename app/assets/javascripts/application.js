@@ -98,24 +98,21 @@ $(document).on('ready', function() {
             console.log("last entry success");
             console.log(data);
             play = data;
-            $("#existing-entries").after(
-              "<div>" + data.entry.category + "<br />" + data.entry.time + "<br />" + data.entry.notes + "<br />" + "</div>"
-            );
+            var meals = "";
+            var foods = "";
+            var ingredients = "";
             for (var i = 0; i < data.meals.length; i++) {
-              $("#existing-entries").after(
-                "<div>" + data.meals[i].name + "<br />" + "</div>"
-              );
+                meals += "<div class=\"meal\">" + data.meals[i].name + "</div>";
             }
             for (var j = 0; j < data.foods.length; j++) {
-              $("#existing-entries").after(
-                "<div>" + data.foods[j].name + "<br />" + "</div>"
-              );
+                foods += "<div class=\"food\">" + data.foods[j].name + "</div>";
             }
             for (var k = 0; k < data.ingredients.length; k++) {
-              $("#existing-entries").after(
-                "<div>" + data.ingredients[k].name + "<br />" + "</div>"
-              );
+                ingredients += "<div class=\"ingredient\">" + data.ingredients[k].name + "</div>";
             }
+            $("#existing-entries").after(
+              "<div class=\"entry\">" + data.entry.category + "<br />" + data.entry.time + "<br />" + data.entry.notes + "<br />" + meals + "<br />" + foods + "<br />" + ingredients + "<br />" + "</div>"
+            );
           })
           .fail(function() {
             console.log("last entry failure");
