@@ -96,7 +96,9 @@ $(document).on('ready', function() {
           .done(function(data) {
             console.log("last entry success");
             console.log(data);
-            // $("#existing-entries").after();
+            $("#existing-entries").after(
+              "<div>" + data.category + "<br />" + data.time + "<br />" + data.notes + "<br />" + "</div>"
+            );
           })
           .fail(function() {
             console.log("last entry failure");
