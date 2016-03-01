@@ -32,16 +32,13 @@ class EntriesController < ApplicationController
   def last
     entry = Entry.last
     entry_time = entry.time.strftime("%l:%M %p")
-    # if !entry.meals.empty?
-    #   @meals = entry.meals
-    # else
-    #   @meals = []
-    # end
-    # if !entry.foods.empty?
-    # end
-    # if !entry.ingredients.empty?
-    # end
     render :json => {:entry => entry.as_json, :entry_time => entry_time.as_json, :meals => entry.meals.as_json, :foods => entry.foods.as_json, :ingredients => entry.ingredients.as_json}, :status => :ok
+  end
+
+  def destroy
+    @entry = Entry.find(params[:id])
+    @entry.destroy
+    redirect_to day_path(1)
   end
 
   private
