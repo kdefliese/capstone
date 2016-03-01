@@ -1,13 +1,13 @@
-<h1><%= @day.day %></h1>
+<h1><%= @day.day.strftime("%m/%d/%Y") %></h1>
 <p>
   Eaten today:
 </p>
 <div id="existing-entries">
   <% @entries.each do |e| %>
-    <div class="entry">
+    <div class="entry" id="<%= e.time.strftime("%l:%M %p") %>">
       <%= e.category %>
       <br />
-      <%= e.time %>
+      <%= e.time.strftime("%l:%M %p") %>
       <br />
       <%= e.notes %>
       <br />

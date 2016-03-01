@@ -6,6 +6,7 @@ class EntriesController < ApplicationController
     entry_datetime = DateTime.parse(date + " " + entry_time)
     @entry = Entry.new(entry_params)
     @entry.time = entry_datetime
+    binding.pry
     if @entry.save
       if !params[:meal_ids].nil?
         params[:meal_ids].each do |i|
@@ -30,6 +31,7 @@ class EntriesController < ApplicationController
 
   def last
     entry = Entry.last
+    entry_time = entry.time.strftime("%l:%M %p")
     # if !entry.meals.empty?
     #   @meals = entry.meals
     # else
@@ -39,7 +41,7 @@ class EntriesController < ApplicationController
     # end
     # if !entry.ingredients.empty?
     # end
-    render :json => {:entry => entry.as_json, :meals => entry.meals.as_json, :foods => entry.foods.as_json, :ingredients => entry.ingredients.as_json}, :status => :ok
+    render :json => {:entry => entry.as_json, :entry_time => entry_time.as_json, :meals => entry.meals.as_json, :foods => entry.foods.as_json, :ingredients => entry.ingredients.as_json}, :status => :ok
   end
 
   private

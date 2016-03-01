@@ -108,7 +108,7 @@ $(document).on('ready', function() {
                 ingredients += "<div class=\"ingredient\">" + data.ingredients[k].name + "</div>";
             }
             $("#added-entries").append(
-              "<div class=\"entry\">" + data.entry.category + "<br />" + data.entry.time + "<br />" + data.entry.notes + "<br />" + meals + "<br />" + foods + "<br />" + ingredients + "<br />" + "</div>"
+              "<div class=\"entry\" id=\"" + data.entry_time + "\">" + data.entry.category + "<br />" + data.entry_time + "<br />" + data.entry.notes + "<br />" + meals + "<br />" + foods + "<br />" + ingredients + "<br />" + "</div>"
             );
           })
           .fail(function() {
