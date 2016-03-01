@@ -1,7 +1,11 @@
 class EntriesController < ApplicationController
 
   def create
+    date = Day.find(params[:day_id]).day.to_s.slice(0,10)
+    entry_time = params[:time]
+    entry_datetime = DateTime.parse(date + " " + entry_time)
     @entry = Entry.new(entry_params)
+    @entry.time = entry_datetime
     binding.pry
     if @entry.save
       if !params[:meal_ids].nil?

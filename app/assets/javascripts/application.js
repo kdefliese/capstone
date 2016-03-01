@@ -42,7 +42,6 @@ $(document).on('ready', function() {
       $.ajax(url)
       .done(function(data) {
         console.log("success");
-        console.log(data);
         var replace_html = "<select id=\"dynamic-food-list\">";
         for (var i = 0; i < data.length; i++) {
           replace_html += "<option value=\"" + data[i].name + "\" id=\"" + data[i].id + "\">" + data[i].name + "</option>";
@@ -85,12 +84,10 @@ $(document).on('ready', function() {
 
   // submits food entry and will update it in the db
   $("#create-food-entry").click(function() {
-    console.log($("#print-new-entry").data());
-    var d = new Date();
     $.ajax({
       method: "POST",
       url: "/entries",
-      data: {notes: $("#notes").val(), time: d, user_id: $("#user-id").val(), day_id: $("#day-id").val(), category: $("#category-select").val(), meal_ids: $("#print-new-entry").data("Meals"), food_ids: $("#print-new-entry").data("Foods"), ingredient_ids: $("#print-new-entry").data("Ingredients") }
+      data: {notes: $("#notes").val(), time: $("#time").val(), user_id: $("#user-id").val(), day_id: $("#day-id").val(), category: $("#category-select").val(), meal_ids: $("#print-new-entry").data("Meals"), food_ids: $("#print-new-entry").data("Foods"), ingredient_ids: $("#print-new-entry").data("Ingredients") }
     })
     .done(function() {
       console.log("success");
