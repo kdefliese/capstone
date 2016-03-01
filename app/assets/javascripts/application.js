@@ -15,8 +15,7 @@
 //= require turbolinks
 //= require_tree .
 
-// this will track of what food/meal/ing types and names we have in our entry
-var entryItems = {};
+// these will track of what food/meal/ing ids we have in our entry w/o displaying ids on the page
 var mealVals = [];
 var foodVals = [];
 var ingredientVals = [];
@@ -67,7 +66,6 @@ $(document).on('ready', function() {
     event.preventDefault();
     var type = $("#food-type-select option:selected").val();
     var name = $("#dynamic-food-list").val();
-    entryItems[String(name)] = String(type);
     $("#print-new-entry").append(
       "<p>" + type + ": " + name + "</p>"
     );
@@ -83,17 +81,16 @@ $(document).on('ready', function() {
       ingredientVals.push($("#dynamic-food-list option:selected")[0].id);
       $("#print-new-entry").data(type, ingredientVals);
     }
-    console.log($("#print-new-entry").data());
   });
 
   // submits food entry and will update it in the db
   $("#create-food-entry").click(function() {
-    console.log(entryItems);
+    console.log($("#print-new-entry").data());
     var d = new Date();
     $.ajax({
       method: "POST",
       url: "/entries",
-      data: {notes: $("#notes").val(), time: d, user_id: $("#user-id").val(), day_id: $("#day-id").val(), category: $("#category-select").val(), meal_id: 1}
+      data: {notes: $("#notes").val(), time: d, user_id: $("#user-id").val(), day_id: $("#day-id").val(), category: $("#category-select").val(), meal_ids: $("#print-new-entry").data("Meals") }
     })
     .done(function() {
       console.log("success");

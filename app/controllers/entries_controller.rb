@@ -2,9 +2,12 @@ class EntriesController < ApplicationController
 
   def create
     @entry = Entry.new(entry_params)
-    binding.pry
     if @entry.save
-      @entry.meals << Meal.find(params[:meal_id])
+      if !params[:meal_ids].nil?
+        params[:meal_ids].each do |i|
+          @entry.meals << Meal.find(i.to_i)
+        end
+      end
       redirect_to day_path(Day.find(1))
     else
 
