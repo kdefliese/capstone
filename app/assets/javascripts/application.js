@@ -110,7 +110,7 @@ $(document).on('ready', function() {
             for (var k = 0; k < data.ingredients.length; k++) {
                 ingredients += "<div class=\"ingredient\">" + data.ingredients[k].name + "</div>";
             }
-            $("#existing-entries").after(
+            $("#added-entries").append(
               "<div class=\"entry\">" + data.entry.category + "<br />" + data.entry.time + "<br />" + data.entry.notes + "<br />" + meals + "<br />" + foods + "<br />" + ingredients + "<br />" + "</div>"
             );
           })
