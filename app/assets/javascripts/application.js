@@ -79,7 +79,7 @@ $(document).on('ready', function() {
     $.ajax({
       method: "POST",
       url: "/entries",
-      data: {notes: "This is hardcoded", time: d, user_id: 1, day_id: 1}
+      data: {notes: "This is hardcoded", time: d, user_id: 1, day_id: 1, category: "Breakfast"}
     })
     .done(function() {
       console.log("success");
