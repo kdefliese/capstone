@@ -2,27 +2,29 @@
 <p>
   Eaten today:
 </p>
-<% @entries.each do |e| %>
-  <%= e.category %>
-  <br />
-  <%= e.time %>
-  <br />
-  <%= e.notes %>
-  <br />
-    <% e.meals.each do |m| %>
-      <%= m.name %>
-    <% end %>
+<div id="existing-entries">
+  <% @entries.each do |e| %>
+    <%= e.category %>
     <br />
-    <% e.foods.each do |f| %>
-      <%= f.name %>
-    <% end %>
+    <%= e.time %>
     <br />
-    <% e.ingredients.each do |i| %>
-      <%= i.name %>
-    <% end %>
+    <%= e.notes %>
     <br />
-<% end %>
-<br />
+      <% e.meals.each do |m| %>
+        <%= m.name %>
+      <% end %>
+      <br />
+      <% e.foods.each do |f| %>
+        <%= f.name %>
+      <% end %>
+      <br />
+      <% e.ingredients.each do |i| %>
+        <%= i.name %>
+      <% end %>
+      <br />
+  <% end %>
+  <br />
+</div>
 <form>
   <select id="category-select">
     <option value="Breakfast">Breakfast</option>

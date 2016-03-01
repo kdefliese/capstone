@@ -6,7 +6,6 @@ class EntriesController < ApplicationController
     entry_datetime = DateTime.parse(date + " " + entry_time)
     @entry = Entry.new(entry_params)
     @entry.time = entry_datetime
-    binding.pry
     if @entry.save
       if !params[:meal_ids].nil?
         params[:meal_ids].each do |i|
@@ -23,10 +22,14 @@ class EntriesController < ApplicationController
           @entry.ingredients << Ingredient.find(i.to_i)
         end
       end
-      redirect_to day_path(Day.find(1))
+      redirect_to day_path(Day.find(params[:day_id]))
     else
-
+      flash[:error] = "We couldn't save your entry! Please try again."
     end
+  end
+
+  def last
+    render :json => Entry.last.as_json, :status => :ok
   end
 
   private

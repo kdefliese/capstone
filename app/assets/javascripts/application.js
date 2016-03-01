@@ -90,10 +90,20 @@ $(document).on('ready', function() {
       data: {notes: $("#notes").val(), time: $("#time").val(), user_id: $("#user-id").val(), day_id: $("#day-id").val(), category: $("#category-select").val(), meal_ids: $("#print-new-entry").data("Meals"), food_ids: $("#print-new-entry").data("Foods"), ingredient_ids: $("#print-new-entry").data("Ingredients") }
     })
     .done(function() {
-      console.log("success");
-    })
+      console.log("post entry success");
+        // make another call to get the most recent entry and add it to the page
+        $.ajax("/entries/last")
+          .done(function(data) {
+            console.log("last entry success");
+            console.log(data);
+            // $("#existing-entries").after();
+          })
+          .fail(function() {
+            console.log("last entry failure");
+          });
+        })
     .fail(function() {
-      console.log("failure");
+      console.log("post entry failure");
     });
   });
 

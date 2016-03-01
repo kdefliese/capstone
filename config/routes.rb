@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   get "foods/all" => "foods#all", as: :all_foods
   get "meals/all" => "meals#all", as: :all_meals
   get "ingredients/all" => "ingredients#all", as: :all_ingredients
+  get "entries/last" => "entries#last", as: :last_entry
 
   resources :days
 
