@@ -35,6 +35,9 @@ class EntriesController < ApplicationController
     render :json => {:entry => entry.as_json, :entry_time => entry_time.as_json, :meals => entry.meals.as_json, :foods => entry.foods.as_json, :ingredients => entry.ingredients.as_json}, :status => :ok
   end
 
+  def update
+  end
+
   def destroy
     @entry = Entry.find(params[:id])
     @entry.destroy

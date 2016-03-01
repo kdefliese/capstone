@@ -120,5 +120,11 @@ $(document).on('ready', function() {
     });
   });
 
+  // edit entry link is clicked
+  $(".edit-entry").click(function() {
+    event.preventDefault();
+    event.stopPropagation();
+    console.log("click");
+  });
 
 });

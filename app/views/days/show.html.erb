@@ -12,6 +12,7 @@
       <%= e.notes %>
       <br />
       <%= link_to "Remove entry", entry_path(e), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+        <%= link_to "Edit entry", entry_path(e), method: :patch, class: "edit-entry" %>
         <% e.meals.each do |m| %>
           <div class="meal">
             <%= m.name %>
