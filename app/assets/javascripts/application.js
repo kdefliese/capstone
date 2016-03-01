@@ -14,6 +14,8 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+//= require jquery-ui/autocomplete
+//= require jquery-ui/menu
 
 // these will track of what food/meal/ing ids we have in our entry w/o displaying ids on the page
 var mealVals = [];
