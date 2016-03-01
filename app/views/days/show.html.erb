@@ -13,6 +13,14 @@
       <%= m.name %>
     <% end %>
     <br />
+    <% e.foods.each do |f| %>
+      <%= f.name %>
+    <% end %>
+    <br />
+    <% e.ingredients.each do |i| %>
+      <%= i.name %>
+    <% end %>
+    <br />
 <% end %>
 <br />
 <form>
