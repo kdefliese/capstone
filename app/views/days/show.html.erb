@@ -4,24 +4,32 @@
 </p>
 <div id="existing-entries">
   <% @entries.each do |e| %>
-    <%= e.category %>
-    <br />
-    <%= e.time %>
-    <br />
-    <%= e.notes %>
-    <br />
-      <% e.meals.each do |m| %>
-        <%= m.name %>
-      <% end %>
+    <div class="entry">
+      <%= e.category %>
       <br />
-      <% e.foods.each do |f| %>
-        <%= f.name %>
-      <% end %>
+      <%= e.time %>
       <br />
-      <% e.ingredients.each do |i| %>
-        <%= i.name %>
-      <% end %>
+      <%= e.notes %>
       <br />
+        <% e.meals.each do |m| %>
+          <div class="meal">
+            <%= m.name %>
+          </div>
+        <% end %>
+        <br />
+        <% e.foods.each do |f| %>
+          <div class="food">
+            <%= f.name %>
+          </div>
+        <% end %>
+        <br />
+        <% e.ingredients.each do |i| %>
+          <div class="ingredient">
+            <%= i.name %>
+          </div>
+        <% end %>
+      <br />
+    </div>
   <% end %>
   <br />
 </div>
