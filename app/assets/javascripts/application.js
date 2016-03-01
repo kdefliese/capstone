@@ -19,7 +19,6 @@
 var mealVals = [];
 var foodVals = [];
 var ingredientVals = [];
-var play;
 
 $(document).on('ready', function() {
 
@@ -96,8 +95,6 @@ $(document).on('ready', function() {
         $.ajax("/entries/last")
           .done(function(data) {
             console.log("last entry success");
-            console.log(data);
-            play = data;
             var meals = "";
             var foods = "";
             var ingredients = "";

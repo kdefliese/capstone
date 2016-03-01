@@ -18,7 +18,7 @@ class FoodsController < ApplicationController
   end
 
   def all
-    render :json => Food.all.as_json, :status => :ok
+    render :json => Food.order("name").as_json, :status => :ok
   end
 
   private
