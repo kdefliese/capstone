@@ -19,6 +19,7 @@
 var mealVals = [];
 var foodVals = [];
 var ingredientVals = [];
+var play;
 
 $(document).on('ready', function() {
 
@@ -95,9 +96,26 @@ $(document).on('ready', function() {
         $.ajax("/entries/last")
           .done(function(data) {
             console.log("last entry success");
+            console.log(data);
+            play = data;
             $("#existing-entries").after(
-              "<div>" + data.category + "<br />" + data.time + "<br />" + data.notes + "<br />" + "</div>"
+              "<div>" + data.entry.category + "<br />" + data.entry.time + "<br />" + data.entry.notes + "<br />" + "</div>"
             );
+            for (var i = 0; i < data.meals.length; i++) {
+              $("#existing-entries").after(
+                "<div>" + data.meals[i].name + "<br />" + "</div>"
+              );
+            }
+            for (var j = 0; j < data.foods.length; j++) {
+              $("#existing-entries").after(
+                "<div>" + data.foods[j].name + "<br />" + "</div>"
+              );
+            }
+            for (var k = 0; k < data.ingredients.length; k++) {
+              $("#existing-entries").after(
+                "<div>" + data.ingredients[k].name + "<br />" + "</div>"
+              );
+            }
           })
           .fail(function() {
             console.log("last entry failure");
