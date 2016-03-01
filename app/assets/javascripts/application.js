@@ -14,6 +14,10 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+// this will track of what food/meal/ing types and names we have in our entry
+var entryItems = {};
+
 $(document).on('ready', function() {
 
   // updates foods/meals/ingredients dropdown based on first dropdown selection
@@ -60,11 +64,29 @@ $(document).on('ready', function() {
     event.preventDefault();
     var type = $("#food-type-select option:selected").val();
     var name = $("#dynamic-food-list").val();
+    entryItems[String(name)] = String(type);
     console.log(type);
     console.log(name);
     $("#print-new-entry").append(
       "<p>" + type + ": " + name + "</p>"
     );
+  });
+
+  // submits food entry and will update it in the db
+  $("#create-food-entry").click(function() {
+    console.log(entryItems);
+    var d = new Date();
+    $.ajax({
+      method: "POST",
+      url: "/entries",
+      data: {notes: "This is hardcoded", time: d, user_id: 1, day_id: 1}
+    })
+    .done(function() {
+      console.log("success");
+    })
+    .fail(function() {
+      console.log("failure");
+    });
   });
 
 
