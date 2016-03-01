@@ -58,8 +58,12 @@ $(document).on('ready', function() {
   // adds things to the food entry on the page
   $("#add-new-entry").click(function() {
     event.preventDefault();
-    $("#print-new-entry").html(
-      "<p>Clicked that button</p>"
+    var type = $("#food-type-select option:selected").val();
+    var name = $("#dynamic-food-list").val();
+    console.log(type);
+    console.log(name);
+    $("#print-new-entry").append(
+      "<p>" + type + ": " + name + "</p>"
     );
   });
 

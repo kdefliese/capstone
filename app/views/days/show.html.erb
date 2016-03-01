@@ -22,6 +22,12 @@
     <option value="Dinner">Dinner</option>
     <option value="Snack">Snack</option>
   </select>
+  <label>Notes:</label>
+  <input type="text">
+</form>
+
+Add existing foods to your entry:
+<form>
   <select id="food-type-select">
     <option value="Foods" selected="selected">Foods</option>
     <option value="Ingredients" selected="selected">Ingredients</option>
@@ -32,8 +38,6 @@
       <option value="<%= m.name %>" selected="selected"><%= m.name %></option>
     <% end %>
   </select>
-  <label>Notes:</label>
-  <input type="text">
   <button id="add-new-entry">Add food to entry</button>
 </form>
 
