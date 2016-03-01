@@ -90,7 +90,7 @@ $(document).on('ready', function() {
     $.ajax({
       method: "POST",
       url: "/entries",
-      data: {notes: $("#notes").val(), time: d, user_id: $("#user-id").val(), day_id: $("#day-id").val(), category: $("#category-select").val(), meal_ids: $("#print-new-entry").data("Meals") }
+      data: {notes: $("#notes").val(), time: d, user_id: $("#user-id").val(), day_id: $("#day-id").val(), category: $("#category-select").val(), meal_ids: $("#print-new-entry").data("Meals"), food_ids: $("#print-new-entry").data("Foods"), ingredient_ids: $("#print-new-entry").data("Ingredients") }
     })
     .done(function() {
       console.log("success");
