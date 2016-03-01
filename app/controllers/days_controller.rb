@@ -3,6 +3,8 @@ class DaysController < ApplicationController
 
   def show
     @day = Day.find(params[:id])
+    @day_id = @day.id
+    @user_id = @current_user.id 
     @entries = @day.entries
     @entry = Entry.new
     @all_meals = @current_user.meals

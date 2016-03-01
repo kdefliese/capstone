@@ -79,7 +79,7 @@ $(document).on('ready', function() {
     $.ajax({
       method: "POST",
       url: "/entries",
-      data: {notes: $("#notes").val(), time: d, user_id: 1, day_id: 1, category: $("#category-select").val()}
+      data: {notes: $("#notes").val(), time: d, user_id: $("#user-id").val(), day_id: $("#day-id").val(), category: $("#category-select").val()}
     })
     .done(function() {
       console.log("success");

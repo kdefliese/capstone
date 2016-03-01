@@ -24,6 +24,8 @@
   </select>
   <label>Notes:</label>
   <input type="text" id="notes">
+  <input type="hidden" id="user-id" value="<%= @user_id %>"></input>
+  <input type="hidden" id="day-id" value="<%= @day_id %>"></input>
 </form>
 <br />
 Add existing foods to your entry:
@@ -38,6 +40,7 @@ Add existing foods to your entry:
       <option value="<%= m.name %>" selected="selected"><%= m.name %></option>
     <% end %>
   </select>
+  (Need to add a field for what time the food was eaten, right now it's hardcoded)
   <button id="add-new-entry">Add food to entry</button>
 </form>
 
