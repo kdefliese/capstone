@@ -2,7 +2,9 @@ class EntriesController < ApplicationController
 
   def create
     @entry = Entry.new(entry_params)
+    binding.pry
     if @entry.save
+      @entry.meals << Meal.find(entry_params[:meal_id])
       redirect_to day_path(Day.find(1))
     else
 
