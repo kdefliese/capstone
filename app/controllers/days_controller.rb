@@ -5,7 +5,7 @@ class DaysController < ApplicationController
     @day = Day.find(params[:id])
     @day_id = @day.id
     @user_id = @current_user.id
-    @entries = @day.entries
+    @entries = @day.entries.order("time")
     @entry = Entry.new
     @all_meals = @current_user.meals.order("name")
     @all_foods = Food.all
