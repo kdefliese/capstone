@@ -17,6 +17,9 @@
 
 // this will track of what food/meal/ing types and names we have in our entry
 var entryItems = {};
+var mealVals = [];
+var foodVals = [];
+var ingredientVals = [];
 
 $(document).on('ready', function() {
 
@@ -68,7 +71,18 @@ $(document).on('ready', function() {
     $("#print-new-entry").append(
       "<p>" + type + ": " + name + "</p>"
     );
-    $("#print-new-entry").data($("#food-type-select option:selected").val(), $("#dynamic-food-list option:selected")[0].id);
+    if (type == "Meals") {
+      mealVals.push($("#dynamic-food-list option:selected")[0].id);
+      $("#print-new-entry").data(type, mealVals);
+    }
+    else if (type == "Foods") {
+      foodVals.push($("#dynamic-food-list option:selected")[0].id);
+      $("#print-new-entry").data(type, foodVals);
+    }
+    else if (type == "Ingredients") {
+      ingredientVals.push($("#dynamic-food-list option:selected")[0].id);
+      $("#print-new-entry").data(type, ingredientVals);
+    }
     console.log($("#print-new-entry").data());
   });
 
