@@ -82,9 +82,9 @@ module FactualWrapper
     ]).rows
   end
 
-  def get_product_info(search_term)
+  def get_product_info(factual_id)
     @factual = Factual.new(ENV["FACTUAL_OAUTH_KEY"], ENV["FACTUAL_OAUTH_SECRET"])
-    @factual.table("products-cpg-nutrition").search(search_term).rows
+    @factual.table("products-cpg-nutrition").row(factual_id)
   end
 
 end

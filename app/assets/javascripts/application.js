@@ -143,15 +143,14 @@ $(document).on('ready', function() {
     select: function( event, ui ) {
       $("#autocomplete").val(ui.item.label);
       $("#factual-id").val(ui.item.value);
-      console.log("a value was selected");
       return false;
     }
   });
 
   // adds food from search to db and to entry
   $("#add-from-search").click(function() {
-    var food_name = $("#autocomplete").val();
-    var url = "/foods/search_specific?search_term=" + food_name;
+    var factual_id = $("#factual-id").val();
+    var url = "/foods/search_specific?factual_id=" + factual_id;
     $.ajax(url)
       .done(function(data) {
         console.log("success");

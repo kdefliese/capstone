@@ -33,7 +33,8 @@ class FoodsController < ApplicationController
   end
 
   def factual_search_specific_product
-    results = get_product_info(params[:search_term])[0]
+    binding.pry
+    results = get_product_info(params[:factual_id])
     # save this product to the DB now if it's not already in there
     if (Food.find_by factual_id: results["factual_id"]).nil?
       @food = Food.create(
