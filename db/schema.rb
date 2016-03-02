@@ -142,9 +142,9 @@ ActiveRecord::Schema.define(version: 20160229230157) do
     t.integer  "phone"
     t.string   "name"
     t.string   "image"
-    t.string   "known_intolerances"
-    t.string   "watching"
-    t.string   "medical_disorders"
+    t.string   "known_intolerances",                                   array: true
+    t.string   "watching",                                             array: true
+    t.string   "medical_disorders",                                    array: true
     t.boolean  "notifications_preference", default: true
     t.datetime "created_at",                              null: false
     t.datetime "updated_at",                              null: false

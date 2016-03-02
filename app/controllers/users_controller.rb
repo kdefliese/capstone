@@ -10,16 +10,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    # @current_user.update(
-    # name: user_params[:user][:name],
-    # email: user_params[:user][:email],
-    # phone: user_params[:user][:phone],
-    # image: user_params[:user][:image],
-    # known_intolerances: user_params[:user][:known_intolerances],
-    # watching: user_params[:user][:watching],
-    # medical_disorders: user_params[:user][:medical_disorders],
-    # notifications_preference: user_params[:user][:notifications_preferences]
-    # )
+    # need to do something with the three array fields here so they'll update properly
     @user = User.update(params[:id], user_params)
     if @user.save
       redirect_to user_path

@@ -54,6 +54,9 @@ Meal.find(2).ingredients << [Ingredient.find(1),Ingredient.find(2)]
 
 seed_days = [
   {day: DateTime.new(2016,2,1), user_id: 1},
+  {day: DateTime.new(2016,2,2), user_id: 1},
+  {day: DateTime.new(2016,2,3), user_id: 1},
+  {day: DateTime.new(2016,2,4), user_id: 1}
 ]
 
 seed_days.each do |d|
