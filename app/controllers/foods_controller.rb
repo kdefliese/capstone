@@ -33,10 +33,11 @@ class FoodsController < ApplicationController
   end
 
   def factual_search_specific_product
-    binding.pry
     results = get_product_info(params[:factual_id])
-    # save this product to the DB now if it's not already in there
-    if (Food.find_by factual_id: results["factual_id"]).nil?
+    if !(Food.find_by factual_id: results["factual_id"]).nil?
+      @food = Food.find_by factual_id: results["factual_id"]
+    else
+      # save this product to the DB since it's not already in there
       @food = Food.create(
       brand: results["brand"],
       name: results["brand"] + " " + results["product_name"],
@@ -48,18 +49,21 @@ class FoodsController < ApplicationController
       factual_id: results["factual_id"],
       image_urls: results["image_urls"]
       )
-      # create ingredients in the db for all of the ingredients if they don't exist
-      @food.ingredients_list.each do |i|
-        food_exists = Ingredient.find_by name: i
-        if food_exists.nil?
-          @ingredient = Ingredient.create(name: i)
-          @food.ingredients << @ingredient
-        else
-          @food.ingredients << food_exists
+      # if the food has listed ingredients, create ingredients in the db for ingredients that aren't already in the db
+      if !@food.ingredients_list.empty?
+        @food.ingredients_list.each do |i|
+          food_exists = Ingredient.find_by name: i
+          if food_exists.nil?
+            @ingredient = Ingredient.create(name: i)
+            @food.ingredients << @ingredient
+          else
+            @food.ingredients << food_exists
+          end
         end
       end
     end
-    render :json => results.as_json, :status => :ok
+
+    render :json => @food.as_json, :status => :ok
   end
 
 
