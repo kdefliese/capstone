@@ -133,12 +133,18 @@ $(document).on('ready', function() {
   var cache = {};
   $("#autocomplete").autocomplete({
     minLength: 2,
-    source: function( request, response ) {
+    source: function(request, response) {
       var term = request.term;
-
-      $.getJSON("/foods/search", request, function( data ) {
-        response( data );
+      $.getJSON("/foods/search", request, function(data) {
+        response(data);
+        console.log(data);
       });
+    },
+    select: function( event, ui ) {
+      $("#autocomplete").val(ui.item.label);
+      $("#factual-id").val(ui.item.value);
+      console.log("a value was selected");
+      return false;
     }
   });
 

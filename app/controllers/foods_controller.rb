@@ -27,7 +27,7 @@ class FoodsController < ApplicationController
     results = get_product_names(params[:term])
     return_data = []
     results.each do |r|
-      return_data.push("#{r["brand"]} #{r["product_name"]}")
+      return_data.push(label: "#{r["brand"]} #{r["product_name"]}", value: "#{r["factual_id"]}")
     end
     render :json => return_data.as_json, :status => :ok
   end
