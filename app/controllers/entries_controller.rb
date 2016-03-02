@@ -6,7 +6,6 @@ class EntriesController < ApplicationController
     entry_datetime = DateTime.parse(date + " " + entry_time)
     @entry = Entry.new(entry_params)
     @entry.time = entry_datetime
-    binding.pry
     if @entry.save
       if !params[:meal_ids].nil?
         params[:meal_ids].each do |i|
