@@ -10,11 +10,11 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require_tree .
- *= require_self
   *= require jquery-ui/autocomplete
   *= require jquery-ui/menu
   */
+  @import "bootstrap-sprockets";
+  @import "bootstrap";
 
   .ui-autocomplete-loading {
     background: white url("loading-circle.gif") right center no-repeat;

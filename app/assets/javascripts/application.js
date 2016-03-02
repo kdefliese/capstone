@@ -16,6 +16,7 @@
 //= require_tree .
 //= require jquery-ui/autocomplete
 //= require jquery-ui/menu
+//= require bootstrap-sprockets
 
 // these will track of what food/meal/ing ids we have in our entry w/o displaying ids on the page
 var mealVals = [];
