@@ -138,13 +138,9 @@ $(document).on('ready', function() {
 
       $.getJSON("/foods/search", request, function( data ) {
         response( data );
-        console.log(term);
-        console.log(data);
-        console.log(response(data));
       });
     }
   });
-
 
 
 });
