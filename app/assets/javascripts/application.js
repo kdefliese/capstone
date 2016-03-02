@@ -131,18 +131,16 @@ $(document).on('ready', function() {
 
   // autocomplete for search
   var cache = {};
-  $( "#tags" ).autocomplete({
+  $("#autocomplete").autocomplete({
     minLength: 2,
     source: function( request, response ) {
       var term = request.term;
-      if ( term in cache ) {
-        response( cache[ term ] );
-        return;
-      }
 
-      $.getJSON( "search.php", request, function( data, status, xhr ) {
-        cache[ term ] = data;
+      $.getJSON("/foods/search", request, function( data ) {
         response( data );
+        console.log(term);
+        console.log(data);
+        console.log(response(data));
       });
     }
   });
