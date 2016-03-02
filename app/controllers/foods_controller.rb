@@ -50,7 +50,7 @@ class FoodsController < ApplicationController
       image_urls: results["image_urls"]
       )
       # if the food has listed ingredients, create ingredients in the db for ingredients that aren't already in the db
-      if !@food.ingredients_list.empty?
+      if !@food.ingredients_list.nil?
         @food.ingredients_list.each do |i|
           food_exists = Ingredient.find_by name: i
           if food_exists.nil?
