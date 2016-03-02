@@ -8,11 +8,86 @@ module FactualWrapper
     # ex of full text search, returns white cheddar cheez-its from ean13 barcode: @factual.table("products-cpg-nutrition").search("024100789382").rows
     # product_info = []
     # product_info.push(
-    @factual.table("products-cpg-nutrition").search(search_term).rows
+    @factual.table("products-cpg-nutrition").search(search_term).filters("$or" => [
+      {"category" => {"$eq" => "Alcoholic Beverages"}},
+      {"category" => {"$eq" => "Baking Ingredients"}},
+      {"category" => {"$eq" => "Baking Products"}},
+      {"category" => {"$eq" => "Beans"}},
+      {"category" => {"$eq" => "Beverages"}},
+      {"category" => {"$eq" => "Bread"}},
+      {"category" => {"$eq" => "Breakfast Foods"}},
+      {"category" => {"$eq" => "Butters"}},
+      {"category" => {"$eq" => "Cakes"}},
+      {"category" => {"$eq" => "Candy"}},
+      {"category" => {"$eq" => "Canned Food"}},
+      {"category" => {"$eq" => "Canned Fruits and Vegetables"}},
+      {"category" => {"$eq" => "Cheeses"}},
+      {"category" => {"$eq" => "Chips"}},
+      {"category" => {"$eq" => "Chocolate"}},
+      {"category" => {"$eq" => "Condiments"}},
+      {"category" => {"$eq" => "Cookies"}},
+      {"category" => {"$eq" => "Crackers"}},
+      {"category" => {"$eq" => "Crusts, Shells, Stuffing"}},
+      {"category" => {"$eq" => "Dairy and Dairy-Substitute Products"}},
+      {"category" => {"$eq" => "Dessert Toppings"}},
+      {"category" => {"$eq" => "Dips"}},
+      {"category" => {"$eq" => "Drink Mixers"}},
+      {"category" => {"$eq" => "Drink Mixes"}},
+      {"category" => {"$eq" => "Eggs"}},
+      {"category" => {"$eq" => "Energy Drinks"}},
+      {"category" => {"$eq" => "Extracts, Herbs & Spices"}},
+      {"category" => {"$eq" => "Flours"}},
+      {"category" => {"$eq" => "Food"}},
+      {"category" => {"$eq" => "Frozen Foods"}},
+      {"category" => {"$eq" => "Fruit Snacks"}},
+      {"category" => {"$eq" => "Fruits"}},
+      {"category" => {"$eq" => "Garlic"}},
+      {"category" => {"$eq" => "Gourmet Food Gifts"}},
+      {"category" => {"$eq" => "Grains"}},
+      {"category" => {"$eq" => "Granola Bars"}},
+      {"category" => {"$eq" => "Honey"}},
+      {"category" => {"$eq" => "Hot Cocoa"}},
+      {"category" => {"$eq" => "Ice Cream & Frozen Desserts"}},
+      {"category" => {"$eq" => "Jams & Jellies"}},
+      {"category" => {"$eq" => "Juices"}},
+      {"category" => {"$eq" => "Lentils"}},
+      {"category" => {"$eq" => "Meat Alternatives"}},
+      {"category" => {"$eq" => "Meat, Poultry, Seafood Products"}},
+      {"category" => {"$eq" => "Milk & Milk Substitutes"}},
+      {"category" => {"$eq" => "Noodles & Pasta"}},
+      {"category" => {"$eq" => "Nutritional Bars, Drinks, and Shakes"}},
+      {"category" => {"$eq" => "Nuts"}},
+      {"category" => {"$eq" => "Olives"}},
+      {"category" => {"$eq" => "Packaged Foods"}},
+      {"category" => {"$eq" => "Party Mix"}},
+      {"category" => {"$eq" => "Pastries, Desserts & Pastry Products"}},
+      {"category" => {"$eq" => "Popcorn"}},
+      {"category" => {"$eq" => "Prepared Meals"}},
+      {"category" => {"$eq" => "Popcorn"}},
+      {"category" => {"$eq" => "Pudding"}},
+      {"category" => {"$eq" => "Rice"}},
+      {"category" => {"$eq" => "Salad Dressings"}},
+      {"category" => {"$eq" => "Salsas"}},
+      {"category" => {"$eq" => "Sauces"}},
+      {"category" => {"$eq" => "Seasonings"}},
+      {"category" => {"$eq" => "Soda"}},
+      {"category" => {"$eq" => "Soups & Stocks"}},
+      {"category" => {"$eq" => "Sugars & Sweeteners"}},
+      {"category" => {"$eq" => "Syrups"}},
+      {"category" => {"$eq" => "Tea & Coffee"}},
+      {"category" => {"$eq" => "Vegetables"}},
+      {"category" => {"$eq" => "Vinegars"}},
+      {"category" => {"$eq" => "Vitamins & Supplements"}},
+      {"category" => {"$eq" => "Water"}},
+      {"category" => {"$eq" => "Weight Loss Products & Supplements"}},
+      {"category" => {"$eq" => "Wheat Flours & Meals"}},
+      {"category" => {"$eq" => "Yogurt"}}
+    ]).rows
+    # .filters("category":"alcoholic beverages")
     #[0]["brand"]
     # )
     # product_info.push(@factual.table("products-cpg-nutrition").search(search_term).rows[0]["product_name"])
-    # product_info.push(@factual.table("products-cpg-nutrition").search(search_term).rows[0]["ingredients"])
+    # product_info.push(@factual.table("products-cpg-nu,trition").search(search_term).rows[0]["ingredients"])
     # vreturn product_info
   end
 
