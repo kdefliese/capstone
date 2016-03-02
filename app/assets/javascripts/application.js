@@ -29,15 +29,15 @@ $(document).on('ready', function() {
     $("#food-type-select option:selected").each(function() {
       var select_val = $("#food-type-select option:selected").val();
       var url = "";
-      if (select_val == "Meals") {
+      if (select_val === "Meals") {
         url = "/meals/all";
         button_word = "meal";
       }
-      else if (select_val == "Foods") {
+      else if (select_val === "Foods") {
         url = "/foods/all";
         button_word = "food";
       }
-      else if (select_val == "Ingredients") {
+      else if (select_val === "Ingredients") {
         url = "/ingredients/all";
         button_word = "ingredient";
       }
@@ -70,15 +70,15 @@ $(document).on('ready', function() {
     $("#print-new-entry").append(
       "<p>" + type + ": " + name + "</p>"
     );
-    if (type == "Meals") {
+    if (type === "Meals") {
       mealVals.push($("#dynamic-food-list option:selected")[0].id);
       $("#print-new-entry").data(type, mealVals);
     }
-    else if (type == "Foods") {
+    else if (type === "Foods") {
       foodVals.push($("#dynamic-food-list option:selected")[0].id);
       $("#print-new-entry").data(type, foodVals);
     }
-    else if (type == "Ingredients") {
+    else if (type === "Ingredients") {
       ingredientVals.push($("#dynamic-food-list option:selected")[0].id);
       $("#print-new-entry").data(type, ingredientVals);
     }
@@ -141,6 +141,21 @@ $(document).on('ready', function() {
       });
     }
   });
+
+  // adds food from search to db and to entry
+  $("#add-from-search").click(function() {
+    var food_name = $("#autocomplete").val();
+    var url = "/foods/search_specific?search_term=" + food_name;
+    $.ajax(url)
+      .done(function(data) {
+        console.log("success");
+        console.log(data);
+      })
+      .fail(function() {
+        console.log("failure");
+      });
+    });
+
 
 
 });

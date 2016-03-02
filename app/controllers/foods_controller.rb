@@ -24,12 +24,17 @@ class FoodsController < ApplicationController
   end
 
   def factual_search
-    results = get_product(params[:term])
+    results = get_product_names(params[:term])
     return_data = []
     results.each do |r|
       return_data.push("#{r["brand"]} #{r["product_name"]}")
     end
     render :json => return_data.as_json, :status => :ok
+  end
+
+  def factual_search_specific_product
+    results = get_product_info(params[:search_term])[0]
+    render :json => results.as_json, :status => :ok
   end
 
   private
