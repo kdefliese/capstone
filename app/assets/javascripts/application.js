@@ -130,33 +130,23 @@ $(document).on('ready', function() {
   });
 
   // autocomplete for search
-    var availableTags = [
-      "ActionScript",
-      "AppleScript",
-      "Asp",
-      "BASIC",
-      "C",
-      "C++",
-      "Clojure",
-      "COBOL",
-      "ColdFusion",
-      "Erlang",
-      "Fortran",
-      "Groovy",
-      "Haskell",
-      "Java",
-      "JavaScript",
-      "Lisp",
-      "Perl",
-      "PHP",
-      "Python",
-      "Ruby",
-      "Scala",
-      "Scheme"
-    ];
-    $("#tags").autocomplete({
-      source: availableTags
-    });
+  var cache = {};
+  $( "#tags" ).autocomplete({
+    minLength: 2,
+    source: function( request, response ) {
+      var term = request.term;
+      if ( term in cache ) {
+        response( cache[ term ] );
+        return;
+      }
+
+      $.getJSON( "search.php", request, function( data, status, xhr ) {
+        cache[ term ] = data;
+        response( data );
+      });
+    }
+  });
+
 
 
 });
