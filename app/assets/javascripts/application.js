@@ -154,7 +154,12 @@ $(document).on('ready', function() {
     $.ajax(url)
       .done(function(data) {
         console.log("success");
-        console.log(data);
+        // adds the food to the food entry on the page
+        $("#print-new-entry").append(
+          "<p> Foods: " + data.name + "</p>"
+        );
+        foodVals.push(data.id);
+        $("#print-new-entry").data("Foods", foodVals);
       })
       .fail(function() {
         console.log("failure");
