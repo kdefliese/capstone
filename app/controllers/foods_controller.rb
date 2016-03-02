@@ -49,8 +49,12 @@ class FoodsController < ApplicationController
       )
       # create ingredients in the db for all of the ingredients if they don't exist
       @food.ingredients_list.each do |i|
-        if (Ingredient.find_by name: i).nil?
-          Ingredient.create(name: i)
+        food_exists = Ingredient.find_by name: i
+        if food_exists.nil?
+          @ingredient = Ingredient.create(name: i)
+          @food.ingredients << @ingredient
+        else
+          @food.ingredients << food_exists
         end
       end
     end
