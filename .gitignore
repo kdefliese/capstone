@@ -17,3 +17,6 @@
 /tmp
 .env
 /.env
+
+# ignore simplecov
+/coverage
