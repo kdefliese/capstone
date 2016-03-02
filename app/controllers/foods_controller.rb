@@ -38,7 +38,7 @@ class FoodsController < ApplicationController
     if (Food.find_by factual_id: results["factual_id"]).nil?
       @food = Food.create(
       brand: results["brand"],
-      name: results["product_name"],
+      name: results["brand"] + " " + results["product_name"],
       ingredients_list: results["ingredients"],
       manufacturer: results["manufacturer"],
       category: results["category"],
