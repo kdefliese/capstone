@@ -1,0 +1,22 @@
+<%= form_for @user, class: "form", method: :patch do |f| %>
+  <%= f.label "Name:" %>
+  <%= f.text_field :name, class: "form-control" %>
+  <%= f.label "Email address:" %>
+  <%= f.email_field :email, class: "form-control" %>
+  <%= f.label "Phone number:" %>
+  <%= f.text_field :phone, class: "form-control" %>
+  <%= f.label "Image:" %>
+  <%= f.text_field :image, class: "form-control" %>
+  <%= f.label "Known food intolerances:" %>
+  <%= f.text_field :known_intolerances, class: "form-control" %>
+  <%= f.label "Foods you'd like to watch:" %>
+  <%= f.text_field :watching, class: "form-control" %>
+  <%= f.label "Known medical disorders:" %>
+  <%= f.text_field :medical_disorders, class: "form-control" %>
+  <%= f.label "Email notification preference:" %>
+  <%= f.text_field :notifications_preference, class: "form-control" %>
+  <br>
+  <%= f.submit class: "btn btn-danger" %>
+  <br>
+  <br>
+<% end %>

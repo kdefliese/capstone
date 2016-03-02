@@ -4,10 +4,7 @@ Rails.application.routes.draw do
   get "/auth/:provider/callback" => "sessions#create", as: :auth
   delete "logout" => "sessions#destroy"
 
-  post "users" => "users#create", as: :create_user
-  get "users/:id/edit" => "users#edit", as: :edit_user
-  get "users/:id" => "users#show"
-  patch "users/:id" => "users#update"
+  resources :users
   get "users/:id/stats" => "users#stats", as: :user_stats
 
   get "foods/all" => "foods#all", as: :all_foods
