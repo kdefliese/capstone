@@ -11,6 +11,7 @@ class DaysController < ApplicationController
     @all_meals = @current_user.meals.order("name")
     @all_foods = Food.all
     @all_ingredients = Ingredient.all
+    @symptom = Symptom.new
   end
 
   private
