@@ -1,0 +1,41 @@
+<form>
+  <select id="category-select">
+    <option value="Breakfast">Breakfast</option>
+    <option value="Lunch">Lunch</option>
+    <option value="Dinner">Dinner</option>
+    <option value="Snack">Snack</option>
+  </select>
+  <label>Notes:</label>
+  <input type="text" id="notes">
+  <label>Time eaten:</label>
+  <input type="time" id="time">
+  <input type="hidden" id="user-id" value="<%= @user_id %>"></input>
+  <input type="hidden" id="day-id" value="<%= @day_id %>"></input>
+</form>
+<br />
+<p>
+  Add existing foods to your entry:
+</p>
+<form>
+  <select id="food-type-select">
+    <option value="Foods" selected="selected">Foods</option>
+    <option value="Ingredients" selected="selected">Ingredients</option>
+    <option value="Meals" selected="selected">Meals</option>
+  </select>
+  <select id="dynamic-food-list">
+    <% @all_meals.each do |m| %>
+      <option value="<%= m.name %>" selected="selected" id="<%= m.id %>"><%= m.name %></option>
+    <% end %>
+  </select>
+  <button id="add-new-entry">Add food to entry</button>
+</form>
+<br />
+<p>
+  Or search:
+</p>
+<div id="autocomplete-wrapper">
+  <label for="autocomplete">Search for foods: </label>
+  <input id="autocomplete">
+  <input type="hidden" id="factual-id">
+  <button id="add-from-search">Add food</button>
+</div>
