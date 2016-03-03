@@ -7,16 +7,32 @@
   <%= f.text_field :phone, class: "form-control" %>
   <%= f.label "Image:" %>
   <%= f.text_field :image, class: "form-control" %>
-  <%= f.label "Known food intolerances:" %>
-  <%= f.text_field :known_intolerances, class: "form-control" %>
+  <%= f.label "Known intolerances:" %>
+  <div id="food-intolerances">
+    <% @user.known_intolerances.each do |i| %>
+      <p><%= i %></p>
+    <% end %>
+  </div>
+  <%= f.label "Add food intolerances:" %>
+  <input type="text" class="form-control" id="new-food-intolerance">
   <button id="add-food-intolerance">Add food intolerance</button>
   <br />
   <%= f.label "Foods you'd like to watch:" %>
-  <%= f.text_field :watching, class: "form-control" %>
+  <div id="food-watches">
+    <% @user.watching.each do |w| %>
+      <p><%= w %></p>
+    <% end %>
+  </div>
+  <input type="text" class="form-control" id="new-food-watch">
   <button id="add-watch-food">Add food to watch</button>
   <br />
-  <%= f.label "Known medical disorders:" %>
-  <%= f.text_field :medical_disorders, class: "form-control" %>
+  <%= f.label "Saved medical disorders:" %>
+  <div id="medical-disorders">
+    <% @user.medical_disorders.each do |m| %>
+      <p><%= m %></p>
+    <% end %>
+  </div>
+  <input type="text" class="form-control" id="new-medical-disorder">
   <button id="add-medical-disorder">Add medical disorder</button>
   <br />
   <%= f.label "Email notification preference:" %>
