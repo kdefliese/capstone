@@ -1,6 +1,6 @@
 desc 'send reminder email'
 task send_reminder_email: :environment do
-  @users = User.all
+  @users = User.where("notifications_preference = ?", true)
   @users.each do |user|
     # if there are no entries for today's day for this user, send an email
     days = Day.where("user_id = ?", user.id).order(:day)
