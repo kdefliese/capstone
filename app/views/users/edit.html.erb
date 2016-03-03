@@ -1,4 +1,5 @@
 <%= form_for @user, class: "form", method: :patch do |f| %>
+  <input type="hidden" id="user-id" value="<%= @user.id %>"></input>
   <%= f.label "Name:" %>
   <%= f.text_field :name, class: "form-control" %>
   <%= f.label "Email address:" %>
@@ -10,7 +11,7 @@
   <%= f.label "Known intolerances:" %>
   <div id="food-intolerances">
     <% @user.known_intolerances.each do |i| %>
-      <p><%= i %></p>
+      <p class="food-intolerance"><%= i %></p>
     <% end %>
   </div>
   <%= f.label "Add food intolerances:" %>
@@ -20,7 +21,7 @@
   <%= f.label "Foods you'd like to watch:" %>
   <div id="food-watches">
     <% @user.watching.each do |w| %>
-      <p><%= w %></p>
+      <p class="food-watch"><%= w %></p>
     <% end %>
   </div>
   <input type="text" class="form-control" id="new-food-watch">
@@ -29,7 +30,7 @@
   <%= f.label "Saved medical disorders:" %>
   <div id="medical-disorders">
     <% @user.medical_disorders.each do |m| %>
-      <p><%= m %></p>
+      <p class="medical"><%= m %></p>
     <% end %>
   </div>
   <input type="text" class="form-control" id="new-medical-disorder">
@@ -38,7 +39,7 @@
   <%= f.label "Email notification preference:" %>
   <%= f.text_field :notifications_preference, class: "form-control" %>
   <br>
-  <%= f.submit class: "btn btn-danger" %>
+  <%= f.submit class: "submit btn btn-danger" %>
   <br>
   <br>
 <% end %>
