@@ -6,6 +6,8 @@ gem 'omniauth-oauth2', '~> 1.3.1'
 gem "omniauth-twitter"
 gem "omniauth-github"
 
+#gem for cron jobs for sending email
+gem 'whenever', :require => false
 # gem for getting ERD
 gem 'rails-erd'
 # gem for the Factual Product API
