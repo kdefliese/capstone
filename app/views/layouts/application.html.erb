@@ -7,6 +7,9 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <% if !session[:user_id].nil? %>
+  <%= render 'sessions/navbar' %>
+  <% end %>
 
 <%= yield %>
 
