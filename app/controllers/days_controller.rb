@@ -1,5 +1,6 @@
 class DaysController < ApplicationController
   before_action :current_user
+  before_action :current_day_for_user
 
   def show
     @day = Day.find(params[:id])
@@ -10,6 +11,12 @@ class DaysController < ApplicationController
     @all_meals = @current_user.meals.order("name")
     @all_foods = Food.all
     @all_ingredients = Ingredient.all
+  end
+
+  private
+
+  def day_params
+    params.permit(:day, :user_id)
   end
 
 

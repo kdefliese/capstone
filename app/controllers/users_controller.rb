@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :current_user
+  before_action :current_day_for_user
 
   def show
     @user = @current_user

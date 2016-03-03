@@ -1,4 +1,5 @@
 class EntriesController < ApplicationController
+  before_action :current_day_for_user
 
   def create
     date = Day.find(params[:day_id]).day.to_s.slice(0,10)

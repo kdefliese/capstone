@@ -13,4 +13,10 @@ class ApplicationController < ActionController::Base
       redirect_to login_path
     end
   end
+
+  def current_day_for_user
+    @today = Date.today
+    @current_day = Day.where("day = ? AND user_id = ?", @today, @current_user.id).first
+  end
+
 end
