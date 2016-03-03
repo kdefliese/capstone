@@ -1,5 +1,4 @@
 class FoodsController < ApplicationController
-  before_action :current_day_for_user
   include FactualWrapper
 
   def new

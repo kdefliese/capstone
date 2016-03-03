@@ -1,5 +1,4 @@
 class IngredientsController < ApplicationController
-  before_action :current_day_for_user
 
   def new
     @ingredient = Ingredient.new
