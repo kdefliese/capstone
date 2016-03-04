@@ -108,6 +108,7 @@ $(document).on('ready', function() {
             );
             $("#print-new-entry").empty();
             $("#print-new-entry").removeData();
+            document.getElementById("food-entry-form").reset();
             mealVals = [];
             foodVals = [];
             ingredientVals = [];
