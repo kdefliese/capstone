@@ -166,7 +166,7 @@ $(document).on('ready', function() {
       $.ajax({
         method: "POST",
         url: "/symptoms",
-        data: { name: $("#symptom-name").val(), severity: $("#symptom-severity").val(), start_time: $("#symptom-start-time").val(), end_time: $("#symptom-end-time").val(), notes: $("#symptom-notes").val(), user_id: $("#user-id").val(), day_id: $("#day-id").val() }
+        data: { name: $("#symptom-select").val(), severity: $("#symptom-severity").val(), start_time: $("#symptom-start-time").val(), end_time: $("#symptom-end-time").val(), notes: $("#symptom-notes").val(), user_id: $("#user-id").val(), day_id: $("#day-id").val() }
       })
       .done(function() {
         console.log("post symptom success");
