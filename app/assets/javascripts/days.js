@@ -184,6 +184,7 @@ $(document).on('ready', function() {
               $("#added-symptoms").append(
                 "<div class=\"symptom\">" + data.symptom.name + "<br />" + data.symptom.severity + "<br />" + data.symptom_start_time + "<br />" + data.symptom_end_time + "<br />" + data.symptom.notes + "<br /></div>"
               );
+              document.getElementById("symptom-entry-form").reset();
             })
             .fail(function() {
               console.log("last symptom failure");
