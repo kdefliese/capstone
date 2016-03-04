@@ -106,6 +106,7 @@ $(document).on('ready', function() {
             $("#added-entries").append(
               "<div class=\"entry\" id=\"" + data.entry_time + "\">" + data.entry.category + "<br />" + data.entry_time + "<br />" + data.entry.notes + "<br />" + meals + "<br />" + foods + "<br />" + ingredients + "<br />" + "</div>"
             );
+            $("#print-new-entry").empty();
           })
           .fail(function() {
             console.log("last entry failure");
