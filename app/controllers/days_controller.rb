@@ -12,6 +12,7 @@ class DaysController < ApplicationController
     @all_foods = Food.all
     @all_ingredients = Ingredient.all
     @symptom = Symptom.new
+    @symptoms = @current_user.symptoms
   end
 
   private

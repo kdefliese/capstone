@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   get "meals/all" => "meals#all", as: :all_meals
   get "ingredients/all" => "ingredients#all", as: :all_ingredients
   get "entries/last" => "entries#last", as: :last_entry
+  get "symptoms/last" => "symptoms#last", as: :last_symptom
 
   get "foods/search" => "foods#factual_search", as: :foods_search
   get "foods/search_specific" => "foods#factual_search_specific_product", as: :foods_search_specific

@@ -14,6 +14,13 @@ class SymptomsController < ApplicationController
     end
   end
 
+  def last
+    symptom = Symptom.last
+    symptom_start_time = symptom.start_time.strftime("%l:%M %p")
+    symptom_end_time = symptom.end_time.strftime("%l:%M %p")
+    render :json => {:symptom => symptom.as_json, :symptom_start_time => symptom_start_time.as_json, :symptom_end_time => symptom_end_time.as_json}, :status => :ok
+  end
+
   private
 
   def symptom_params

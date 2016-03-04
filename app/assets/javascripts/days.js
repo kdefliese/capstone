@@ -170,15 +170,6 @@ $(document).on('ready', function() {
       .done(function() {
         console.log("post symptom success");
           // make another call to get the most recent symptom and add it to the page
-          // $.ajax("/symptoms/last")
-          //   .done(function(data) {
-          //     console.log("last symptom success");
-          //     $("#added-symptoms").append(
-          //     );
-          //   })
-          //   .fail(function() {
-          //     console.log("last symptom failure");
-          //   });
           })
       .fail(function() {
         console.log("post symptom failure");

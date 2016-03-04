@@ -49,4 +49,11 @@
 
 <button id="create-food-entry">Add food entry</button>
 <br />
+
+<h3>Symptoms from today:</h3>
+<% @symptoms.each do |s| %>
+<p>
+  <%= s.name %>
+</p>
+<% end %>
 <%= render 'symptoms/add' %>
