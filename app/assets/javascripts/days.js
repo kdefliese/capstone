@@ -38,7 +38,7 @@ $(document).on('ready', function() {
       $.ajax(url)
       .done(function(data) {
         console.log("success");
-        var replace_html = "<select id=\"dynamic-food-list\">";
+        var replace_html = "<select id=\"dynamic-food-list\" class=\"form-control\">";
         for (var i = 0; i < data.length; i++) {
           replace_html += "<option value=\"" + data[i].name + "\" id=\"" + data[i].id + "\">" + data[i].name + "</option>";
         }
