@@ -162,6 +162,7 @@ $(document).on('ready', function() {
 
     // adds symptom to the db and also to the page
     $("#submit-symptom").click(function() {
+      event.preventDefault();
       $.ajax({
         method: "POST",
         url: "/symptoms",
