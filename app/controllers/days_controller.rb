@@ -3,6 +3,7 @@ class DaysController < ApplicationController
   before_action :current_day_for_user
 
   def show
+    # need to make sure this method only shows entries and symptoms for that user on that day
     @day = Day.find(params[:id])
     @day_id = @day.id
     @user_id = @current_user.id
@@ -12,7 +13,7 @@ class DaysController < ApplicationController
     @all_foods = Food.all
     @all_ingredients = Ingredient.all
     @symptom = Symptom.new
-    @symptoms = @current_user.symptoms
+    @symptoms = @current_user.symptoms.where("day_id = ?", @day_id)
   end
 
   private
