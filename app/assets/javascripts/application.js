@@ -17,3 +17,5 @@
 //= require jquery-ui/autocomplete
 //= require jquery-ui/menu
 //= require bootstrap-sprockets
+//= require highcharts
+//= require highcharts/highcharts-more 

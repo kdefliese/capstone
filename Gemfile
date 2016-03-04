@@ -12,6 +12,8 @@ gem 'whenever', :require => false
 gem 'rails-erd'
 # gem for the Factual Product API
 gem 'factual-api'
+# gem for HighCharts
+gem "highcharts-rails"
 # bootstrap gem
 gem 'bootstrap-sass', '~> 3.3.6'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
