@@ -1,9 +1,9 @@
 <h1><%= @day.day.strftime("%m/%d/%Y") %></h1>
 <%= link_to "#{@day.day.yesterday.strftime("%m/%d/%Y")}", day_path(@day.id - 1), method: :get, class: "btn" %>
 <%= link_to "#{@day.day.tomorrow.strftime("%m/%d/%Y")}", day_path(@day.id + 1), method: :get, class: "btn" %>
-<p>
-  Eaten today:
-</p>
+<h3>
+  Today's Food Entries:
+</h3>
 <div id="existing-entries">
   <% @entries.each do |e| %>
     <div class="entry" id="<%= e.time.strftime("%l:%M %p") %>">
@@ -39,6 +39,16 @@
 </div>
 <div id="added-entries">
 </div>
+<h3>Today's Symptoms:</h3>
+<div id="existing-symptoms">
+  <% @symptoms.each do |s| %>
+  <p>
+    <%= s.name %>
+  </p>
+  <% end %>
+<div id="added-symptoms">
+</div>
+</div>
 <%= render 'entries/add' %>
 <p>
   In this entry:
@@ -46,14 +56,6 @@
 <div id="print-new-entry">
  <!-- JS will fill this in -->
 </div>
-
 <button id="create-food-entry">Add food entry</button>
 <br />
-
-<h3>Symptoms from today:</h3>
-<% @symptoms.each do |s| %>
-<p>
-  <%= s.name %>
-</p>
-<% end %>
 <%= render 'symptoms/add' %>
