@@ -42,9 +42,17 @@
 <h3>Today's Symptoms:</h3>
 <div id="existing-symptoms">
   <% @symptoms.each do |s| %>
-  <p>
+  <div class="symptom">
     <%= s.name %>
-  </p>
+    <br />
+    <%= s.severity %>
+    <br />
+    <%= s.start_time %>
+    <br />
+    <%= s.end_time %>
+    <br />
+    <%= s.notes %>
+  </div>
   <% end %>
 <div id="added-symptoms">
 </div>

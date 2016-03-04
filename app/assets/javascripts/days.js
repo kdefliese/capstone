@@ -176,7 +176,7 @@ $(document).on('ready', function() {
               console.log("last symptom success");
               console.log(data);
               $("#added-symptoms").append(
-              //  "<div class=\"entry\" id=\"" + data.entry_time + "\">" + data.entry.category + "<br />" + data.entry_time + "<br />" + data.entry.notes + "<br />" + meals + "<br />" + foods + "<br />" + ingredients + "<br />" + "</div>"
+                "<div class=\"symptom\">" + data.symptom.name + "<br />" + data.symptom.severity + "<br />" + data.symptom_start_time + "<br />" + data.symptom_end_time + "<br />" + data.symptom.notes + "<br /></div>"
               );
             })
             .fail(function() {
