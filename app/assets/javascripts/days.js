@@ -171,6 +171,17 @@ $(document).on('ready', function() {
       .done(function() {
         console.log("post symptom success");
           // make another call to get the most recent symptom and add it to the page
+          $.ajax("/symptoms/last")
+            .done(function(data) {
+              console.log("last symptom success");
+              console.log(data);
+              $("#added-symptoms").append(
+              //  "<div class=\"entry\" id=\"" + data.entry_time + "\">" + data.entry.category + "<br />" + data.entry_time + "<br />" + data.entry.notes + "<br />" + meals + "<br />" + foods + "<br />" + ingredients + "<br />" + "</div>"
+              );
+            })
+            .fail(function() {
+              console.log("last symptom failure");
+            });
           })
       .fail(function() {
         console.log("post symptom failure");
