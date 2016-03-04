@@ -107,6 +107,10 @@ $(document).on('ready', function() {
               "<div class=\"entry\" id=\"" + data.entry_time + "\">" + data.entry.category + "<br />" + data.entry_time + "<br />" + data.entry.notes + "<br />" + meals + "<br />" + foods + "<br />" + ingredients + "<br />" + "</div>"
             );
             $("#print-new-entry").empty();
+            $("#print-new-entry").removeData();
+            mealVals = [];
+            foodVals = [];
+            ingredientVals = [];
           })
           .fail(function() {
             console.log("last entry failure");
