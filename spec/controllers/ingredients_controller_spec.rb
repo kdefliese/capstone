@@ -3,8 +3,8 @@ require 'rails_helper'
 RSpec.describe IngredientsController, type: :controller do
   let(:good_params) do
     {ingredient: {
-      name: "Flour",
-      sensitivity_groups: ["gluten"]
+      name: "Pancakes",
+      sensitivity_groups: ["foods"]
       }
     }
   end
