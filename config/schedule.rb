@@ -20,6 +20,6 @@
 # Learn more: http://github.com/javan/whenever
 set :environment, "development"
 
-every :day, at: '1pm' do
+every 1.day, at: '10:45 am' do
   rake 'send_reminder_email'
 end
