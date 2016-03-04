@@ -9,8 +9,5 @@ class WelcomeController < ApplicationController
   end
 
   def index
-    @ingredients = Ingredient.all
-    @foods = Food.all
-    @meals = Meal.all
   end
 end
