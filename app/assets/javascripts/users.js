@@ -47,30 +47,52 @@ $(document).on('ready', function() {
     });
   });
 
+
   $(function () {
     $('#container').highcharts({
-        chart: {
-            type: 'bar'
-        },
+      title: {
+        text: 'Your Symptoms',
+        x: -20 //center
+      },
+      xAxis: {
+        categories: ['Sun', 'Mon', 'Tues', 'Wed', 'Thurs', 'Fri',
+        'Sat']
+      },
+      yAxis: {
         title: {
-            text: 'Fruit Consumption'
+          text: 'Severity'
         },
-        xAxis: {
-            categories: ['Apples', 'Bananas', 'Oranges']
-        },
-        yAxis: {
-            title: {
-                text: 'Fruit eaten'
-            }
-        },
-        series: [{
-            name: 'Jane',
-            data: [1, 0, 4]
-        }, {
-            name: 'John',
-            data: [5, 7, 3]
+        plotLines: [{
+          value: 0,
+          width: 1,
+          color: '#808080'
         }]
+      },
+      tooltip: {
+        
+      },
+      legend: {
+        layout: 'vertical',
+        align: 'right',
+        verticalAlign: 'middle',
+        borderWidth: 0
+      },
+      series: [{
+        name: 'Pain',
+        data: [7, 6, 9, 10, 10, 5, 5]
+      }, {
+        name: 'Gas',
+        data: [0, 0, 5, 10, 10, 10]
+      }, {
+        name: 'Bloating',
+        data: [0, 0, 3, 8, 10, 10, 10]
+      }, {
+        name: 'Migraine',
+        data: [3, 4, 5, 8, 10, 10, 10]
+      }]
     });
-});
+  });
+
+
 
 });
