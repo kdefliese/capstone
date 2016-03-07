@@ -88,17 +88,13 @@ $(document).on('ready', function() {
 
     $.getJSON('/getstats', function(data) {
       console.log(data);
-      console.log(data.getOwnPropertyNames());
-      Play = data;
         var chart = new Highcharts.Chart(options);
-        chart.addSeries({
-          name: "Pain",
-          data: data.Pain
-        });
-        chart.addSeries({
-          name: "Gas",
-          data: data.Gas
-        });
+        for (var i = 0; i < data.length; i++) {
+          chart.addSeries({
+            name: data[i][0],
+            data: data[i][1]
+          });
+        }
     });
 
   });

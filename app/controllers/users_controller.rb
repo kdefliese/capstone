@@ -22,14 +22,19 @@ class UsersController < ApplicationController
 
   def stats_endpoint
     @symptoms = @current_user.symptoms
-    @symptom_obj = {}
+    @symptom_arr = []
+    pain = ["Pain",[]]
+    gas = ["Gas",[]]
     @symptoms.each do |s|
-      @symptom_obj[s.name] = []
+      if s.name == "Pain"
+        pain[1].push([s.start_time,s.severity])
+      elsif s.name == "Gas"
+        gas[1].push([s.start_time,s.severity])
+      end
     end
-    @symptoms.each do |s|
-      @symptom_obj[s.name].push([s.start_time,s.severity])
-    end
-    render :json => @symptom_obj.as_json, :status => :ok
+    @symptom_arr.push(pain)
+    @symptom_arr.push(gas)
+    render :json => @symptom_arr.as_json, :status => :ok
   end
 
   private
