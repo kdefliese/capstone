@@ -62,7 +62,7 @@ $(document).on('ready', function() {
           x: -20 //center
         },
         xAxis: {
-          categories: []
+          categories: ['Mar 1','Mar 2','Mar 3','Mar 4','Mar 5','Mar 6']
         },
         yAxis: {
           title: {
@@ -92,9 +92,12 @@ $(document).on('ready', function() {
         for (var i = 0; i < data.length; i++) {
           chart.addSeries({
             name: data[i][0],
-            data: data[i][1]
+            data: data[i][1],
+            // pointStart: Date.UTC(2016, 2, 1),
+            // pointInterval: 24 * 3600 * 1000 // one day
           });
         }
+        console.log(chart.series);
     });
 
   });

@@ -44,9 +44,9 @@ class UsersController < ApplicationController
 
   def make_stats_array(symptom_name)
     arr = ["#{symptom_name}",[]]
-    symptoms = @current_user.symptoms.where("name = ?", symptom_name)
+    symptoms = @current_user.symptoms.where("name = ?", symptom_name).order("start_time")
     symptoms.each do |s|
-      arr[1].push([s.start_time,s.severity])
+      arr[1].push([s.start_time.strftime("%m/%d/%Y"),s.severity])
     end
     if arr[1].length > 0
       @symptom_arr.push(arr)
