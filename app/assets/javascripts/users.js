@@ -64,6 +64,9 @@ $(document).on('ready', function() {
     .done(function(data) {
       console.log("success");
       console.log(data);
+      // remove content for any other days that you previously clicked on
+      $("#day-data").empty();
+      // now add content for the day that you clicked on
       for (var i = 0; i < data.entries.length; i++) {
         $("#day-data").append(
           "<div class=\"entry\" id=\"" + data.entries[i].entry.id + "\">" + data.entries[i].entry.category + "<br />" + data.entries[i].entry.time + "<br />" + data.entries[i].entry.notes + "</div>"
