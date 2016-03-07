@@ -62,7 +62,7 @@ $(document).on('ready', function() {
           x: -20 //center
         },
         xAxis: {
-          categories: ['Mar 1','Mar 2','Mar 3','Mar 4','Mar 5','Mar 6']
+          type: 'datetime'
         },
         yAxis: {
           title: {
@@ -90,11 +90,14 @@ $(document).on('ready', function() {
       console.log(data);
         var chart = new Highcharts.Chart(options);
         for (var i = 0; i < data.length; i++) {
+            for (var j = 0; j < data[i][1].length; j++) {
+              var dateStr = data[i][1][j][0];
+              newDate = Date.UTC(Number(dateStr.slice(6,10)),(Number(dateStr.slice(0,2) - 1)), Number(dateStr.slice(3,5)));
+              data[i][1][j][0] = newDate;
+            }
           chart.addSeries({
             name: data[i][0],
             data: data[i][1],
-            // pointStart: Date.UTC(2016, 2, 1),
-            // pointInterval: 24 * 3600 * 1000 // one day
           });
         }
         console.log(chart.series);
