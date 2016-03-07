@@ -21,7 +21,6 @@ class UsersController < ApplicationController
   end
 
   def stats_endpoint
-    @symptoms = @current_user.symptoms
     @symptom_arr = []
     make_stats_array("Pain")
     make_stats_array("Gas")
@@ -43,8 +42,9 @@ class UsersController < ApplicationController
   end
 
   def make_stats_array(symptom_name)
+    end_of_day_range = @today - 6
     arr = ["#{symptom_name}",[]]
-    symptoms = @current_user.symptoms.where("name = ?", symptom_name).order("start_time")
+    symptoms = @current_user.symptoms.where("name = ? AND start_time >= ?", symptom_name, end_of_day_range).order("start_time")
     symptoms.each do |s|
       arr[1].push([s.start_time.strftime("%m/%d/%Y"),s.severity])
     end
