@@ -57,9 +57,15 @@ $(document).on('ready', function() {
       console.log(data);
       for (var i = 0; i < data.entries.length; i++) {
         $("#day-data").append(
-          "<div class=\"entry\" id=\"" + data.entries[i].entry.id + "\">" + data.entries[i].entry.category + "<br />" + data.entries[i].entry.time + "<br />" + data.entries[i].entry.notes + "<div class=\"meal\">" + data.entries[i].entry.meals[0].name + "</div>" + "</div>"
+          "<div class=\"entry\" id=\"" + data.entries[i].entry.id + "\">" + data.entries[i].entry.category + "<br />" + data.entries[i].entry.time + "<br />" + data.entries[i].entry.notes + "</div>"
         );
+        for (var j = 0; j < data.entries[i].entry.meals.length; j++) {
+          $("#" + data.entries[i].entry.id).append(
+            "<div class=\"meal\">" + data.entries[i].entry.meals[j].name + "</div>"
+          );
+        }
       }
+
     })
     .fail(function() {
       console.log("failure");
