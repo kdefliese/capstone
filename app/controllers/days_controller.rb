@@ -18,71 +18,139 @@ class DaysController < ApplicationController
 
   def summary
     @day = Day.find(params[:id])
+    @day_id = @day.id
+    obj_2 = {
+      "entries": []
+    }
+    # obj_2[:entries].push({"entry": {
+    #   "id": "1",
+    #   "category":"Breakfast",
+    #   "time":"2016-03-03 05:00:00",
+    #   "notes":"These are my notes",
+    #   "meals": [{
+    #     "name": "Turkey Tacos",
+    #     "foods": [
+    #       {"name": "Amy's Refried Beans",
+    #       "ingredients": [
+    #         {"name": "Pinto beans"},
+    #         {"name": "Pork lard"}
+    #         ]
+    #       },
+    #       {"name": "Tostitos Tortillas",
+    #       "ingredients": [
+    #         {"name": "Flour"}
+    #         ]
+    #       },
+    #       {"name": "El Paso Taco Seasoning",
+    #       "ingredients": [
+    #         {"name": "Cumin"},
+    #         {"name": "Chili peppers"}
+    #       ]
+    #     }
+    #   ]}
+    # ]
+    # }})
+    # obj_2[:entries].push(  {"entry": {
+    #     "id": "2",
+    #     "category":"Breakfast",
+    #     "time":"2016-03-03 05:00:00",
+    #     "notes":"These are my notes",
+    #     "meals": [{
+    #       "name": "Breakfast Tacos",
+    #       "foods": [
+    #         {"name": "Amy's Refried Beans",
+    #         "ingredients": [
+    #           {"name": "Pinto beans"},
+    #           {"name": "Pork lard"}
+    #           ]
+    #         },
+    #         {"name": "Tostitos Tortillas",
+    #         "ingredients": [
+    #           {"name": "Flour"}
+    #           ]
+    #         },
+    #         {"name": "El Paso Taco Seasoning",
+    #         "ingredients": [
+    #           {"name": "Cumin"},
+    #           {"name": "Chili peppers"}
+    #         ]
+    #       }
+    #     ]}
+    #   ]
+    #   }})
     @entries = @current_user.entries.where("day_id = ?", @day_id).order("time")
     @entries.each do |e|
-
+      obj_2[:entries].push(
+      {"entry": {
+        "id": e.id.to_s,
+        "category": e.category,
+        "time": e.time,
+        "notes": e.notes,
+        "meals": [{}]
+      }}
+      )
     end
-    return_obj = {
-      "entries": [
-        {"entry": {
-          "id": "1",
-          "category":"Breakfast",
-          "time":"2016-03-03 05:00:00",
-          "notes":"These are my notes",
-          "meals": [{
-            "name": "Turkey Tacos",
-            "foods": [
-              {"name": "Amy's Refried Beans",
-              "ingredients": [
-                {"name": "Pinto beans"},
-                {"name": "Pork lard"}
-                ]
-              },
-              {"name": "Tostitos Tortillas",
-              "ingredients": [
-                {"name": "Flour"}
-                ]
-              },
-              {"name": "El Paso Taco Seasoning",
-              "ingredients": [
-                {"name": "Cumin"},
-                {"name": "Chili peppers"}
-              ]
-            }
-          ]}
-        ]
-        }},
-        {"entry": {
-          "id": "1",
-          "category":"Breakfast",
-          "time":"2016-03-03 05:00:00",
-          "notes":"These are my notes",
-          "meals": [{
-            "name": "Breakfast Tacos",
-            "foods": [
-              {"name": "Amy's Refried Beans",
-              "ingredients": [
-                {"name": "Pinto beans"},
-                {"name": "Pork lard"}
-                ]
-              },
-              {"name": "Tostitos Tortillas",
-              "ingredients": [
-                {"name": "Flour"}
-                ]
-              },
-              {"name": "El Paso Taco Seasoning",
-              "ingredients": [
-                {"name": "Cumin"},
-                {"name": "Chili peppers"}
-              ]
-            }
-          ]}
-        ]
-        }}
-      ]
-    }
-    render :json => return_obj.as_json, :status => :ok
+    # return_obj = {
+    #   "entries": [
+    #     {"entry": {
+    #       "id": "1",
+    #       "category":"Breakfast",
+    #       "time":"2016-03-03 05:00:00",
+    #       "notes":"These are my notes",
+    #       "meals": [{
+    #         "name": "Turkey Tacos",
+    #         "foods": [
+    #           {"name": "Amy's Refried Beans",
+    #           "ingredients": [
+    #             {"name": "Pinto beans"},
+    #             {"name": "Pork lard"}
+    #             ]
+    #           },
+    #           {"name": "Tostitos Tortillas",
+    #           "ingredients": [
+    #             {"name": "Flour"}
+    #             ]
+    #           },
+    #           {"name": "El Paso Taco Seasoning",
+    #           "ingredients": [
+    #             {"name": "Cumin"},
+    #             {"name": "Chili peppers"}
+    #           ]
+    #         }
+    #       ]}
+    #     ]
+    #     }},
+    #     {"entry": {
+    #       "id": "2",
+    #       "category":"Breakfast",
+    #       "time":"2016-03-03 05:00:00",
+    #       "notes":"These are my notes",
+    #       "meals": [{
+    #         "name": "Breakfast Tacos",
+    #         "foods": [
+    #           {"name": "Amy's Refried Beans",
+    #           "ingredients": [
+    #             {"name": "Pinto beans"},
+    #             {"name": "Pork lard"}
+    #             ]
+    #           },
+    #           {"name": "Tostitos Tortillas",
+    #           "ingredients": [
+    #             {"name": "Flour"}
+    #             ]
+    #           },
+    #           {"name": "El Paso Taco Seasoning",
+    #           "ingredients": [
+    #             {"name": "Cumin"},
+    #             {"name": "Chili peppers"}
+    #           ]
+    #         }
+    #       ]}
+    #     ]
+    #     }}
+    #   ]
+    # }
+    render :json => obj_2.as_json, :status => :ok
   end
 
 

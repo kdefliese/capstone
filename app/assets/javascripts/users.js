@@ -51,7 +51,7 @@ $(document).on('ready', function() {
 
   // point click function used inside the highcharts function below
   var pointClick = function() {
-    $.ajax("/days/1/summary")
+    $.ajax("/days/10/summary")
     .done(function(data) {
       console.log("success");
       console.log(data);
