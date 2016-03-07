@@ -50,8 +50,17 @@ $(document).on('ready', function() {
   });
 
   // point click function used inside the highcharts function below
-  var pointClick = function() {
-    $.ajax("/days/10/summary")
+  var pointClick = function(pointDate) {
+    var options = {};
+    options.timeZone = 'UTC';
+    options.timeZoneName = 'short';
+    var a = new Date(pointDate);
+    a = a.toLocaleString('en-US', options);
+    console.log(a);
+    // need to determine what ID to use for the date that you clicked on
+    var id = 10;
+    url = "/days/" + id + "/summary";
+    $.ajax(url)
     .done(function(data) {
       console.log("success");
       console.log(data);
@@ -125,7 +134,7 @@ $(document).on('ready', function() {
             point: {
               events: {
                 click: function () {
-                  pointClick();
+                  pointClick(this.x);
                 }
               }
             }

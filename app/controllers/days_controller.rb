@@ -43,7 +43,6 @@ class DaysController < ApplicationController
           },
           )
         end
-        # this is going to cause a problem if there are multiple meals in an entry, there need to be commas inbetween them
       end
       entry_index += 1
     end
