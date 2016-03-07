@@ -102,7 +102,14 @@ $(document).on('ready', function() {
             point: {
               events: {
                 click: function () {
-                  alert('A point was clicked');
+                  $.ajax("/days/1/summary")
+                  .done(function(data) {
+                    console.log("success");
+                    console.log(data);
+                  })
+                  .fail(function() {
+                    console.log("failure");
+                  });
                 }
               }
             }
