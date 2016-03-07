@@ -55,6 +55,11 @@ $(document).on('ready', function() {
     .done(function(data) {
       console.log("success");
       console.log(data);
+      console.log(data.entries[0]);
+      console.log(data.entries[0].e1.meal1);
+      $("#day-data").append(
+        "<div class=\"entry\" id=\"1\">" + data.entries[0].e1.meal1.name + "</div>"
+      );
     })
     .fail(function() {
       console.log("failure");
