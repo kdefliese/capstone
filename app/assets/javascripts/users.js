@@ -1,4 +1,6 @@
+var Play;
 $(document).on('ready', function() {
+
   $("#add-food-intolerance").click(function() {
     event.preventDefault();
     $("#food-intolerances").append("<p class=\"food-intolerance\">" + $("#new-food-intolerance").val() + "</p>");
@@ -81,24 +83,22 @@ $(document).on('ready', function() {
           verticalAlign: 'middle',
           borderWidth: 0
         },
-        series: [{
-          name: "Symptom1",
-          data: []
-        },
-        {
-          name: "Symptom2",
-          data: []
-        }
-      ]
+        series: []
     };
 
     $.getJSON('/getstats', function(data) {
       console.log(data);
-        options.series[0].data = data.Pain;
-        options.series[0].name = "Pain";
-        options.series[1].data = data.Gas;
-        options.series[1].name = "Gas";
+      console.log(data.getOwnPropertyNames());
+      Play = data;
         var chart = new Highcharts.Chart(options);
+        chart.addSeries({
+          name: "Pain",
+          data: data.Pain
+        });
+        chart.addSeries({
+          name: "Gas",
+          data: data.Gas
+        });
     });
 
   });
