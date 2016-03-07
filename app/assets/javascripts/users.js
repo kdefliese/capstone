@@ -55,10 +55,9 @@ $(document).on('ready', function() {
     .done(function(data) {
       console.log("success");
       console.log(data);
-      console.log(data.entries);
       for (var i = 0; i < data.entries.length; i++) {
         $("#day-data").append(
-          "<div class=\"entry\" id=\"" + data.entries[0].entry.id + "\">" + data.entries[i].entry.category + "<br />" + data.entries[i].entry.time + "<br />" + data.entries[i].entry.notes + "<div class=\"meal\">" + data.entries[i].entry.meal1.name + "</div>" + "</div>"
+          "<div class=\"entry\" id=\"" + data.entries[i].entry.id + "\">" + data.entries[i].entry.category + "<br />" + data.entries[i].entry.time + "<br />" + data.entries[i].entry.notes + "<div class=\"meal\">" + data.entries[i].entry.meals[0].name + "</div>" + "</div>"
         );
       }
     })

@@ -29,7 +29,7 @@ class DaysController < ApplicationController
           "category":"Breakfast",
           "time":"2016-03-03 05:00:00",
           "notes":"These are my notes",
-          "meal1": {
+          "meals": [{
             "name": "Turkey Tacos",
             "foods": [
               {"name": "Amy's Refried Beans",
@@ -50,13 +50,14 @@ class DaysController < ApplicationController
               ]
             }
           ]}
+        ]
         }},
         {"entry": {
           "id": "1",
           "category":"Breakfast",
           "time":"2016-03-03 05:00:00",
           "notes":"These are my notes",
-          "meal1": {
+          "meals": [{
             "name": "Breakfast Tacos",
             "foods": [
               {"name": "Amy's Refried Beans",
@@ -77,6 +78,7 @@ class DaysController < ApplicationController
               ]
             }
           ]}
+        ]
         }}
       ]
     }
