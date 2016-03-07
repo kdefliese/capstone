@@ -98,6 +98,14 @@ $(document).on('ready', function() {
           chart.addSeries({
             name: data[i][0],
             data: data[i][1],
+            cursor: 'pointer',
+            point: {
+              events: {
+                click: function () {
+                  alert('A point was clicked');
+                }
+              }
+            }
           });
         }
     });
