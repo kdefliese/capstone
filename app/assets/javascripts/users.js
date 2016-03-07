@@ -94,9 +94,8 @@ $(document).on('ready', function() {
 
     $.getJSON('/getstats', function(data) {
       console.log(data);
-        options.series[0].data = data[0];
-        options.series[1].data = data[1];
-        options.xAxis.categories = data[2];
+        options.series[0].data = data.Pain;
+        // options.series[0].name = data.Pain
         var chart = new Highcharts.Chart(options);
     });
 

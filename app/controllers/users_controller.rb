@@ -18,16 +18,18 @@ class UsersController < ApplicationController
   end
 
   def stats
-    @symptoms = @current_user.symptoms
-    @symptom_array = []
-    @symptoms.each do |s|
-      @symptom_array.push([s.name, s.severity])
-    end
   end
 
   def stats_endpoint
-    hardcoded = [[[1,12],[2,5],[3,18],[4,13],[5,7],[6,4],[7,9]],[[1,3],[2,8],[3,10],[4,3],[5,7],[6,6],[7,2]],['Extra','Sun','Mon','Tues','Wed','Thurs','Fri','Sat']]
-    render :json => hardcoded.as_json, :status => :ok
+    @symptoms = @current_user.symptoms
+    @symptom_obj = {}
+    @symptoms.each do |s|
+      @symptom_obj[s.name] = []
+    end
+    @symptoms.each do |s|
+      @symptom_obj[s.name].push([s.start_time,s.severity])
+    end
+    render :json => @symptom_obj.as_json, :status => :ok
   end
 
   private
