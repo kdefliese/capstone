@@ -55,15 +55,19 @@ $(document).on('ready', function() {
     .done(function(data) {
       console.log("success");
       console.log(data);
-      $("#day-data").append(
-        "<div class=\"entry\" id=\"1\">" + data.entries[0].e1.category + "<br />" + data.entries[0].e1.time + "<br />" + data.entries[0].e1.notes + "<div class=\"meal\">" + data.entries[0].e1.meal1.name + "</div>" + "</div>"
-      );
+      console.log(data.entries);
+      for (var i = 0; i < data.entries.length; i++) {
+        $("#day-data").append(
+          "<div class=\"entry\" id=\"" + data.entries[0].entry.id + "\">" + data.entries[i].entry.category + "<br />" + data.entries[i].entry.time + "<br />" + data.entries[i].entry.notes + "<div class=\"meal\">" + data.entries[i].entry.meal1.name + "</div>" + "</div>"
+        );
+      }
     })
     .fail(function() {
       console.log("failure");
     });
   };
 
+  // creates highcharts graph
   $(function () {
 
     var options = {

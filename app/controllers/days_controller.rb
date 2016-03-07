@@ -24,7 +24,8 @@ class DaysController < ApplicationController
     end
     return_obj = {
       "entries": [
-        "e1": {
+        {"entry": {
+          "id": "1",
           "category":"Breakfast",
           "time":"2016-03-03 05:00:00",
           "notes":"These are my notes",
@@ -49,7 +50,34 @@ class DaysController < ApplicationController
               ]
             }
           ]}
-        }
+        }},
+        {"entry": {
+          "id": "1",
+          "category":"Breakfast",
+          "time":"2016-03-03 05:00:00",
+          "notes":"These are my notes",
+          "meal1": {
+            "name": "Breakfast Tacos",
+            "foods": [
+              {"name": "Amy's Refried Beans",
+              "ingredients": [
+                {"name": "Pinto beans"},
+                {"name": "Pork lard"}
+                ]
+              },
+              {"name": "Tostitos Tortillas",
+              "ingredients": [
+                {"name": "Flour"}
+                ]
+              },
+              {"name": "El Paso Taco Seasoning",
+              "ingredients": [
+                {"name": "Cumin"},
+                {"name": "Chili peppers"}
+              ]
+            }
+          ]}
+        }}
       ]
     }
     render :json => return_obj.as_json, :status => :ok
