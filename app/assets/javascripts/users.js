@@ -49,49 +49,59 @@ $(document).on('ready', function() {
 
 
   $(function () {
-    $('#container').highcharts({
-      title: {
-        text: 'Your Symptoms',
-        x: -20 //center
-      },
-      xAxis: {
-        categories: ['Sun', 'Mon', 'Tues', 'Wed', 'Thurs', 'Fri',
-        'Sat']
-      },
-      yAxis: {
-        title: {
-          text: 'Severity'
+
+    var options = {
+        chart: {
+            renderTo: 'container',
+            type: 'line'
         },
-        plotLines: [{
-          value: 0,
-          width: 1,
-          color: '#808080'
-        }]
-      },
-      tooltip: {
-        
-      },
-      legend: {
-        layout: 'vertical',
-        align: 'right',
-        verticalAlign: 'middle',
-        borderWidth: 0
-      },
-      series: [{
-        name: 'Pain',
-        data: [7, 6, 9, 10, 10, 5, 5]
-      }, {
-        name: 'Gas',
-        data: [0, 0, 5, 10, 10, 10]
-      }, {
-        name: 'Bloating',
-        data: [0, 0, 3, 8, 10, 10, 10]
-      }, {
-        name: 'Migraine',
-        data: [3, 4, 5, 8, 10, 10, 10]
-      }]
+        title: {
+          text: 'Your Symptoms',
+          x: -20 //center
+        },
+        xAxis: {
+          categories: ['Sun', 'Mon', 'Tues', 'Wed', 'Thurs', 'Fri',
+          'Sat']
+        },
+        yAxis: {
+          title: {
+            text: 'Severity'
+          },
+          plotLines: [{
+            value: 0,
+            width: 1,
+            color: '#808080'
+          }]
+        },
+        tooltip: {
+
+        },
+        legend: {
+          layout: 'vertical',
+          align: 'right',
+          verticalAlign: 'middle',
+          borderWidth: 0
+        },
+        series: [{
+          name: "Symptom1",
+          data: []
+        },
+        {
+          name: "Symptom2",
+          data: []
+        }
+      ]
+    };
+
+    $.getJSON('/getstats', function(data) {
+      console.log(data);
+        options.series[0].data = data[0];
+        options.series[1].data = data[1];
+        var chart = new Highcharts.Chart(options);
     });
+    
   });
+
 
 
 
