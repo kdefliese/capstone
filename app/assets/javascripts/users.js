@@ -1,4 +1,4 @@
-var Play;
+
 $(document).on('ready', function() {
 
   $("#add-food-intolerance").click(function() {
@@ -100,7 +100,6 @@ $(document).on('ready', function() {
             data: data[i][1],
           });
         }
-        console.log(chart.series);
     });
 
   });
