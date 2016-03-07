@@ -60,8 +60,7 @@ $(document).on('ready', function() {
           x: -20 //center
         },
         xAxis: {
-          categories: ['Sun', 'Mon', 'Tues', 'Wed', 'Thurs', 'Fri',
-          'Sat']
+          categories: []
         },
         yAxis: {
           title: {
@@ -97,9 +96,10 @@ $(document).on('ready', function() {
       console.log(data);
         options.series[0].data = data[0];
         options.series[1].data = data[1];
+        options.xAxis.categories = data[2];
         var chart = new Highcharts.Chart(options);
     });
-    
+
   });
 
 

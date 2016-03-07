@@ -26,7 +26,7 @@ class UsersController < ApplicationController
   end
 
   def stats_endpoint
-    hardcoded = [[[1,12],[2,5],[3,18],[4,13],[5,7],[6,4],[7,9]],[[1,3],[2,8],[3,10],[4,3],[5,7],[6,6],[7,2]]]
+    hardcoded = [[[1,12],[2,5],[3,18],[4,13],[5,7],[6,4],[7,9]],[[1,3],[2,8],[3,10],[4,3],[5,7],[6,6],[7,2]],['Extra','Sun','Mon','Tues','Wed','Thurs','Fri','Sat']]
     render :json => hardcoded.as_json, :status => :ok
   end
 
