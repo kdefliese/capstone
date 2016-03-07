@@ -23,6 +23,7 @@ class DaysController < ApplicationController
       "entries": []
     }
     @entries = @current_user.entries.where("day_id = ?", @day_id).order("time")
+    entry_index = 0
     @entries.each do |e|
       obj_2[:entries].push(
       {"entry": {
@@ -30,19 +31,21 @@ class DaysController < ApplicationController
         "category": e.category,
         "time": e.time,
         "notes": e.notes,
-        "meals": [
-          if !e.meals.empty?
-            # this is going to cause a problem if there are multiple meals in an entry, there need to be commas inbetween them
-            e.meals.each do |m|
-              {
-                "name": m.name,
-                "foods": []
-              }
-            end
-          end
-          ]
+        "meals": []
       }}
       )
+      if !e.meals.empty?
+        e.meals.each do |m|
+          obj_2[:entries][entry_index][:entry][:meals].push(
+          {
+            "name": m.name,
+            "foods": []
+          },
+          )
+        end
+        # this is going to cause a problem if there are multiple meals in an entry, there need to be commas inbetween them
+      end
+      entry_index += 1
     end
     # return_obj = {
     #   "entries": [
