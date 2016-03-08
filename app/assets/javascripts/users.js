@@ -60,13 +60,13 @@ $(document).on('ready', function() {
       // remove content for any other days that you previously clicked on
       $("#day-data").empty();
       // now add content for the day that you clicked on
-      for (var i = 0; i < data.entries.length; i++) {
+      for (var i = 0; i < data.length; i++) {
         $("#day-data").append(
-          "<div class=\"entry\" id=\"" + data.entries[i].entry.id + "\">" + data.entries[i].entry.category + "<br />" + data.entries[i].entry.time + "<br />" + data.entries[i].entry.notes + "</div>"
+          "<div class=\"entry\" id=\"" + data[i].id + "\">" + data[i].category + "<br />" + data[i].time + "<br />" + data[i].notes + "</div>"
         );
-        for (var j = 0; j < data.entries[i].entry.meals.length; j++) {
-          $("#" + data.entries[i].entry.id).append(
-            "<div class=\"meal\">" + data.entries[i].entry.meals[j].name + "</div>"
+        for (var j = 0; j < data[i].meals.length; j++) {
+          $("#" + data[i].id).append(
+            "<div class=\"meal\">" + data[i].meals[j].name + "</div>"
           );
         }
       }
