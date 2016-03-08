@@ -104,7 +104,7 @@ $(document).on('ready', function() {
                 ingredients += "<div class=\"ingredient\">" + data.ingredients[k].name + "</div>";
             }
             $("#added-entries").append(
-              "<div class=\"entry\" id=\"" + data.entry_time + "\">" + data.entry.category + "<br />" + data.entry_time + "<br />" + data.entry.notes + "<br /> <a href=\"\" class=\"btn btn-danger\">Remove entry</a><a href=\"\" class=\"edit-entry\">Edit entry</a>" + meals + "<br />" + foods + "<br />" + ingredients + "<br />" + "</div>"
+              "<div class=\"entry\" id=\"" + data.entry_time + "\">" + data.entry.category + "<br />" + data.entry_time + "<br />" + data.entry.notes + "<br /> <a class=\"btn btn-danger\" data-confirm=\"Are you sure?\" rel=\"nofollow\" data-method=\"delete\" href=\"/entries/" + data.entry.id + "\">Remove entry</a><a class=\"edit-entry\" rel=\"nofollow\" data-method=\"patch\" href=\"/entries/" + data.entry.id + "\">Edit entry</a>" + meals + "<br />" + foods + "<br />" + ingredients + "<br />" + "</div>"
             );
             $("#print-new-entry").empty();
             $("#print-new-entry").removeData();
