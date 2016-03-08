@@ -29,6 +29,7 @@
             <li><%= link_to "Today's Diary", day_path(@current_day.id) %></li>
             <li><%= link_to "Symptom Analysis", user_stats_path(@current_user.id), method: :get %></li>
             <li><%= link_to "View Profile", user_path(@current_user.id) %></li>
+            <li><%= link_to "About", about_path %></li>
             <li><%= link_to "Logout", logout_path, method: :delete %></li>
           </ul>
         </div><!-- /.navbar-collapse -->
