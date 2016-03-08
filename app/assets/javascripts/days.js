@@ -57,7 +57,7 @@ $(document).on('ready', function() {
   });
 
   // adds things to the food entry on the page
-  $("#add-new-entry").click(function() {
+  $("#add-from-db").click(function() {
     event.preventDefault();
     var type = $("#food-type-select option:selected").val();
     var name = $("#dynamic-food-list").val();
@@ -104,7 +104,7 @@ $(document).on('ready', function() {
                 ingredients += "<div class=\"ingredient\">" + data.ingredients[k].name + "</div>";
             }
             $("#added-entries").append(
-              "<div class=\"entry\" id=\"" + data.entry_time + "\">" + data.entry.category + "<br />" + data.entry_time + "<br />" + data.entry.notes + "<br />" + meals + "<br />" + foods + "<br />" + ingredients + "<br />" + "</div>"
+              "<div class=\"entry\" id=\"" + data.entry_time + "\">" + data.entry.category + "<br />" + data.entry_time + "<br />" + data.entry.notes + "<br /> <a href=\"\" class=\"btn btn-danger\">Remove entry</a><a href=\"\" class=\"edit-entry\">Edit entry</a>" + meals + "<br />" + foods + "<br />" + ingredients + "<br />" + "</div>"
             );
             $("#print-new-entry").empty();
             $("#print-new-entry").removeData();
