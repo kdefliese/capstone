@@ -57,11 +57,14 @@ $(document).on('ready', function() {
     .done(function(data) {
       console.log("success");
       // remove content for any other days that you previously clicked on
+      $("#day-heading").empty();
       $("#day-data").empty();
+      var formatDate = data[0].time.slice(0,10);
+      $("#day-heading").append("<h1>Your food entries for " + formatDate + "</h1>");
       // now add content for the day that you clicked on
       for (var i = 0; i < data.length; i++) {
         $("#day-data").append(
-          "<div class=\"entry\" id=\"" + data[i].id + "\">" + data[i].category + "<br />" + data[i].time + "<br />" + data[i].notes + "</div>"
+          "<div class=\"entry\" id=\"" + data[i].id + "\">" + data[i].category + "<br />" + data[i].time.slice(11,19) + "<br />" + data[i].notes + "</div>"
         );
         for (var j = 0; j < data[i].meals.length; j++) {
           $("#" + data[i].id).append(
