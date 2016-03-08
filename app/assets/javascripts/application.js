@@ -13,9 +13,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
-//= require_tree .
 //= require jquery-ui/autocomplete
 //= require jquery-ui/menu
 //= require bootstrap-sprockets
 //= require highcharts
-//= require highcharts/highcharts-more 
+//= require highcharts/highcharts-more
