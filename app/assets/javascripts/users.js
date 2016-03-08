@@ -130,6 +130,16 @@ $(document).on('ready', function() {
               newDate = Date.UTC(Number(dateStr.slice(6,10)),(Number(dateStr.slice(0,2) - 1)), Number(dateStr.slice(3,5)));
               data[i][1][j][0] = newDate;
             }
+            // need to add the day ID to each data point
+            // for (var k = 0; k < data[i][1].length; k++) {
+            //   var id = data[i][1][k][2];
+            //   data[i]
+            // }
+            // data needs to look like {
+            //    x: ,
+            //    y: ,
+            //    id: 17
+            // }
           chart.addSeries({
             name: data[i][0],
             data: data[i][1],
@@ -137,6 +147,7 @@ $(document).on('ready', function() {
             point: {
               events: {
                 click: function () {
+                  console.log(this);
                   pointClick(this.x);
                 }
               }
