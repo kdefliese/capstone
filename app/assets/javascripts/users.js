@@ -56,7 +56,6 @@ $(document).on('ready', function() {
     $.ajax(url)
     .done(function(data) {
       console.log("success");
-      console.log(data);
       // remove content for any other days that you previously clicked on
       $("#day-data").empty();
       // now add content for the day that you clicked on
