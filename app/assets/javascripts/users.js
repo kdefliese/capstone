@@ -1,6 +1,11 @@
 
 $(document).on('ready', function() {
 
+  var dateFormatter = function(dateToFormat) {
+    // date looks like "2016-03-04T00:00:00.000Z"
+    var time = dateToFormat.slice(0,10);
+  };
+
   $("#add-food-intolerance").click(function() {
     event.preventDefault();
     $("#food-intolerances").append("<p class=\"food-intolerance\">" + $("#new-food-intolerance").val() + "</p>");
