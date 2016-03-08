@@ -31,10 +31,13 @@ class DaysController < ApplicationController
         "category": e.category,
         "time": e.time,
         "notes": e.notes,
-        "meals": []
+        "meals": [],
+        "foods": [],
+        "ingredients": []
       }}
       )
       if !e.meals.empty?
+        meal_index = 0
         e.meals.each do |m|
           obj_2[:entries][entry_index][:entry][:meals].push(
           {
@@ -42,6 +45,16 @@ class DaysController < ApplicationController
             "foods": []
           },
           )
+          if !m.foods.empty?
+            m.foods.each do |f|
+              obj_2[:entries][entry_index][:entry][:meals][meal_index][:foods].push(
+              {"name": f.name,
+                "ingredients": []
+                },
+              )
+            end
+          end
+          meal_index += 1
         end
       end
       entry_index += 1
