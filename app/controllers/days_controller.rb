@@ -19,13 +19,13 @@ class DaysController < ApplicationController
   def summary
     @day = Day.find(params[:id])
     @day_id = @day.id
-    obj_2 = {
+    return_obj = {
       "entries": []
     }
     @entries = @current_user.entries.where("day_id = ?", @day_id).order("time")
     entry_index = 0
     @entries.each do |e|
-      obj_2[:entries].push(
+      return_obj[:entries].push(
       {"entry": {
         "id": e.id.to_s,
         "category": e.category,
@@ -39,19 +39,28 @@ class DaysController < ApplicationController
       if !e.meals.empty?
         meal_index = 0
         e.meals.each do |m|
-          obj_2[:entries][entry_index][:entry][:meals].push(
+          return_obj[:entries][entry_index][:entry][:meals].push(
           {
             "name": m.name,
             "foods": []
           },
           )
           if !m.foods.empty?
+            food_index = 0
             m.foods.each do |f|
-              obj_2[:entries][entry_index][:entry][:meals][meal_index][:foods].push(
+              return_obj[:entries][entry_index][:entry][:meals][meal_index][:foods].push(
               {"name": f.name,
                 "ingredients": []
                 },
               )
+              if !f.ingredients.empty?
+                f.ingredients.each do |i|
+                  return_obj[:entries][entry_index][:entry][:meals][meal_index][:foods][food_index][:ingredients].push(
+                  {"name": i.name},
+                  )
+                end
+              end
+              food_index += 1
             end
           end
           meal_index += 1
@@ -119,7 +128,7 @@ class DaysController < ApplicationController
     #     }}
     #   ]
     # }
-    render :json => obj_2.as_json, :status => :ok
+    render :json => return_obj.as_json, :status => :ok
   end
 
 
