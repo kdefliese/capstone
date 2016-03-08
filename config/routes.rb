@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   get "entries/last" => "entries#last", as: :last_entry
   get "symptoms/last" => "symptoms#last", as: :last_symptom
   get "getstats" => "users#stats_endpoint", as: :get_stats
-  get "days/:id/summary" => "days#summary", as: :get_day_summary
+  get "days/:id/summary" => "days#summary_alt", as: :get_day_summary
 
   get "foods/search" => "foods#factual_search", as: :foods_search
   get "foods/search_specific" => "foods#factual_search_specific_product", as: :foods_search_specific

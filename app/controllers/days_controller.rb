@@ -16,6 +16,22 @@ class DaysController < ApplicationController
     @symptoms = @current_user.symptoms.where("day_id = ?", @day_id)
   end
 
+  def summary_alt
+    @day = Day.find(params[:id])
+    @day_id = @day.id
+    return_obj = @current_user.entries.where("day_id = ?", @day_id).order("time").as_json(include: { meals: {
+        only: [:name],
+        include: { foods: {
+          only: [:name],
+          include: { ingredients: {
+            only: [:name]
+            }}
+          }}
+        }}
+      )
+    render :json => return_obj.as_json, :status => :ok
+  end
+
   def summary
     @day = Day.find(params[:id])
     @day_id = @day.id
