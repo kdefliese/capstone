@@ -50,15 +50,8 @@ $(document).on('ready', function() {
   });
 
   // point click function used inside the highcharts function below
-  var pointClick = function(pointDate) {
-    var options = {};
-    options.timeZone = 'UTC';
-    options.timeZoneName = 'short';
-    var a = new Date(pointDate);
-    a = a.toLocaleString('en-US', options);
-    console.log(a);
-    // need to determine what ID to use for the date that you clicked on
-    var id = 10;
+  var pointClick = function(pointId) {
+    var id = pointId;
     url = "/days/" + id + "/summary";
     $.ajax(url)
     .done(function(data) {
@@ -124,22 +117,13 @@ $(document).on('ready', function() {
     $.getJSON('/getstats', function(data) {
       console.log(data);
         var chart = new Highcharts.Chart(options);
+        // all this datetime conversion is required to work with the HC xAxis type
         for (var i = 0; i < data.length; i++) {
             for (var j = 0; j < data[i][1].length; j++) {
-              var dateStr = data[i][1][j][0];
+              var dateStr = data[i][1][j].x;
               newDate = Date.UTC(Number(dateStr.slice(6,10)),(Number(dateStr.slice(0,2) - 1)), Number(dateStr.slice(3,5)));
-              data[i][1][j][0] = newDate;
+              data[i][1][j].x = newDate;
             }
-            // need to add the day ID to each data point
-            // for (var k = 0; k < data[i][1].length; k++) {
-            //   var id = data[i][1][k][2];
-            //   data[i]
-            // }
-            // data needs to look like {
-            //    x: ,
-            //    y: ,
-            //    id: 17
-            // }
           chart.addSeries({
             name: data[i][0],
             data: data[i][1],
@@ -147,8 +131,7 @@ $(document).on('ready', function() {
             point: {
               events: {
                 click: function () {
-                  console.log(this);
-                  pointClick(this.x);
+                  pointClick(this.id);
                 }
               }
             }
