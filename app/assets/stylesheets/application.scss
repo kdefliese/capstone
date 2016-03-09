@@ -20,7 +20,7 @@
     height: 100%;
     width: 100%;
   }
-  
+
   .navbar {
     border: none;
     border-radius: 0;
@@ -28,7 +28,27 @@
     font-family: 'Arimo', sans-serif;
   }
 
-  .navbar a {
+  #navbar-brand {
+    color: #ffffff;
+  }
+
+  #navbar-about {
+    color: #ffffff;
+  }
+
+  #navbar-login {
+    color: #ffffff;
+  }
+
+  #navbar-today {
+    color: #ffffff;
+  }
+
+  #navbar-profile {
+    color: #ffffff;
+  }
+
+  #navbar-symptoms {
     color: #ffffff;
   }
 

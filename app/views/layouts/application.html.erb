@@ -19,7 +19,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="http://localhost:3000">Food Diary App</a>
+          <a class="navbar-brand" id="navbar-brand" href="http://localhost:3000">FOODFEELS</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -27,11 +27,11 @@
           <ul class="nav navbar-nav">
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li><%= link_to "Today's Diary", day_path(@current_day.id) %></li>
-            <li><%= link_to "Symptom Analysis", user_stats_path(@current_user.id), method: :get %></li>
-            <li><%= link_to "View Profile", user_path(@current_user.id) %></li>
-            <li><%= link_to "About", about_path %></li>
-            <li><%= link_to "Logout", logout_path, method: :delete %></li>
+            <li><%= link_to "Today's Diary", day_path(@current_day.id), id: "navbar-today" %></li>
+            <li><%= link_to "Symptom Analysis", user_stats_path(@current_user.id), method: :get, id: "navbar-symptoms" %></li>
+            <li><%= link_to "View Profile", user_path(@current_user.id), id: "navbar-profile" %></li>
+            <li><%= link_to "About", about_path, id: "navbar-about" %></li>
+            <li><%= link_to "Logout", logout_path, method: :delete, id: "navbar-login" %></li>
           </ul>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
