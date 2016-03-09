@@ -5,6 +5,9 @@ Rails.application.routes.draw do
   get "/auth/:provider/callback" => "sessions#create", as: :auth
   delete "logout" => "sessions#destroy"
 
+  # for security certificate
+  get "/.well-known/acme-challenge/#{ENV['LE_AUTH_REQUEST']}", to: 'welcome#letsencrypt'
+
   resources :users
   get "users/:id/stats" => "users#stats", as: :user_stats
 

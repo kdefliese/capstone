@@ -1,7 +1,7 @@
 class WelcomeController < ApplicationController
-  before_action :require_login, except: [:login, :about]
+  before_action :require_login, only: [:index]
   before_action :current_user, only: [:index]
-  before_action :current_day_for_user, except: [:login, :about]
+  before_action :current_day_for_user, only: [:index]
   include FactualWrapper
 
 
@@ -12,6 +12,10 @@ class WelcomeController < ApplicationController
   end
 
   def about
+  end
+
+  def letsencrypt
+    render plain: ENV['LE_AUTH_RESPONSE']
   end
 
 end
