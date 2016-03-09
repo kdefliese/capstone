@@ -5,6 +5,7 @@ class DaysController < ApplicationController
   def show
     # need to make sure this method only shows entries and symptoms for that user on that day
     @day = Day.find(params[:id])
+    # if @day is nil, create the day for that user somehow
     @day_id = @day.id
     @user_id = @current_user.id
     @entries = @current_user.entries.where("day_id = ?", @day_id).order("time")
