@@ -16,10 +16,40 @@
   @import "bootstrap-sprockets";
   @import "bootstrap";
 
+  .navbar {
+    border: none;
+    border-radius: 0;
+    background-color: #000000;
+  }
+
   .ui-autocomplete-loading {
     background: white url("loading-circle.gif") right center no-repeat;
   }
 
   #day-heading h1 {
     text-align: center;
+  }
+
+  .login-bg {
+    height: 100%;
+    width: 100%;
+  }
+
+  #html-bg {
+    height: 100%;
+    width: 100%;
+    background: url('cherries-big.jpeg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+  }
+
+  #login-h1 {
+    color: #ffffff;
+  }
+
+  #login-h3 {
+    color: #ffffff;
+    font-size: 18px;
   }
