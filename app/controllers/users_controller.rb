@@ -18,6 +18,7 @@ class UsersController < ApplicationController
   end
 
   def stats
+    @entries = @current_user.entries
   end
 
   def stats_endpoint
