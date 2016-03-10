@@ -18,7 +18,7 @@
       <div id="existing-entries">
         <% @entries.each do |e| %>
           <div class="entry text-center" id="<%= e.time.strftime("%l:%M %p") %>">
-            <div class="food-entry-header"><%= e.time.strftime("%l:%M %p") %> - <%= e.category.upcase %></div>
+            <div class="food-entry-header"><%= e.category.upcase %> - <%= e.time.strftime("%l:%M %p") %></div>
               <% e.meals.each do |m| %>
                 <div class="meal">
                   <%= m.name %>
@@ -36,8 +36,8 @@
               <% end %>
             Notes: <%= e.notes %>
             <br />
-            <%= link_to "Edit entry", entry_path(e), method: :patch, class: "btn btn-success edit-entry" %>
-            <%= link_to "Remove entry", entry_path(e), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+            <%= link_to "Edit", entry_path(e), method: :patch, class: "btn btn-success edit-entry" %>
+            <%= link_to "Delete", entry_path(e), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
           </div>
         <% end %>
       </div>
@@ -55,15 +55,15 @@
       <div id="existing-symptoms">
         <% @symptoms.each do |s| %>
         <div class="symptom">
-          <%= s.name %>
+          <div class="food-entry-header"><%= s.name %> - <%= s.start_time.strftime("%l:%M %p") %><% if !s.end_time.nil? %>
+             - <%= s.end_time.strftime("%l:%M %p") %>
+            <% end %></div>
+          Severity: <%= s.severity %>
           <br />
-          <%= s.severity %>
+          Notes: <%= s.notes %>
           <br />
-          <%= s.start_time %>
-          <br />
-          <%= s.end_time %>
-          <br />
-          <%= s.notes %>
+          <%= link_to "Edit", symptom_path(s), method: :patch, class: "btn btn-success edit-entry" %>
+          <%= link_to "Delete", symptom_path(s), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
         </div>
         <% end %>
       </div>
