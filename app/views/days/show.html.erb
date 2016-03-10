@@ -1,4 +1,4 @@
-<h1><%= @day.day.strftime("%m/%d/%Y") %></h1>
+<h1 class="day-show-header"><%= @day.day.strftime("%m/%d/%Y") %></h1>
 <%= link_to "#{@day.day.yesterday.strftime("%m/%d/%Y")}", day_path(@day.id - 1), method: :get, class: "btn" %>
 <%= link_to "#{@day.day.tomorrow.strftime("%m/%d/%Y")}", day_path(@day.id + 1), method: :get, class: "btn" %>
 <h3>
