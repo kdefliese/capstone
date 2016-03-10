@@ -53,7 +53,8 @@
   }
 
   .navbar-brand {
-    font-weight: 700;
+    font-weight: 400;
+    font-family: 'Lobster', cursive;
   }
 
   .ui-autocomplete-loading {
@@ -99,7 +100,7 @@
   }
 
   .login-modal {
-    background-color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.9);
     margin-top: 10%;
     margin-left: 7%;
     margin-right: 7%;
@@ -108,14 +109,16 @@
 
   .login-button {
     font-weight: 700;
-    margin-bottom: 20px;
-    margin-top: 30px;
     text-align: center;
     font-family: 'Lato', sans-serif;
     font-weight: 300;
     font-style: italic;
     border: none;
-    display: block;
+  }
+
+  .login-button-margin {
+    margin-top: 20px;
+    margin-bottom: 25px;
   }
 
   .about-login {
