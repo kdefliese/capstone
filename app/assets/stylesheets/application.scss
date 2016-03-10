@@ -85,35 +85,43 @@
     -o-background-size: cover;
   }
 
+  .brand {
+    font-family: 'Lobster', cursive;
+  }
+
   #login-h1 {
-    font-family: 'Arimo', sans-serif;
-    font-weight: 700;
-    font-size: 50px;
-    color: #ffffff;
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    font-style: italic;
+    font-size: 36px;
+    color: #333333;
     text-align: center;
   }
 
   .login-modal {
-    background-color: #000000;
-    opacity: .9;
+    background-color: #ffffff;
     margin-top: 10%;
-    position: relative;
+    margin-left: 7%;
+    margin-right: 7%;
+    border-radius: 7px;
   }
 
   .login-button {
-    font-family: 'Arimo', sans-serif;
     font-weight: 700;
-    border-radius: 0;
     margin-bottom: 20px;
-    color: #000000;
-    border: none;
+    margin-top: 20px;
     text-align: center;
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    font-style: italic;
+    border: none;
   }
 
-  .centered-text {
-    width: 90%;
-    margin: 0 auto;
-    text-align: center;
+  .about-login {
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    font-style: italic;
+    font-size: 18px;
   }
 
   .day-show-header {

@@ -1,7 +1,7 @@
 <html class="login-bg">
 <head>
   <title>Capstone</title>
-  <link href='https://fonts.googleapis.com/css?family=Arimo:400,700' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Lobster|Lato:400,300italic,400italic,300|Archivo+Narrow:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', params[:controller] %>
   <%= csrf_meta_tags %>
@@ -9,40 +9,19 @@
 <body class="login-bg">
   <div class="container" id="html-bg">
     <div class="row">
-      <nav class="navbar navbar-default">
-        <div class="container-fluid">
-          <!-- Brand and toggle get grouped for better mobile display -->
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" id="navbar-brand" href="http://localhost:3000">FOODFEELS</a>
-          </div>
-          <!-- Collect the nav links, forms, and other content for toggling -->
-          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-              <li><%= link_to "About", about_path, id: "navbar-about" %></li>
-              <li><%= link_to "Log in", "/auth/github", id: "navbar-login" %></li>
-            </ul>
-          </div><!-- /.navbar-collapse -->
-        </div><!-- /.container-fluid -->
-      </nav>
+      <div class="col-md-12 text-right about-login">
+        <%= link_to "About", about_path, id: "navbar-about" %>
+      </div>
     </div>
     <div class="row">
-      <div class="col-md-3">
-      </div>
-      <div class="col-md-6 login-modal">
-        <div class="centered-text">
-          <h1 id="login-h1">HOW IS YOUR FOOD MAKING YOU FEEL?</h1>
-          <%= link_to "LOG IN", "/auth/github", class: "btn btn-default btn-lg login-button" %>
-        </div>
+      <div class="col-md-3 login-modal">
+        <h1 class="brand text-center">FoodFeels</h1>
+        <h1 id="login-h1">How is your food making you feel?</h1>
+        <%= link_to "Log in with Github", "/auth/github", class: "btn btn-danger btn-lg login-button center-block" %>
       </div>
       <div class="col-md-3">
+      </div>
+      <div class="col-md-6">
       </div>
     </div>
   </div>
