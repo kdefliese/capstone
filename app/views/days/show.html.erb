@@ -7,72 +7,93 @@
     </div>
   </div>
   <div class="row">
-    <h3>
-      Today's Food Entries:
-    </h3>
-  </div>
-
-  <div id="existing-entries">
-    <% @entries.each do |e| %>
-      <div class="entry" id="<%= e.time.strftime("%l:%M %p") %>">
-        <%= e.category %>
-        <br />
-        <%= e.time.strftime("%l:%M %p") %>
-        <br />
-        <%= e.notes %>
-        <br />
-        <%= link_to "Remove entry", entry_path(e), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
-          <%= link_to "Edit entry", entry_path(e), method: :patch, class: "edit-entry" %>
-          <% e.meals.each do |m| %>
-            <div class="meal">
-              <%= m.name %>
-            </div>
-          <% end %>
-          <br />
-          <% e.foods.each do |f| %>
-            <div class="food">
-              <%= f.name %>
-            </div>
-          <% end %>
-          <br />
-          <% e.ingredients.each do |i| %>
-            <div class="ingredient">
-              <%= i.name %>
-            </div>
-          <% end %>
-        <br />
-      </div>
-    <% end %>
-    <br />
-  </div>
-  <div id="added-entries">
-  </div>
-  <h3>Today's Symptoms:</h3>
-  <div id="existing-symptoms">
-    <% @symptoms.each do |s| %>
-    <div class="symptom">
-      <%= s.name %>
-      <br />
-      <%= s.severity %>
-      <br />
-      <%= s.start_time %>
-      <br />
-      <%= s.end_time %>
-      <br />
-      <%= s.notes %>
+    <div class="col-md-12 text-center">
+      <h3>
+        Today's Food Entries:
+      </h3>
     </div>
-    <% end %>
-  <div id="added-symptoms">
   </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div id="existing-entries">
+        <% @entries.each do |e| %>
+          <div class="entry" id="<%= e.time.strftime("%l:%M %p") %>">
+            <%= e.category.upcase %>
+            <br />
+            <%= e.time.strftime("%l:%M %p") %>
+            <br />
+            <%= e.notes %>
+            <br />
+            <%= link_to "Remove entry", entry_path(e), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+              <%= link_to "Edit entry", entry_path(e), method: :patch, class: "edit-entry" %>
+              <% e.meals.each do |m| %>
+                <div class="meal">
+                  <%= m.name %>
+                </div>
+              <% end %>
+              <br />
+              <% e.foods.each do |f| %>
+                <div class="food">
+                  <%= f.name %>
+                </div>
+              <% end %>
+              <br />
+              <% e.ingredients.each do |i| %>
+                <div class="ingredient">
+                  <%= i.name %>
+                </div>
+              <% end %>
+            <br />
+          </div>
+        <% end %>
+      </div>
+      <div id="added-entries">
+      </div>
+    </div>
   </div>
-  <%= render 'entries/add' %>
-  <h3>In this entry:</h3>
-  <div id="print-new-entry">
-   <!-- JS will fill this in -->
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <h3>Today's Symptoms:</h3>
+    </div>
   </div>
-  <button id="create-food-entry" class="btn btn-success">Add food entry</button>
-  <br />
-  <%= render 'symptoms/add' %>
-
-
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <div id="existing-symptoms">
+        <% @symptoms.each do |s| %>
+        <div class="symptom">
+          <%= s.name %>
+          <br />
+          <%= s.severity %>
+          <br />
+          <%= s.start_time %>
+          <br />
+          <%= s.end_time %>
+          <br />
+          <%= s.notes %>
+        </div>
+        <% end %>
+      </div>
+      <div id="added-symptoms">
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <%= render 'entries/add' %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <h3>In this entry:</h3>
+      <div id="print-new-entry">
+       <!-- JS will fill this in -->
+      </div>
+      <button id="create-food-entry" class="btn btn-success">Add food entry</button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <%= render 'symptoms/add' %>
+    </div>
+  </div>
 </div>
