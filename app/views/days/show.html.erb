@@ -1,67 +1,78 @@
-<h1 class="day-show-header"><%= @day.day.strftime("%m/%d/%Y") %></h1>
-<%= link_to "#{@day.day.yesterday.strftime("%m/%d/%Y")}", day_path(@day.id - 1), method: :get, class: "btn" %>
-<%= link_to "#{@day.day.tomorrow.strftime("%m/%d/%Y")}", day_path(@day.id + 1), method: :get, class: "btn" %>
-<h3>
-  Today's Food Entries:
-</h3>
-<div id="existing-entries">
-  <% @entries.each do |e| %>
-    <div class="entry" id="<%= e.time.strftime("%l:%M %p") %>">
-      <%= e.category %>
-      <br />
-      <%= e.time.strftime("%l:%M %p") %>
-      <br />
-      <%= e.notes %>
-      <br />
-      <%= link_to "Remove entry", entry_path(e), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
-        <%= link_to "Edit entry", entry_path(e), method: :patch, class: "edit-entry" %>
-        <% e.meals.each do |m| %>
-          <div class="meal">
-            <%= m.name %>
-          </div>
-        <% end %>
-        <br />
-        <% e.foods.each do |f| %>
-          <div class="food">
-            <%= f.name %>
-          </div>
-        <% end %>
-        <br />
-        <% e.ingredients.each do |i| %>
-          <div class="ingredient">
-            <%= i.name %>
-          </div>
-        <% end %>
-      <br />
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <%= link_to "<", day_path(@day.id - 1), method: :get, class: "btn btn-default calendar-day" %>
+      <h1 class="day-show-header"><%= @day.day.strftime("%A, %b %d") %></h1>
+      <%= link_to ">", day_path(@day.id + 1), method: :get, class: "btn btn-default calendar-day" %>
     </div>
-  <% end %>
-  <br />
-</div>
-<div id="added-entries">
-</div>
-<h3>Today's Symptoms:</h3>
-<div id="existing-symptoms">
-  <% @symptoms.each do |s| %>
-  <div class="symptom">
-    <%= s.name %>
-    <br />
-    <%= s.severity %>
-    <br />
-    <%= s.start_time %>
-    <br />
-    <%= s.end_time %>
-    <br />
-    <%= s.notes %>
   </div>
-  <% end %>
-<div id="added-symptoms">
+  <div class="row">
+    <h3>
+      Today's Food Entries:
+    </h3>
+  </div>
+
+  <div id="existing-entries">
+    <% @entries.each do |e| %>
+      <div class="entry" id="<%= e.time.strftime("%l:%M %p") %>">
+        <%= e.category %>
+        <br />
+        <%= e.time.strftime("%l:%M %p") %>
+        <br />
+        <%= e.notes %>
+        <br />
+        <%= link_to "Remove entry", entry_path(e), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+          <%= link_to "Edit entry", entry_path(e), method: :patch, class: "edit-entry" %>
+          <% e.meals.each do |m| %>
+            <div class="meal">
+              <%= m.name %>
+            </div>
+          <% end %>
+          <br />
+          <% e.foods.each do |f| %>
+            <div class="food">
+              <%= f.name %>
+            </div>
+          <% end %>
+          <br />
+          <% e.ingredients.each do |i| %>
+            <div class="ingredient">
+              <%= i.name %>
+            </div>
+          <% end %>
+        <br />
+      </div>
+    <% end %>
+    <br />
+  </div>
+  <div id="added-entries">
+  </div>
+  <h3>Today's Symptoms:</h3>
+  <div id="existing-symptoms">
+    <% @symptoms.each do |s| %>
+    <div class="symptom">
+      <%= s.name %>
+      <br />
+      <%= s.severity %>
+      <br />
+      <%= s.start_time %>
+      <br />
+      <%= s.end_time %>
+      <br />
+      <%= s.notes %>
+    </div>
+    <% end %>
+  <div id="added-symptoms">
+  </div>
+  </div>
+  <%= render 'entries/add' %>
+  <h3>In this entry:</h3>
+  <div id="print-new-entry">
+   <!-- JS will fill this in -->
+  </div>
+  <button id="create-food-entry" class="btn btn-success">Add food entry</button>
+  <br />
+  <%= render 'symptoms/add' %>
+
+
 </div>
-</div>
-<%= render 'entries/add' %>
-<h3>In this entry:</h3>
-<div id="print-new-entry">
- <!-- JS will fill this in -->
-</div>
-<button id="create-food-entry" class="btn btn-success">Add food entry</button>
-<br />
-<%= render 'symptoms/add' %>
