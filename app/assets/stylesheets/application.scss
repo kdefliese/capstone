@@ -109,19 +109,22 @@
   .login-button {
     font-weight: 700;
     margin-bottom: 20px;
-    margin-top: 20px;
+    margin-top: 30px;
     text-align: center;
     font-family: 'Lato', sans-serif;
     font-weight: 300;
     font-style: italic;
     border: none;
+    display: block;
   }
 
   .about-login {
     font-family: 'Lato', sans-serif;
-    font-weight: 300;
+    font-weight: 400;
     font-style: italic;
     font-size: 18px;
+    padding-top: 20px;
+    padding-right: 30px;
   }
 
   .day-show-header {
