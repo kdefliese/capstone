@@ -89,12 +89,11 @@ $(document).on('ready', function() {
 
     var options = {
         chart: {
-            renderTo: 'container',
+            renderTo: 'chart-container',
             type: 'line'
         },
         title: {
-          text: 'Your Symptoms',
-          x: -20 //center
+          text: ''
         },
         xAxis: {
           type: 'datetime'
