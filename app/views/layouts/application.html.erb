@@ -27,7 +27,7 @@
           <ul class="nav navbar-nav">
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li><%= link_to "Today's Diary", day_path(@current_day.id), id: "navbar-today" %></li>
+            <li><%= link_to "Today's Diary", day_path(@current_day.id), method: :get, id: "navbar-today" %></li>
             <li><%= link_to "Symptom Analysis", user_stats_path(@current_user.id), method: :get, id: "navbar-symptoms" %></li>
             <li><%= link_to "View Profile", user_path(@current_user.id), id: "navbar-profile" %></li>
             <li><%= link_to "About", about_path, id: "navbar-about" %></li>
