@@ -17,33 +17,27 @@
     <div class="col-md-12">
       <div id="existing-entries">
         <% @entries.each do |e| %>
-          <div class="entry" id="<%= e.time.strftime("%l:%M %p") %>">
-            <%= e.category.upcase %>
-            <br />
-            <%= e.time.strftime("%l:%M %p") %>
-            <br />
-            <%= e.notes %>
-            <br />
-            <%= link_to "Remove entry", entry_path(e), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
-              <%= link_to "Edit entry", entry_path(e), method: :patch, class: "edit-entry" %>
+          <div class="entry text-center" id="<%= e.time.strftime("%l:%M %p") %>">
+            <div class="food-entry-header"><%= e.time.strftime("%l:%M %p") %> - <%= e.category.upcase %></div>
               <% e.meals.each do |m| %>
                 <div class="meal">
                   <%= m.name %>
                 </div>
               <% end %>
-              <br />
               <% e.foods.each do |f| %>
                 <div class="food">
                   <%= f.name %>
                 </div>
               <% end %>
-              <br />
               <% e.ingredients.each do |i| %>
                 <div class="ingredient">
                   <%= i.name %>
                 </div>
               <% end %>
+            Notes: <%= e.notes %>
             <br />
+            <%= link_to "Edit entry", entry_path(e), method: :patch, class: "btn btn-success edit-entry" %>
+            <%= link_to "Remove entry", entry_path(e), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
           </div>
         <% end %>
       </div>
