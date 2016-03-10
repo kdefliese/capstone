@@ -9,6 +9,12 @@ class WelcomeController < ApplicationController
   end
 
   def index
+    if @current_day.nil?
+      d = Day.new
+      d.day = Date.today
+      d.user_id = @current_user.id
+      d.save
+    end
   end
 
   def about
