@@ -1,5 +1,7 @@
 class FoodsController < ApplicationController
   include FactualWrapper
+  before_action :current_user
+  before_action :current_day_for_user
 
   def new
     @food = Food.new

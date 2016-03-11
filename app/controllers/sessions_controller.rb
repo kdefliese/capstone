@@ -15,7 +15,7 @@ class SessionsController < ApplicationController
           if @current_day.nil?
             d = Day.new
             d.day = Date.today
-            d.user_id = user.id
+            d.user_id = @user.id
             d.save
           end
         else
