@@ -37,7 +37,7 @@ $(document).on('ready', function() {
     });
   });
 
-  // adds things to the meal entry on the page
+  // adds foods from db to the meal entry div on the page
   $("#add-from-db").click(function() {
     event.preventDefault();
     var type = $("#food-type-select option:selected").val();
@@ -55,5 +55,40 @@ $(document).on('ready', function() {
     }
   });
 
+  // autocomplete for food search
+  var cache = {};
+  $("#autocomplete").autocomplete({
+    minLength: 2,
+    source: function(request, response) {
+      var term = request.term;
+      $.getJSON("/foods/search", request, function(data) {
+        response(data);
+      });
+    },
+    select: function( event, ui ) {
+      $("#autocomplete").val(ui.item.label);
+      $("#factual-id").val(ui.item.value);
+      return false;
+    }
+  });
+
+  // adds food from search to meal div on the page
+  $("#add-from-search").click(function() {
+    var factual_id = $("#factual-id").val();
+    var url = "/foods/search_specific?factual_id=" + factual_id;
+    $.ajax(url)
+      .done(function(data) {
+        console.log("success");
+        // adds the food to the food entry on the page
+        $("#print-new-meal").append(
+          "<p> Foods: " + data.name + "</p>"
+        );
+        foodVals.push(data.id);
+        $("#print-new-meal").data("Foods", foodVals);
+      })
+      .fail(function() {
+        console.log("failure");
+      });
+    });
 
 });

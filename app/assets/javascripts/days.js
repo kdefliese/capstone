@@ -117,7 +117,7 @@ $(document).on('ready', function() {
     console.log("click");
   });
 
-  // autocomplete for search
+  // autocomplete for food search
   var cache = {};
   $("#autocomplete").autocomplete({
     minLength: 2,
@@ -125,7 +125,6 @@ $(document).on('ready', function() {
       var term = request.term;
       $.getJSON("/foods/search", request, function(data) {
         response(data);
-        console.log(data);
       });
     },
     select: function( event, ui ) {
@@ -135,7 +134,7 @@ $(document).on('ready', function() {
     }
   });
 
-  // adds food from search to db and to entry
+  // adds food from search to entry div on the page
   $("#add-from-search").click(function() {
     var factual_id = $("#factual-id").val();
     var url = "/foods/search_specific?factual_id=" + factual_id;
