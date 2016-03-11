@@ -1,3 +1,6 @@
+var foodVals = [];
+var ingredientVals = [];
+
 $(document).on('ready', function() {
 
   // updates foods/ingredients dropdown based on first dropdown selection
@@ -32,6 +35,24 @@ $(document).on('ready', function() {
         console.log("failure");
       });
     });
+  });
+
+  // adds things to the meal entry on the page
+  $("#add-from-db").click(function() {
+    event.preventDefault();
+    var type = $("#food-type-select option:selected").val();
+    var name = $("#dynamic-food-list").val();
+    $("#print-new-meal").append(
+      "<p>" + type + ": " + name + "</p>"
+    );
+    if (type === "Foods") {
+      foodVals.push($("#dynamic-food-list option:selected")[0].id);
+      $("#print-new-entry").data(type, foodVals);
+    }
+    else if (type === "Ingredients") {
+      ingredientVals.push($("#dynamic-food-list option:selected")[0].id);
+      $("#print-new-entry").data(type, ingredientVals);
+    }
   });
 
 

@@ -5,19 +5,6 @@ var ingredientVals = [];
 
 $(document).on('ready', function() {
 
-  // loads the partial form for new food entry
-  $("#add-new-food-entry").click(function() {
-    event.preventDefault();
-    // var url = ""
-    // $.ajax(url)
-    // .done(function(data) {
-    //   console.log("success");
-    // })
-    // .fail(function() {
-    //   console.log("failure");
-    // });
-  });
-
   // updates foods/meals/ingredients dropdown based on first dropdown selection
   $("#food-type-select").change(function() {
     $("#food-type-select option:selected").each(function() {
