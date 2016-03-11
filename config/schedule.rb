@@ -18,8 +18,8 @@
 # end
 
 # Learn more: http://github.com/javan/whenever
-set :environment, "development"
+set :environment, "production"
 
-every 1.day, at: '2:00 pm' do
+every 1.day, at: '3:30 pm' do
   rake 'send_reminder_email'
 end
