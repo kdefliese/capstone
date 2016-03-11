@@ -47,11 +47,11 @@ $(document).on('ready', function() {
     );
     if (type === "Foods") {
       foodVals.push($("#dynamic-food-list option:selected")[0].id);
-      $("#print-new-entry").data(type, foodVals);
+      $("#print-new-meal").data(type, foodVals);
     }
     else if (type === "Ingredients") {
       ingredientVals.push($("#dynamic-food-list option:selected")[0].id);
-      $("#print-new-entry").data(type, ingredientVals);
+      $("#print-new-meal").data(type, ingredientVals);
     }
   });
 
@@ -96,7 +96,7 @@ $(document).on('ready', function() {
       $.ajax({
         method: "POST",
         url: "/meals",
-        data: { name: $("#name").val(), user_id: $("#user-id").val(), category: $("#category-select").val(), food_ids: $("#print-new-entry").data("Foods"), ingredient_ids: $("#print-new-entry").data("Ingredients") }
+        data: { name: $("#name").val(), user_id: $("#user-id").val(), category: $("#category-select").val(), food_ids: $("#print-new-meal").data("Foods"), ingredient_ids: $("#print-new-meal").data("Ingredients") }
       })
       .done(function() {
         console.log("post meal success");
