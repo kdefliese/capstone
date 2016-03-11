@@ -164,6 +164,10 @@
     margin: 20px;
   }
 
+  .symptom {
+    margin: 20px;
+  }
+
   .symptom-analysis-header {
     margin-bottom: 20px;
   }
@@ -171,4 +175,15 @@
   .centered-button {
     display: block;
     margin: 0 auto;
+  }
+
+  .inline-form-padding {
+    width: 5px;
+    display: inline-block;
+  }
+
+  @media only screen and (min-width: 987px) {
+    #dynamic-food-list {
+      max-width: 200px;
+    }
   }

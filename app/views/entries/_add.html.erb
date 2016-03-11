@@ -29,23 +29,28 @@
       </div>
       <div class="form-group form-inline">
         <label>Add existing foods:</label>
+        <div class="hidden-xs inline-form-padding"></div>
         <select id="food-type-select" class="form-control">
           <option value="Foods" selected="selected">Foods</option>
           <option value="Ingredients" selected="selected">Ingredients</option>
           <option value="Meals" selected="selected">Meals</option>
         </select>
+        <div class="hidden-xs inline-form-padding"></div>
         <select id="dynamic-food-list" class="form-control">
           <% @all_meals.each do |m| %>
             <option value="<%= m.name %>" selected="selected" id="<%= m.id %>"><%= m.name %></option>
           <% end %>
         </select>
+        <div class="hidden-xs inline-form-padding"></div>
         <button id="add-from-db" class="btn btn-primary">Add to entry</button>
       </div>
     </form>
     <div id="autocomplete-wrapper" class="form-group form-inline">
       <label for="autocomplete">Search for foods by name: </label>
+      <div class="hidden-xs inline-form-padding"></div>
       <input id="autocomplete" class="form-control">
       <input type="hidden" id="factual-id">
+      <div class="hidden-xs inline-form-padding"></div>
       <button id="add-from-search" class="btn btn-primary">Add to entry</button>
     </div>
     <button id="create-food-entry" class="btn btn-success centered-button">Save food entry</button>
