@@ -4,6 +4,7 @@ class MealsController < ApplicationController
 
   def new
     @meal = Meal.new
+    @all_foods = Food.all
   end
 
   def create
