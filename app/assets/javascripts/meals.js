@@ -91,4 +91,44 @@ $(document).on('ready', function() {
       });
     });
 
+    // submits meal and will update it in the db
+    $("#create-meal").click(function() {
+      $.ajax({
+        method: "POST",
+        url: "/meals",
+        data: { name: $("#name").val(), user_id: $("#user-id").val(), category: $("#category-select").val(), food_ids: $("#print-new-entry").data("Foods"), ingredient_ids: $("#print-new-entry").data("Ingredients") }
+      })
+      .done(function() {
+        console.log("post meal success");
+          // make another call to get the most recent entry and add it to the page
+          $.ajax("/meals/last")
+            .done(function(data) {
+              console.log("last meal success");
+              // var foods = "";
+              // var ingredients = "";
+              // for (var j = 0; j < data.foods.length; j++) {
+              //     foods += "<div class=\"food\">" + data.foods[j].name + "</div>";
+              // }
+              // for (var k = 0; k < data.ingredients.length; k++) {
+              //     ingredients += "<div class=\"ingredient\">" + data.ingredients[k].name + "</div>";
+              // }
+              // var category = data.entry.category.toUpperCase();
+              // $("#added-entries").append(
+              //   "<div class=\"entry\" id=\"" + data.entry_time + "\">" + category + "<br />" + data.entry_time + "<br />" + data.entry.notes + "<br /> <a class=\"btn btn-danger\" data-confirm=\"Are you sure?\" rel=\"nofollow\" data-method=\"delete\" href=\"/entries/" + data.entry.id + "\">Remove entry</a><a class=\"edit-entry\" rel=\"nofollow\" data-method=\"patch\" href=\"/entries/" + data.entry.id + "\">Edit entry</a>" + meals + "<br />" + foods + "<br />" + ingredients + "<br />" + "</div>"
+              // );
+              $("#print-new-meal").empty();
+              $("#print-new-meal").removeData();
+              document.getElementById("meal-entry-form").reset();
+              foodVals = [];
+              ingredientVals = [];
+            })
+            .fail(function() {
+              console.log("last meal failure");
+            });
+          })
+      .fail(function() {
+        console.log("post meal failure");
+      });
+    });
+
 });

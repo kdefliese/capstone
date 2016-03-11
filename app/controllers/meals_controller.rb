@@ -8,8 +8,18 @@ class MealsController < ApplicationController
   end
 
   def create
-    @meal = Meal.new(meal_params[:meal])
+    @meal = Meal.new(meal_params)
     if @meal.save
+      if !params[:food_ids].nil?
+        params[:food_ids].each do |i|
+          @meal.foods << Food.find(i.to_i)
+        end
+      end
+      if !params[:ingredient_ids].nil?
+        params[:ingredient_ids].each do |i|
+          @meal.ingredients << Ingredient.find(i.to_i)
+        end
+      end
       redirect_to meal_path(@meal)
     else
       render "new"
@@ -29,10 +39,15 @@ class MealsController < ApplicationController
     render :json => Meal.order("name").as_json, :status => :ok
   end
 
+  def last
+    meal = @current_user.meals.last
+    render :json => {:meal => meal.as_json, :foods => meal.foods.as_json, :ingredients => meal.ingredients.as_json}, :status => :ok
+  end
+
   private
 
   def meal_params
-    params.permit(meal:[:name, :foods_list, :ingredients_list, :category])
+    params.permit(:name, :user_id, :category, :food_ids, :ingredient_ids)
   end
 
 end

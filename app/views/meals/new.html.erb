@@ -10,6 +10,10 @@
       </div>
       <form id="meal-entry-form">
         <div class="form-group">
+          <label>Name:</label>
+          <input type="text" id="name" class="form-control">
+        </div>
+        <div class="form-group">
           <label>Category:</label>
           <select id="category-select" class="form-control">
             <option value="Breakfast">Breakfast</option>
@@ -17,7 +21,7 @@
             <option value="Dinner">Dinner</option>
             <option value="Snack">Snack</option>
           </select>
-          <input type="hidden" id="user-id" value="<%= @user_id %>"></input>
+          <input type="hidden" id="user-id" value="<%= @current_user.id %>"></input>
         </div>
         <div class="form-group form-inline">
           <label>Add existing foods or ingredients:</label>
@@ -44,7 +48,7 @@
         <div class="hidden-xs inline-form-padding"></div>
         <button id="add-from-search" class="btn btn-primary">Add to meal</button>
       </div>
-      <button id="create-food-entry" class="btn btn-success centered-button">Save meal</button>
+      <button id="create-meal" class="btn btn-success centered-button">Save meal</button>
     </div>
   </div>
 </div>

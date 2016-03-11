@@ -31,7 +31,7 @@ class EntriesController < ApplicationController
   end
 
   def last
-    entry = Entry.last
+    entry = @current_user.entries.last
     entry_time = entry.time.strftime("%l:%M %p")
     render :json => {:entry => entry.as_json, :entry_time => entry_time.as_json, :meals => entry.meals.as_json, :foods => entry.foods.as_json, :ingredients => entry.ingredients.as_json}, :status => :ok
   end
