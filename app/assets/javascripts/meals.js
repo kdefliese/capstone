@@ -45,11 +45,11 @@ $(document).on('ready', function() {
     $("#print-new-meal").append(
       "<p>" + type + ": " + name + "</p>"
     );
-    if (type === "Foods") {
+    if (type === "Food") {
       foodVals.push($("#dynamic-food-list option:selected")[0].id);
       $("#print-new-meal").data(type, foodVals);
     }
-    else if (type === "Ingredients") {
+    else if (type === "Ingredient") {
       ingredientVals.push($("#dynamic-food-list option:selected")[0].id);
       $("#print-new-meal").data(type, ingredientVals);
     }
@@ -99,7 +99,7 @@ $(document).on('ready', function() {
       $.ajax({
         method: "POST",
         url: "/meals",
-        data: { name: $("#name").val(), user_id: $("#user-id").val(), category: $("#category-select").val(), food_ids: $("#print-new-meal").data("Foods"), ingredient_ids: $("#print-new-meal").data("Ingredients") }
+        data: { name: $("#name").val(), user_id: $("#user-id").val(), category: $("#category-select").val(), food_ids: $("#print-new-meal").data("Food"), ingredient_ids: $("#print-new-meal").data("Ingredient") }
       })
       .done(function() {
         console.log("post meal success");

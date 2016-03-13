@@ -48,18 +48,20 @@ $(document).on('ready', function() {
     event.preventDefault();
     var type = $("#food-type-select option:selected").val().slice(0,-1);
     var name = $("#dynamic-food-list-day-page").val();
+    console.log(type);
+    console.log(name);
     $("#print-new-entry").append(
       "<p>" + type + ": " + name + "</p>"
     );
-    if (type === "Meals") {
+    if (type === "Meal") {
       mealVals.push($("#dynamic-food-list-day-page option:selected")[0].id);
       $("#print-new-entry").data(type, mealVals);
     }
-    else if (type === "Foods") {
+    else if (type === "Food") {
       foodVals.push($("#dynamic-food-list-day-page option:selected")[0].id);
       $("#print-new-entry").data(type, foodVals);
     }
-    else if (type === "Ingredients") {
+    else if (type === "Ingredient") {
       ingredientVals.push($("#dynamic-food-list-day-page option:selected")[0].id);
       $("#print-new-entry").data(type, ingredientVals);
     }
@@ -80,25 +82,37 @@ $(document).on('ready', function() {
   // submits food entry and will update it in the db
   $("#create-food-entry").click(function() {
     // if saving meal, do that first
-    if ($("#save-meal-checkbox").val() === true) {
-      $.ajax({
-        method: "POST",
-        url: "/meals",
-        data: { name: $("#meal-name").val(), user_id: $("#user-id").val(), category: $("#category-select").val(), food_ids: $("#print-new-entry").data("Foods"), ingredient_ids: $("#print-new-entry").data("Ingredients") }
-      })
-      .done(function() {
-        console.log("post meal success");
-          // this needs to update meal IDs on the page and remove foods/ingredients
-          })
-      .fail(function() {
-        console.log("post meal failure");
-      });
-    }
+    // if ($("#save-meal-checkbox").val() === true) {
+    //   $.ajax({
+    //     method: "POST",
+    //     url: "/meals",
+    //     data: { name: $("#meal-name").val(), user_id: $("#user-id").val(), category: $("#category-select").val(), food_ids: $("#print-new-entry").data("Foods"), ingredient_ids: $("#print-new-entry").data("Ingredients") }
+    //   })
+    //   .done(function() {
+    //     console.log("post meal success");
+    //       // retrieves last meal created from db
+    //       $.ajax("/meals/last")
+    //         .done(function(data) {
+    //           console.log("last meal success");
+    //           // removes foods and ingredients because they're now contained in the meal
+    //           foodVals = [];
+    //           ingredientVals = [];
+    //           // adds meal ID
+    //           mealVals.push(meal.id);
+    //         })
+    //         .fail(function() {
+    //           console.log("last meal failure");
+    //         });
+    //       })
+    //   .fail(function() {
+    //     console.log("post meal failure");
+    //   });
+    // }
     // now make call to create entry in db
     $.ajax({
       method: "POST",
       url: "/entries",
-      data: {notes: $("#notes").val(), time: $("#time").val(), user_id: $("#user-id").val(), day_id: $("#day-id").val(), category: $("#category-select").val(), meal_ids: $("#print-new-entry").data("Meals"), food_ids: $("#print-new-entry").data("Foods"), ingredient_ids: $("#print-new-entry").data("Ingredients") }
+      data: {notes: $("#notes").val(), time: $("#time").val(), user_id: $("#user-id").val(), day_id: $("#day-id").val(), category: $("#category-select").val(), meal_ids: $("#print-new-entry").data("Meal"), food_ids: $("#print-new-entry").data("Food"), ingredient_ids: $("#print-new-entry").data("Ingredient") }
     })
     .done(function() {
       console.log("post entry success");
