@@ -40,7 +40,7 @@ $(document).on('ready', function() {
   // adds foods from db to the meal entry div on the page
   $("#add-from-db").click(function() {
     event.preventDefault();
-    var type = $("#food-type-select option:selected").val();
+    var type = $("#food-type-select option:selected").val().slice(0,-1);
     var name = $("#dynamic-food-list").val();
     $("#print-new-meal").append(
       "<p>" + type + ": " + name + "</p>"

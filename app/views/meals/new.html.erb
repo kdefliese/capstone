@@ -22,7 +22,11 @@
               </select>
               <input type="hidden" id="user-id" value="<%= @current_user.id %>"></input>
             </div>
-            <h5><strong>In this meal:</strong></h5>
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading"><h1 class="panel-title"><strong>In this meal:</strong></h1></div>
+          <div class="panel-body">
             <div id="print-new-meal">
               <!-- JS will fill this in -->
             </div>
@@ -51,9 +55,10 @@
             <div class="hidden-xs inline-form-padding"></div>
             <button id="add-from-search" class="btn btn-primary">Add to meal</button>
           </div>
-          <button id="create-meal" class="btn btn-success">Save meal</button>
+          </div>
         </div>
-      </div>
+
+          <button id="create-meal" class="btn btn-success">Save meal</button>
     </div>
   </div>
 </div>
