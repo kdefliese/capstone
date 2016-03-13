@@ -1,9 +1,15 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-12 text-center">
-      <%= link_to "<", day_path(@day.id - 1), method: :get, class: "btn btn-default calendar-day" %>
+    <div class="col-md-3">
+    </div>
+    <div class="col-md-6 text-center">
+      <%= link_to "<", day_path(@day.id - 1), method: :get, class: "btn btn-default hidden-xs" %>
       <h1 class="day-show-header"><%= @day.day.strftime("%A, %b %d") %></h1>
-      <%= link_to ">", day_path(@day.id + 1), method: :get, class: "btn btn-default calendar-day" %>
+      <%= link_to ">", day_path(@day.id + 1), method: :get, class: "btn btn-default hidden-xs" %>
+    </div>
+    <div class="col-md-3 text-center">
+      <%= link_to "<", day_path(@day.id - 1), method: :get, class: "btn btn-default visible-xs-inline-block" %>
+      <%= link_to ">", day_path(@day.id + 1), method: :get, class: "btn btn-default visible-xs-inline-block" %>
     </div>
   </div>
   <div class="row">

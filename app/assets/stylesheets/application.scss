@@ -154,10 +154,6 @@
     font-weight: 400;
   }
 
-  .calendar-day {
-    vertical-align: middle;
-  }
-
   .food-entry-header {
     font-size: 18px;
   }
@@ -200,5 +196,15 @@
 
     #dynamic-food-list-day-page {
       width: 228px;
+    }
+  }
+
+  @media only screen and (max-width: 500px) {
+    .calendar-day-left {
+
+    }
+
+    .calendar-day-right {
+
     }
   }
