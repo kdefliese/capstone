@@ -69,9 +69,11 @@ $(document).on('ready', function() {
   $("#save-meal-checkbox").change(function() {
     if(this.checked) {
       $("#save-meal-name").removeClass("hidden-field");
+      $("#save-meal-checkbox").val(true);
     }
     else {
       $("#save-meal-name").addClass("hidden-field");
+      $("#save-meal-checkbox").val(false);
     }
 });
 
