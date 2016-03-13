@@ -79,6 +79,22 @@ $(document).on('ready', function() {
 
   // submits food entry and will update it in the db
   $("#create-food-entry").click(function() {
+    // if saving meal, do that first
+    if ($("#save-meal-checkbox").val() === true) {
+      $.ajax({
+        method: "POST",
+        url: "/meals",
+        data: { name: $("#meal-name").val(), user_id: $("#user-id").val(), category: $("#category-select").val(), food_ids: $("#print-new-entry").data("Foods"), ingredient_ids: $("#print-new-entry").data("Ingredients") }
+      })
+      .done(function() {
+        console.log("post meal success");
+          // this needs to update meal IDs on the page and remove foods/ingredients
+          })
+      .fail(function() {
+        console.log("post meal failure");
+      });
+    }
+    // now make call to create entry in db
     $.ajax({
       method: "POST",
       url: "/entries",
