@@ -86,7 +86,7 @@ $(document).on('ready', function() {
       $.ajax({
         method: "POST",
         url: "/meals",
-        data: { name: $("#meal-name").val(), user_id: $("#user-id").val(), category: $("#category-select").val(), food_ids: $("#print-new-entry").data("Foods"), ingredient_ids: $("#print-new-entry").data("Ingredients") }
+        data: { name: $("#meal-name").val(), user_id: $("#user-id").val(), category: $("#category-select").val(), food_ids: $("#print-new-entry").data("Food"), ingredient_ids: $("#print-new-entry").data("Ingredient") }
       })
       .done(function() {
         console.log("post meal success");
@@ -99,6 +99,48 @@ $(document).on('ready', function() {
               ingredientVals = [];
               // adds meal ID
               mealVals.push(data.meal.id);
+              // now make call to create entry in db
+              $.ajax({
+                method: "POST",
+                url: "/entries",
+                data: {notes: $("#notes").val(), time: $("#time").val(), user_id: $("#user-id").val(), day_id: $("#day-id").val(), category: $("#category-select").val(), meal_ids: $("#print-new-entry").data("Meal"), food_ids: $("#print-new-entry").data("Food"), ingredient_ids: $("#print-new-entry").data("Ingredient") }
+              })
+              .done(function() {
+                console.log("post entry success");
+                  // make another call to get the most recent entry and add it to the page
+                  $.ajax("/entries/last")
+                    .done(function(data) {
+                      console.log("last entry success");
+                      var meals = "";
+                      var foods = "";
+                      var ingredients = "";
+                      for (var i = 0; i < data.meals.length; i++) {
+                          meals += "<div class=\"meal\">" + data.meals[i].name + "</div>";
+                      }
+                      for (var j = 0; j < data.foods.length; j++) {
+                          foods += "<div class=\"food\">" + data.foods[j].name + "</div>";
+                      }
+                      for (var k = 0; k < data.ingredients.length; k++) {
+                          ingredients += "<div class=\"ingredient\">" + data.ingredients[k].name + "</div>";
+                      }
+                      var category = data.entry.category.toUpperCase();
+                      $("#added-entries").append(
+                        "<div class=\"entry\" id=\"" + data.entry_time + "\">" + category + "<br />" + data.entry_time + "<br />" + data.entry.notes + "<br /> <a class=\"btn btn-danger\" data-confirm=\"Are you sure?\" rel=\"nofollow\" data-method=\"delete\" href=\"/entries/" + data.entry.id + "\">Remove entry</a><a class=\"edit-entry\" rel=\"nofollow\" data-method=\"patch\" href=\"/entries/" + data.entry.id + "\">Edit entry</a>" + meals + "<br />" + foods + "<br />" + ingredients + "<br />" + "</div>"
+                      );
+                      $("#print-new-entry").empty();
+                      $("#print-new-entry").removeData();
+                      document.getElementById("food-entry-form").reset();
+                      mealVals = [];
+                      foodVals = [];
+                      ingredientVals = [];
+                    })
+                    .fail(function() {
+                      console.log("last entry failure");
+                    });
+                  })
+              .fail(function() {
+                console.log("post entry failure");
+              });
             })
             .fail(function() {
               console.log("last meal failure");
@@ -108,48 +150,50 @@ $(document).on('ready', function() {
         console.log("post meal failure");
       });
     }
-    // now make call to create entry in db
-    $.ajax({
-      method: "POST",
-      url: "/entries",
-      data: {notes: $("#notes").val(), time: $("#time").val(), user_id: $("#user-id").val(), day_id: $("#day-id").val(), category: $("#category-select").val(), meal_ids: $("#print-new-entry").data("Meal"), food_ids: $("#print-new-entry").data("Food"), ingredient_ids: $("#print-new-entry").data("Ingredient") }
-    })
-    .done(function() {
-      console.log("post entry success");
-        // make another call to get the most recent entry and add it to the page
-        $.ajax("/entries/last")
-          .done(function(data) {
-            console.log("last entry success");
-            var meals = "";
-            var foods = "";
-            var ingredients = "";
-            for (var i = 0; i < data.meals.length; i++) {
-                meals += "<div class=\"meal\">" + data.meals[i].name + "</div>";
-            }
-            for (var j = 0; j < data.foods.length; j++) {
-                foods += "<div class=\"food\">" + data.foods[j].name + "</div>";
-            }
-            for (var k = 0; k < data.ingredients.length; k++) {
-                ingredients += "<div class=\"ingredient\">" + data.ingredients[k].name + "</div>";
-            }
-            var category = data.entry.category.toUpperCase();
-            $("#added-entries").append(
-              "<div class=\"entry\" id=\"" + data.entry_time + "\">" + category + "<br />" + data.entry_time + "<br />" + data.entry.notes + "<br /> <a class=\"btn btn-danger\" data-confirm=\"Are you sure?\" rel=\"nofollow\" data-method=\"delete\" href=\"/entries/" + data.entry.id + "\">Remove entry</a><a class=\"edit-entry\" rel=\"nofollow\" data-method=\"patch\" href=\"/entries/" + data.entry.id + "\">Edit entry</a>" + meals + "<br />" + foods + "<br />" + ingredients + "<br />" + "</div>"
-            );
-            $("#print-new-entry").empty();
-            $("#print-new-entry").removeData();
-            document.getElementById("food-entry-form").reset();
-            mealVals = [];
-            foodVals = [];
-            ingredientVals = [];
+    else {
+      // now make call to create entry in db
+      $.ajax({
+        method: "POST",
+        url: "/entries",
+        data: {notes: $("#notes").val(), time: $("#time").val(), user_id: $("#user-id").val(), day_id: $("#day-id").val(), category: $("#category-select").val(), meal_ids: $("#print-new-entry").data("Meal"), food_ids: $("#print-new-entry").data("Food"), ingredient_ids: $("#print-new-entry").data("Ingredient") }
+      })
+      .done(function() {
+        console.log("post entry success");
+          // make another call to get the most recent entry and add it to the page
+          $.ajax("/entries/last")
+            .done(function(data) {
+              console.log("last entry success");
+              var meals = "";
+              var foods = "";
+              var ingredients = "";
+              for (var i = 0; i < data.meals.length; i++) {
+                  meals += "<div class=\"meal\">" + data.meals[i].name + "</div>";
+              }
+              for (var j = 0; j < data.foods.length; j++) {
+                  foods += "<div class=\"food\">" + data.foods[j].name + "</div>";
+              }
+              for (var k = 0; k < data.ingredients.length; k++) {
+                  ingredients += "<div class=\"ingredient\">" + data.ingredients[k].name + "</div>";
+              }
+              var category = data.entry.category.toUpperCase();
+              $("#added-entries").append(
+                "<div class=\"entry\" id=\"" + data.entry_time + "\">" + category + "<br />" + data.entry_time + "<br />" + data.entry.notes + "<br /> <a class=\"btn btn-danger\" data-confirm=\"Are you sure?\" rel=\"nofollow\" data-method=\"delete\" href=\"/entries/" + data.entry.id + "\">Remove entry</a><a class=\"edit-entry\" rel=\"nofollow\" data-method=\"patch\" href=\"/entries/" + data.entry.id + "\">Edit entry</a>" + meals + "<br />" + foods + "<br />" + ingredients + "<br />" + "</div>"
+              );
+              $("#print-new-entry").empty();
+              $("#print-new-entry").removeData();
+              document.getElementById("food-entry-form").reset();
+              mealVals = [];
+              foodVals = [];
+              ingredientVals = [];
+            })
+            .fail(function() {
+              console.log("last entry failure");
+            });
           })
-          .fail(function() {
-            console.log("last entry failure");
-          });
-        })
-    .fail(function() {
-      console.log("post entry failure");
-    });
+      .fail(function() {
+        console.log("post entry failure");
+      });
+    }
   });
 
   // edit entry link is clicked
