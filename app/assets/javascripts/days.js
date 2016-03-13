@@ -65,6 +65,16 @@ $(document).on('ready', function() {
     }
   });
 
+  // if checkbox for "save as meal" is checked
+  $("#save-meal-checkbox").change(function() {
+    if(this.checked) {
+
+    }
+    else {
+      
+    }
+});
+
   // submits food entry and will update it in the db
   $("#create-food-entry").click(function() {
     $.ajax({
