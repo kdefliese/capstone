@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   get "getstats" => "users#stats_endpoint", as: :get_stats
 
   get "foods/search" => "foods#factual_search", as: :foods_search
+  get "foods/search_barcode" => "foods#factual_search_barcode", as: :foods_search_barcode
   get "foods/search_specific" => "foods#factual_search_specific_product", as: :foods_search_specific
 
   resources :days

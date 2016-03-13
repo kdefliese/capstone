@@ -82,6 +82,11 @@ module FactualWrapper
     ]).rows
   end
 
+  def get_product_names_from_barcode(code)
+    @factual = Factual.new(ENV["FACTUAL_OAUTH_KEY"], ENV["FACTUAL_OAUTH_SECRET"])
+    @factual.table("products-cpg-nutrition").search(code).rows
+  end
+
   def get_product_info(factual_id)
     @factual = Factual.new(ENV["FACTUAL_OAUTH_KEY"], ENV["FACTUAL_OAUTH_SECRET"])
     @factual.table("products-cpg-nutrition").row(factual_id)

@@ -123,7 +123,8 @@ $(document).on('ready', function() {
     minLength: 2,
     source: function(request, response) {
       var term = request.term;
-      $.getJSON("/foods/search", request, function(data) {
+      var url = "/foods/search";
+      $.getJSON(url, request, function(data) {
         response(data);
       });
     },
@@ -157,8 +158,6 @@ $(document).on('ready', function() {
     $("#submit-symptom").click(function() {
       event.preventDefault();
       $("#symptom-end-time").defaultValue = "";
-      console.log($("#symptom-end-time").defaultValue);
-      console.log($("#symptom-end-time").val());
       $.ajax({
         method: "POST",
         url: "/symptoms",
@@ -170,7 +169,6 @@ $(document).on('ready', function() {
           $.ajax("/symptoms/last")
             .done(function(data) {
               console.log("last symptom success");
-              console.log(data);
               $("#added-symptoms").append(
                 "<div class=\"symptom\">" + data.symptom.name + "<br />" + data.symptom.severity + "<br />" + data.symptom_start_time + "<br />" + data.symptom_end_time + "<br />" + data.symptom.notes + "<br /></div>"
               );

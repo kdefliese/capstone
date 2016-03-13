@@ -34,6 +34,15 @@ class FoodsController < ApplicationController
     render :json => return_data.as_json, :status => :ok
   end
 
+  def factual_search_barcode
+    results = get_product_names_from_barcode(params[:term].to_s)
+    return_data = []
+    results.each do |r|
+      return_data.push(label: "#{r["brand"]} #{r["product_name"]}", value: "#{r["factual_id"]}")
+    end
+    render :json => return_data.as_json, :status => :ok
+  end
+
   def factual_search_specific_product
     results = get_product_info(params[:factual_id])
     if !(Food.find_by factual_id: results["factual_id"]).nil?
