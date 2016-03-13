@@ -5,7 +5,11 @@ class SymptomsController < ApplicationController
     symptom_start_time = params[:start_time]
     symptom_start_datetime = DateTime.parse(date + " " + symptom_start_time)
     symptom_end_time = params[:end_time]
-    symptom_end_datetime = DateTime.parse(date + " " + symptom_end_time)
+    if symptom_end_time != ""
+      symptom_end_datetime = DateTime.parse(date + " " + symptom_end_time)
+    else
+      symptom_end_datetime = ""
+    end
     @symptom = Symptom.new(symptom_params)
     @symptom.start_time = symptom_start_datetime
     @symptom.end_time = symptom_end_datetime
@@ -17,7 +21,11 @@ class SymptomsController < ApplicationController
   def last
     symptom = Symptom.last
     symptom_start_time = symptom.start_time.strftime("%l:%M %p")
-    symptom_end_time = symptom.end_time.strftime("%l:%M %p")
+    if symptom.end_time.nil?
+      symptom_end_time = ""
+    else
+      symptom_end_time = symptom.end_time.strftime("%l:%M %p")
+    end
     render :json => {:symptom => symptom.as_json, :symptom_start_time => symptom_start_time.as_json, :symptom_end_time => symptom_end_time.as_json}, :status => :ok
   end
 

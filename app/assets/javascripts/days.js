@@ -156,6 +156,9 @@ $(document).on('ready', function() {
     // adds symptom to the db and also to the page
     $("#submit-symptom").click(function() {
       event.preventDefault();
+      $("#symptom-end-time").defaultValue = "";
+      console.log($("#symptom-end-time").defaultValue);
+      console.log($("#symptom-end-time").val());
       $.ajax({
         method: "POST",
         url: "/symptoms",
