@@ -68,10 +68,10 @@ $(document).on('ready', function() {
   // if checkbox for "save as meal" is checked
   $("#save-meal-checkbox").change(function() {
     if(this.checked) {
-
+      $("#save-meal-name").removeClass("hidden-field");
     }
     else {
-      
+      $("#save-meal-name").addClass("hidden-field");
     }
 });
 
