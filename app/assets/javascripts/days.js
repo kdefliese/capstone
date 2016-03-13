@@ -25,12 +25,12 @@ $(document).on('ready', function() {
       $.ajax(url)
       .done(function(data) {
         console.log("success");
-        var replace_html = "<select id=\"dynamic-food-list\" class=\"form-control\">";
+        var replace_html = "<select id=\"dynamic-food-list-day-page\" class=\"form-control\">";
         for (var i = 0; i < data.length; i++) {
           replace_html += "<option value=\"" + data[i].name + "\" id=\"" + data[i].id + "\">" + data[i].name + "</option>";
         }
         replace_html += "</select>";
-        $("#dynamic-food-list").replaceWith(
+        $("#dynamic-food-list-day-page").replaceWith(
           replace_html
         );
         $("#add-to-entry").val(
@@ -47,20 +47,20 @@ $(document).on('ready', function() {
   $("#add-from-db").click(function() {
     event.preventDefault();
     var type = $("#food-type-select option:selected").val().slice(0,-1);
-    var name = $("#dynamic-food-list").val();
+    var name = $("#dynamic-food-list-day-page").val();
     $("#print-new-entry").append(
       "<p>" + type + ": " + name + "</p>"
     );
     if (type === "Meals") {
-      mealVals.push($("#dynamic-food-list option:selected")[0].id);
+      mealVals.push($("#dynamic-food-list-day-page option:selected")[0].id);
       $("#print-new-entry").data(type, mealVals);
     }
     else if (type === "Foods") {
-      foodVals.push($("#dynamic-food-list option:selected")[0].id);
+      foodVals.push($("#dynamic-food-list-day-page option:selected")[0].id);
       $("#print-new-entry").data(type, foodVals);
     }
     else if (type === "Ingredients") {
-      ingredientVals.push($("#dynamic-food-list option:selected")[0].id);
+      ingredientVals.push($("#dynamic-food-list-day-page option:selected")[0].id);
       $("#print-new-entry").data(type, ingredientVals);
     }
   });
