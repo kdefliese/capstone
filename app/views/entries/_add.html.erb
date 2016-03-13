@@ -53,7 +53,12 @@
           </div>
         </form>
         <div id="autocomplete-wrapper" class="form-group form-inline">
-          <label for="autocomplete">Search for foods by name: </label>
+          <label for="autocomplete">Search for foods by</label>
+          <div class="hidden-xs inline-form-padding"></div>
+          <select id="search-type-select" class="form-control">
+            <option value="Barcode" selected="selected">Barcode</option>
+            <option value="Name" selected="selected">Name</option>
+          </select>
           <div class="hidden-xs inline-form-padding"></div>
           <input id="autocomplete" class="form-control">
           <input type="hidden" id="factual-id">
