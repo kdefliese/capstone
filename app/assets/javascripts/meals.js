@@ -56,11 +56,14 @@ $(document).on('ready', function() {
   });
 
   // autocomplete for food search
-  var cache = {};
   $("#autocomplete").autocomplete({
     minLength: 2,
     source: function(request, response) {
       var term = request.term;
+      var url = "/foods/search";
+      if ($("#search-type-select").val() === "Barcode") {
+        url = "/foods/search_barcode";
+      }
       $.getJSON("/foods/search", request, function(data) {
         response(data);
       });

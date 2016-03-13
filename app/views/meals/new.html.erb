@@ -48,17 +48,21 @@
             </div>
           </form>
           <div id="autocomplete-wrapper" class="form-group form-inline">
-            <label for="autocomplete">Search for foods by name: </label>
+            <label for="autocomplete">Search for foods by</label>
             <div class="hidden-xs inline-form-padding"></div>
-            <input id="autocomplete" class="form-control">
+            <select id="search-type-select" class="form-control">
+              <option value="Barcode" selected="selected">Barcode</option>
+              <option value="Name" selected="selected">Name</option>
+            </select>
+            <div class="hidden-xs inline-form-padding"></div>
+            <input id="autocomplete" class="form-control xs-margin-top">
             <input type="hidden" id="factual-id">
             <div class="hidden-xs inline-form-padding"></div>
             <button id="add-from-search" class="btn btn-primary xs-margin-top">Add to meal</button>
           </div>
-          </div>
         </div>
-
-          <button id="create-meal" class="btn btn-success bottom-button-margin xs-centered-button">Save meal</button>
+      </div>
+      <button id="create-meal" class="btn btn-success bottom-button-margin xs-centered-button">Save meal</button>
     </div>
   </div>
 </div>
