@@ -18,6 +18,10 @@ class WelcomeController < ApplicationController
   end
 
   def about
+    if session[:user_id]
+      current_user
+      current_day_for_user
+    end
   end
 
   def letsencrypt
