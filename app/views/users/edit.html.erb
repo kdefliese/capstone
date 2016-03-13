@@ -1,61 +1,67 @@
-<%= form_for @user, class: "form", method: :patch do |f| %>
-  <input type="hidden" id="user-id" value="<%= @user.id %>"></input>
-  <div class="form-group">
-    <%= f.label "Name:" %>
-    <%= f.text_field :name, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= f.label "Email address:" %>
-    <%= f.email_field :email, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= f.label "Phone number:" %>
-    <%= f.text_field :phone, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= f.label "Image:" %>
-    <%= f.text_field :image, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= f.label "Known intolerances:" %>
-    <div id="food-intolerances">
-      <% @user.known_intolerances.each do |i| %>
-        <p class="food-intolerance"><%= i %></p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <%= form_for @user, class: "form", method: :patch do |f| %>
+        <input type="hidden" id="user-id" value="<%= @user.id %>"></input>
+        <div class="form-group">
+          <%= f.label "Name:" %>
+          <%= f.text_field :name, class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label "Email address:" %>
+          <%= f.email_field :email, class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label "Phone number:" %>
+          <%= f.text_field :phone, class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label "Image:" %>
+          <%= f.text_field :image, class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label "Known intolerances:" %>
+          <div id="food-intolerances">
+            <% @user.known_intolerances.each do |i| %>
+              <p class="food-intolerance"><%= i %></p>
+            <% end %>
+          </div>
+          <%= f.label "Add food intolerances:" %>
+          <input type="text" class="form-control" id="new-food-intolerance">
+        </div>
+        <div class="form-group">
+          <button id="add-food-intolerance" class="btn btn-primary">Add food intolerance</button>
+        </div>
+        <div class="form-group">
+          <%= f.label "Foods you'd like to watch:" %>
+          <div id="food-watches">
+            <% @user.watching.each do |w| %>
+              <p class="food-watch"><%= w %></p>
+            <% end %>
+          </div>
+          <input type="text" class="form-control" id="new-food-watch">
+        </div>
+        <div class="form-group">
+          <button id="add-watch-food" class="btn btn-primary">Add food to watch</button>
+        </div>
+        <div class="form-group">
+        <%= f.label "Saved medical disorders:" %>
+          <div id="medical-disorders">
+            <% @user.medical_disorders.each do |m| %>
+              <p class="medical"><%= m %></p>
+            <% end %>
+          </div>
+          <input type="text" class="form-control" id="new-medical-disorder">
+        </div>
+        <div class="form-group">
+          <button id="add-medical-disorder" class="btn btn-primary">Add medical disorder</button>
+        </div>
+        <div class="form-group">
+          <%= f.label "Email notification preference:" %>
+          <%= f.text_field :notifications_preference, class: "form-control" %>
+        </div>
+        <%= f.submit class: "submit btn btn-success bottom-button-margin" %>
       <% end %>
     </div>
-    <%= f.label "Add food intolerances:" %>
-    <input type="text" class="form-control" id="new-food-intolerance">
   </div>
-  <div class="form-group">
-    <button id="add-food-intolerance" class="btn btn-primary">Add food intolerance</button>
-  </div>
-  <div class="form-group">
-    <%= f.label "Foods you'd like to watch:" %>
-    <div id="food-watches">
-      <% @user.watching.each do |w| %>
-        <p class="food-watch"><%= w %></p>
-      <% end %>
-    </div>
-    <input type="text" class="form-control" id="new-food-watch">
-  </div>
-  <div class="form-group">
-    <button id="add-watch-food" class="btn btn-primary">Add food to watch</button>
-  </div>
-  <div class="form-group">
-  <%= f.label "Saved medical disorders:" %>
-    <div id="medical-disorders">
-      <% @user.medical_disorders.each do |m| %>
-        <p class="medical"><%= m %></p>
-      <% end %>
-    </div>
-    <input type="text" class="form-control" id="new-medical-disorder">
-  </div>
-  <div class="form-group">
-    <button id="add-medical-disorder" class="btn btn-primary">Add medical disorder</button>
-  </div>
-  <div class="form-group">
-    <%= f.label "Email notification preference:" %>
-    <%= f.text_field :notifications_preference, class: "form-control" %>
-  </div>
-  <%= f.submit class: "submit btn btn-success" %>
-<% end %>
+</div>
