@@ -99,6 +99,8 @@ $(document).on('ready', function() {
               ingredientVals = [];
               // adds meal ID
               mealVals.push(data.meal.id);
+              $("#print-new-entry").removeData();
+              $("#print-new-entry").data("Meal", mealVals);
               // now make call to create entry in db
               $.ajax({
                 method: "POST",
