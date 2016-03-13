@@ -43,13 +43,13 @@
               <option value="Meals" selected="selected">Meals</option>
             </select>
             <div class="hidden-xs inline-form-padding"></div>
-            <select id="dynamic-food-list-day-page" class="form-control">
+            <select id="dynamic-food-list-day-page" class="form-control xs-margin-top">
               <% @all_meals.each do |m| %>
                 <option value="<%= m.name %>" selected="selected" id="<%= m.id %>"><%= m.name %></option>
               <% end %>
             </select>
             <div class="hidden-xs inline-form-padding"></div>
-            <button id="add-from-db" class="btn btn-primary">Add to entry</button>
+            <button id="add-from-db" class="btn btn-primary xs-margin-top">Add to entry</button>
           </div>
         </form>
         <div id="autocomplete-wrapper" class="form-group form-inline">
@@ -58,7 +58,7 @@
           <input id="autocomplete" class="form-control">
           <input type="hidden" id="factual-id">
           <div class="hidden-xs inline-form-padding"></div>
-          <button id="add-from-search" class="btn btn-primary">Add to entry</button>
+          <button id="add-from-search" class="btn btn-primary xs-margin-top">Add to entry</button>
         </div>
       </div>
     </div>
