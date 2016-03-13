@@ -71,7 +71,7 @@ $(document).on('ready', function() {
   $("#save-meal-checkbox").change(function() {
     if(this.checked) {
       $("#save-meal-name").removeClass("hidden-field");
-      $("#save-meal-checkbox").val(true);
+      $("#save-meal-checkbox").val("save");
     }
     else {
       $("#save-meal-name").addClass("hidden-field");
@@ -82,32 +82,32 @@ $(document).on('ready', function() {
   // submits food entry and will update it in the db
   $("#create-food-entry").click(function() {
     // if saving meal, do that first
-    // if ($("#save-meal-checkbox").val() === true) {
-    //   $.ajax({
-    //     method: "POST",
-    //     url: "/meals",
-    //     data: { name: $("#meal-name").val(), user_id: $("#user-id").val(), category: $("#category-select").val(), food_ids: $("#print-new-entry").data("Foods"), ingredient_ids: $("#print-new-entry").data("Ingredients") }
-    //   })
-    //   .done(function() {
-    //     console.log("post meal success");
-    //       // retrieves last meal created from db
-    //       $.ajax("/meals/last")
-    //         .done(function(data) {
-    //           console.log("last meal success");
-    //           // removes foods and ingredients because they're now contained in the meal
-    //           foodVals = [];
-    //           ingredientVals = [];
-    //           // adds meal ID
-    //           mealVals.push(meal.id);
-    //         })
-    //         .fail(function() {
-    //           console.log("last meal failure");
-    //         });
-    //       })
-    //   .fail(function() {
-    //     console.log("post meal failure");
-    //   });
-    // }
+    if ($("#save-meal-checkbox").val() === "save") {
+      $.ajax({
+        method: "POST",
+        url: "/meals",
+        data: { name: $("#meal-name").val(), user_id: $("#user-id").val(), category: $("#category-select").val(), food_ids: $("#print-new-entry").data("Foods"), ingredient_ids: $("#print-new-entry").data("Ingredients") }
+      })
+      .done(function() {
+        console.log("post meal success");
+          // retrieves last meal created from db
+          $.ajax("/meals/last")
+            .done(function(data) {
+              console.log("last meal success");
+              // removes foods and ingredients because they're now contained in the meal
+              foodVals = [];
+              ingredientVals = [];
+              // adds meal ID
+              mealVals.push(data.meal.id);
+            })
+            .fail(function() {
+              console.log("last meal failure");
+            });
+          })
+      .fail(function() {
+        console.log("post meal failure");
+      });
+    }
     // now make call to create entry in db
     $.ajax({
       method: "POST",
