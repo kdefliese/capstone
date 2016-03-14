@@ -8,7 +8,6 @@ class MealsController < ApplicationController
   end
 
   def create
-    binding.pry
     @meal = Meal.new(meal_params)
     if @meal.save
       if !params[:food_ids].empty?
@@ -47,18 +46,19 @@ class MealsController < ApplicationController
     @meal = Meal.find(params[:id])
     @meal.foods = []
     @meal.ingredients = []
-    @meal.update(meal_params)
-    if !params[:food_ids].empty?
-      params[:food_ids].each do |i|
-        @meal.foods << Food.find(i.to_i)
+    if @meal.update(meal_params)
+      if !params[:food_ids].nil? && !params[:food_ids].empty?
+        params[:food_ids].each do |i|
+          @meal.foods << Food.find(i.to_i)
+        end
       end
-    end
-    if !params[:ingredient_ids].empty?
-      params[:ingredient_ids].each do |i|
-        @meal.ingredients << Ingredient.find(i.to_i)
+      if !params[:ingredient_ids].nil? && !params[:ingredient_ids].empty?
+        params[:ingredient_ids].each do |i|
+          @meal.ingredients << Ingredient.find(i.to_i)
+        end
       end
+      redirect_to meals_path
     end
-    redirect_to meals_path
   end
 
   def destroy

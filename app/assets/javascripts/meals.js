@@ -42,15 +42,12 @@ $(document).on('ready', function() {
     event.preventDefault();
     var type = $("#food-type-select option:selected").val().slice(0,-1);
     var name = $("#dynamic-food-list").val();
-    console.log(type);
-    console.log(name);
     $("#print-new-meal").append(
       "<p>" + type + ": " + name + "</p>"
     );
     if (type === "Food") {
       foodVals.push($("#dynamic-food-list option:selected")[0].id);
       $("#print-new-meal").data(type, foodVals);
-      console.log($("#dynamic-food-list option:selected")[0].id);
     }
     else if (type === "Ingredient") {
       ingredientVals.push($("#dynamic-food-list option:selected")[0].id);
@@ -160,10 +157,10 @@ $(document).on('ready', function() {
       var foods = [];
       var ingredients = [];
       for (var i = 0; i < foodRows.length; i++) {
-        foods.push(foodRows[i].id.slice(1,2));
+        foods.push(foodRows[i].id.slice(1));
       }
       for (var j = 0; j < ingRows.length; j++) {
-        ingredients.push(ingRows[j].id.slice(1,2));
+        ingredients.push(ingRows[j].id.slice(1));
       }
       var patchUrl = "/meals/" + $("#meal-id").val();
       $.ajax({
