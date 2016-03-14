@@ -37,7 +37,7 @@ $(document).on('ready', function() {
     });
   });
 
-  // adds foods/ingredients from db to the meal entry div on the page
+  // for meal create page - adds foods/ingredients from db to the meal entry div on the page
   $("#add-from-db").click(function() {
     event.preventDefault();
     var type = $("#food-type-select option:selected").val().slice(0,-1);
@@ -54,6 +54,24 @@ $(document).on('ready', function() {
       $("#print-new-meal").data(type, ingredientVals);
     }
   });
+
+  // for meal edit page - adds foods/ingredients from db to the tables on the page
+  $("#update-add-from-db").click(function() {
+    event.preventDefault();
+    // var type = $("#food-type-select option:selected").val().slice(0,-1);
+    // var name = $("#dynamic-food-list").val();
+    //
+    // if (type === "Food") {
+    //   foodVals.push($("#dynamic-food-list option:selected")[0].id);
+    //   $("#print-new-meal").data(type, foodVals);
+    //
+    // }
+    // else if (type === "Ingredient") {
+    //   ingredientVals.push($("#dynamic-food-list option:selected")[0].id);
+    //   $("#print-new-meal").data(type, ingredientVals);
+    // }
+  });
+
 
   // autocomplete for food search
   $("#autocomplete").autocomplete({
@@ -172,6 +190,7 @@ $(document).on('ready', function() {
       })
       .done(function() {
         console.log("patch meal success");
+        $(".new-meal-success").html("<div class=\"alert alert-success alert-dismissible\" role=\"alert\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" + $("#name").val() + " updated!</div>");
           })
       .fail(function() {
         console.log("patch meal failure");
