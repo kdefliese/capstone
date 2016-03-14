@@ -42,12 +42,15 @@ $(document).on('ready', function() {
     event.preventDefault();
     var type = $("#food-type-select option:selected").val().slice(0,-1);
     var name = $("#dynamic-food-list").val();
+    console.log(type);
+    console.log(name);
     $("#print-new-meal").append(
       "<p>" + type + ": " + name + "</p>"
     );
     if (type === "Food") {
       foodVals.push($("#dynamic-food-list option:selected")[0].id);
       $("#print-new-meal").data(type, foodVals);
+      console.log($("#dynamic-food-list option:selected")[0].id);
     }
     else if (type === "Ingredient") {
       ingredientVals.push($("#dynamic-food-list option:selected")[0].id);
@@ -87,7 +90,7 @@ $(document).on('ready', function() {
           "<p> Foods: " + data.name + "</p>"
         );
         foodVals.push(data.id);
-        $("#print-new-meal").data("Foods", foodVals);
+        $("#print-new-meal").data("Food", foodVals);
       })
       .fail(function() {
         console.log("failure");

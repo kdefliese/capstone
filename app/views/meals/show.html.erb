@@ -1,24 +1,2 @@
 <%= @meal.name %>
 <%= @meal.category %>
-<h3><%= m.name.upcase %></h3>
-<br />
-<% if !m.foods.empty? %>
-<h4>Foods:</h4>
-<ul>
-  <% m.foods.each do |f| %>
-  <li>
-    <%= f.name %>
-  </li>
-  <% end %>
-</ul>
-<% end %>
-<% if !m.ingredients.empty? %>
-<h4>Ingredients:</h4>
-<ul>
-  <% m.ingredients.each do |i| %>
-  <li>
-    <%= i.name %>
-  </li>
-  <% end %>
-</ul>
-<% end %>
