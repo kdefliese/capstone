@@ -58,18 +58,19 @@ $(document).on('ready', function() {
   // for meal edit page - adds foods/ingredients from db to the tables on the page
   $("#update-add-from-db").click(function() {
     event.preventDefault();
-    // var type = $("#food-type-select option:selected").val().slice(0,-1);
-    // var name = $("#dynamic-food-list").val();
-    //
-    // if (type === "Food") {
-    //   foodVals.push($("#dynamic-food-list option:selected")[0].id);
-    //   $("#print-new-meal").data(type, foodVals);
-    //
-    // }
-    // else if (type === "Ingredient") {
-    //   ingredientVals.push($("#dynamic-food-list option:selected")[0].id);
-    //   $("#print-new-meal").data(type, ingredientVals);
-    // }
+    var type = $("#food-type-select option:selected").val().slice(0,-1);
+    var name = $("#dynamic-food-list").val();
+    if (type === "Food") {
+      foodVals.push($("#dynamic-food-list option:selected")[0].id);
+      $("#print-new-meal").data(type, foodVals);
+      $("#table-foods").append(
+        "<tr id=\"f" + $("#dynamic-food-list option:selected")[0].id + "\"><td>" + name + "</td><td><button type=\"button\" class=\"close close-food\" id=\"" + $("#dynamic-food-list option:selected")[0].id +  "\"aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button></td></tr>"
+      );
+    }
+    else if (type === "Ingredient") {
+      ingredientVals.push($("#dynamic-food-list option:selected")[0].id);
+      $("#print-new-meal").data(type, ingredientVals);
+    }
   });
 
 
