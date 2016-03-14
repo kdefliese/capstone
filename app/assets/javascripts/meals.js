@@ -64,12 +64,15 @@ $(document).on('ready', function() {
       foodVals.push($("#dynamic-food-list option:selected")[0].id);
       $("#print-new-meal").data(type, foodVals);
       $("#table-foods").append(
-        "<tr id=\"f" + $("#dynamic-food-list option:selected")[0].id + "\"><td>" + name + "</td><td><button type=\"button\" class=\"close close-food\" id=\"" + $("#dynamic-food-list option:selected")[0].id +  "\"aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button></td></tr>"
+        "<tr id=\"f" + $("#dynamic-food-list option:selected")[0].id + "\"><td>" + name + "</td><td><button type=\"button\" class=\"close close-food\" id=\"f" + $("#dynamic-food-list option:selected")[0].id +  "\"aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button></td></tr>"
       );
     }
     else if (type === "Ingredient") {
       ingredientVals.push($("#dynamic-food-list option:selected")[0].id);
       $("#print-new-meal").data(type, ingredientVals);
+      $("#table-ingredients").append(
+        "<tr id=\"i" + $("#dynamic-food-list option:selected")[0].id + "\"><td>" + name + "</td><td><button type=\"button\" class=\"close close-food\" id=\"i" + $("#dynamic-food-list option:selected")[0].id +  "\"aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button></td></tr>"
+      );
     }
   });
 
