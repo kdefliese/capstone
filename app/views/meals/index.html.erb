@@ -23,7 +23,9 @@
             <% end %>
           </td>
           <td>
-            <button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <%= button_to meal_path(m), method: :delete, class: "close" do %>
+              <span class="glyphicon glyphicon-remove"></span>
+            <% end %>
           </td>
         </tr>
         <% end %>

@@ -35,6 +35,12 @@ class MealsController < ApplicationController
     @meal = Meal.find(id)
   end
 
+  def destroy
+    @meal = Meal.find(params[:id])
+    @meal.destroy
+    redirect_to meals_path
+  end
+
   def all
     render :json => Meal.order("name").as_json, :status => :ok
   end
