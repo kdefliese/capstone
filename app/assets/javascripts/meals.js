@@ -55,9 +55,14 @@ $(document).on('ready', function() {
     }
   });
 
-  // removes foods/ingredients from meal div on the page
+  // removes foods from meal div on the page
   $(".close-food").click(function() {
-    console.log(this);
+    var id = this.id;
+    $("tr").remove("#" + id);
+  });
+
+  // removes ingredients from meal div on the page
+  $(".close-ingredient").click(function() {
     var id = this.id;
     $("tr").remove("#" + id);
   });

@@ -49,12 +49,12 @@
               <h4>Foods:</h4>
               <table class="table">
                 <% @meal.foods.each do |f| %>
-                  <tr id="<%=f.id%>">
+                  <tr id="f<%=f.id%>">
                     <td>
                       <%= f.name %>
                     </td>
                     <td>
-                      <button type="button" class="close close-food" id="<%=f.id%>" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                      <button type="button" class="close close-food" id="f<%=f.id%>" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     </td>
                   </tr>
                 <% end %>
@@ -64,12 +64,12 @@
               <h4>Ingredients:</h4>
               <table class="table">
                 <% @meal.ingredients.each do |i| %>
-                <tr>
+                <tr id="i<%=i.id%>">
                   <td>
                     <%= i.name %>
                   </td>
                   <td>
-                    <button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <button type="button" class="close close-ingredient" aria-label="Close" id="i<%=i.id%>"><span aria-hidden="true">&times;</span></button>
                   </td>
                 </tr>
                 <% end %>
