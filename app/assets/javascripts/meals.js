@@ -151,7 +151,8 @@ $(document).on('ready', function() {
     });
 
     // updates meal in the database after meal is edited
-    $("#update-meal").click(function() {
+    $("#update-meal").click(function(event) {
+      event.preventDefault();
       var foodRows = $("#table-foods").children().children();
       var ingRows = $("#table-ingredients").children().children();
       var foods = [];
@@ -163,6 +164,7 @@ $(document).on('ready', function() {
         ingredients.push(ingRows[j].id.slice(1));
       }
       var patchUrl = "/meals/" + $("#meal-id").val();
+      console.log(patchUrl);
       $.ajax({
         method: "PATCH",
         url: patchUrl,

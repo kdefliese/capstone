@@ -57,7 +57,8 @@ class MealsController < ApplicationController
           @meal.ingredients << Ingredient.find(i.to_i)
         end
       end
-      redirect_to meals_path
+      render nothing: true
+      # redirect_to meals_path
     end
   end
 
