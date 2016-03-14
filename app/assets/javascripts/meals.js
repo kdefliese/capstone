@@ -61,15 +61,11 @@ $(document).on('ready', function() {
     var type = $("#food-type-select option:selected").val().slice(0,-1);
     var name = $("#dynamic-food-list").val();
     if (type === "Food") {
-      foodVals.push($("#dynamic-food-list option:selected")[0].id);
-      $("#print-new-meal").data(type, foodVals);
       $("#table-foods").append(
         "<tr id=\"f" + $("#dynamic-food-list option:selected")[0].id + "\"><td>" + name + "</td><td><button type=\"button\" class=\"close close-food\" id=\"f" + $("#dynamic-food-list option:selected")[0].id +  "\"aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button></td></tr>"
       );
     }
     else if (type === "Ingredient") {
-      ingredientVals.push($("#dynamic-food-list option:selected")[0].id);
-      $("#print-new-meal").data(type, ingredientVals);
       $("#table-ingredients").append(
         "<tr id=\"i" + $("#dynamic-food-list option:selected")[0].id + "\"><td>" + name + "</td><td><button type=\"button\" class=\"close close-food\" id=\"i" + $("#dynamic-food-list option:selected")[0].id +  "\"aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button></td></tr>"
       );
@@ -97,24 +93,41 @@ $(document).on('ready', function() {
     }
   });
 
-  // adds food from search to meal div on the page
-  $("#add-from-search").click(function() {
+  // for new meal page - adds food from search to meal div on the page
+  $("#update-add-from-search").click(function() {
     var factual_id = $("#factual-id").val();
     var url = "/foods/search_specific?factual_id=" + factual_id;
     $.ajax(url)
       .done(function(data) {
         console.log("success");
         // adds the food to the food entry on the page
-        $("#print-new-meal").append(
-          "<p> Foods: " + data.name + "</p>"
+        $("#table-foods").append(
+          "<tr id=\"f" + data.id + "\"><td>" + data.name + "</td><td><button type=\"button\" class=\"close close-food\" id=\"f" + data.id +  "\"aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button></td></tr>"
         );
-        foodVals.push(data.id);
-        $("#print-new-meal").data("Food", foodVals);
       })
       .fail(function() {
         console.log("failure");
       });
     });
+
+    // for meal edit page - adds food from search to meal div on the page
+    $("#add-from-search").click(function() {
+      var factual_id = $("#factual-id").val();
+      var url = "/foods/search_specific?factual_id=" + factual_id;
+      $.ajax(url)
+        .done(function(data) {
+          console.log("success");
+          // adds the food to the food entry on the page
+          $("#print-new-meal").append(
+            "<p> Foods: " + data.name + "</p>"
+          );
+          foodVals.push(data.id);
+          $("#print-new-meal").data("Food", foodVals);
+        })
+        .fail(function() {
+          console.log("failure");
+        });
+      });
 
     // submits meal and will create it in the db
     $("#create-meal").click(function() {
