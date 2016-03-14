@@ -1,0 +1,107 @@
+<div class="container new-meal-form-bg">
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <div class="new-meal-success">
+      </div>
+      <br />
+      <div class="panel panel-default">
+        <div class="panel-heading"><h1 class="panel-title"><strong>Edit meal:</strong></h1></div>
+        <div class="panel-body">
+          <form id="meal-entry-form">
+            <div class="form-group">
+              <label>Name:</label>
+              <input type="text" id="name" class="form-control" value="<%= @meal.name %>">
+            </div>
+            <div class="form-group">
+              <label>Category:</label>
+              <select id="category-select" class="form-control">
+                <% if @meal.category == "Breakfast" %>
+                  <option value="Breakfast" selected>Breakfast</option>
+                  <option value="Lunch">Lunch</option>
+                  <option value="Dinner">Dinner</option>
+                  <option value="Snack">Snack</option>
+                <% elsif @meal.category == "Lunch" %>
+                  <option value="Breakfast">Breakfast</option>
+                  <option value="Lunch" selected>Lunch</option>
+                  <option value="Dinner">Dinner</option>
+                  <option value="Snack">Snack</option>
+                <% elsif @meal.category == "Dinner" %>
+                  <option value="Breakfast">Breakfast</option>
+                  <option value="Lunch">Lunch</option>
+                  <option value="Dinner" selected>Dinner</option>
+                  <option value="Snack">Snack</option>
+                <% elsif @meal.category == "Snack" %>
+                  <option value="Breakfast">Breakfast</option>
+                  <option value="Lunch">Lunch</option>
+                  <option value="Dinner">Dinner</option>
+                  <option value="Snack" selected>Snack</option>
+                <% end %>
+              </select>
+              <input type="hidden" id="user-id" value="<%= @current_user.id %>"></input>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading"><h1 class="panel-title"><strong>In this meal:</strong></h1></div>
+          <div class="panel-body">
+            <div id="existing-meal-components">
+              <% if !@meal.foods.empty? %>
+              <h4>Foods:</h4>
+              <ul>
+                <% @meal.foods.each do |f| %>
+                <li>
+                  <%= f.name %>
+                </li>
+                <% end %>
+              </ul>
+              <% end %>
+              <% if !@meal.ingredients.empty? %>
+              <h4>Ingredients:</h4>
+              <ul>
+                <% @meal.ingredients.each do |i| %>
+                <li>
+                  <%= i.name %>
+                </li>
+                <% end %>
+              </ul>
+              <% end %>
+            </div>
+            <div id="print-new-meal">
+              <!-- JS will fill this in -->
+            </div>
+            <div class="form-group form-inline">
+              <label>Add existing foods or ingredients:</label>
+              <div class="hidden-xs inline-form-padding"></div>
+              <select id="food-type-select" class="form-control">
+                <option value="Ingredients" selected="selected">Ingredients</option>
+                <option value="Foods" selected="selected">Foods</option>
+              </select>
+              <div class="hidden-xs inline-form-padding"></div>
+              <select id="dynamic-food-list" class="form-control xs-margin-top">
+                <% @all_foods.each do |f| %>
+                  <option value="<%= f.name %>" selected="selected" id="<%= f.id %>"><%= f.name %></option>
+                <% end %>
+              </select>
+              <div class="hidden-xs inline-form-padding"></div>
+              <button id="add-from-db" class="btn btn-primary xs-margin-top">Add to meal</button>
+            </div>
+          </form>
+          <div id="autocomplete-wrapper" class="form-group form-inline">
+            <label for="autocomplete">Search for foods by</label>
+            <div class="hidden-xs inline-form-padding"></div>
+            <select id="search-type-select" class="form-control">
+              <option value="Barcode" selected="selected">Barcode</option>
+              <option value="Name" selected="selected">Name</option>
+            </select>
+            <div class="hidden-xs inline-form-padding"></div>
+            <input id="autocomplete" class="form-control xs-margin-top">
+            <input type="hidden" id="factual-id">
+            <div class="hidden-xs inline-form-padding"></div>
+            <button id="add-from-search" class="btn btn-primary xs-margin-top">Add to meal</button>
+          </div>
+        </div>
+      </div>
+      <button id="create-meal" class="btn btn-success bottom-button-margin xs-centered-button">Save meal</button>
+    </div>
+  </div>
+</div>

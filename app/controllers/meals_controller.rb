@@ -38,6 +38,8 @@ class MealsController < ApplicationController
   def edit
     id = params[:id]
     @meal = Meal.find(id)
+    @all_foods = Food.all
+    @all_ingredients = Ingredient.all
   end
 
   def update
