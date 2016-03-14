@@ -55,18 +55,6 @@ $(document).on('ready', function() {
     }
   });
 
-  // removes foods from meal div on the page
-  $(".close-food").click(function() {
-    var id = this.id;
-    $("tr").remove("#" + id);
-  });
-
-  // removes ingredients from meal div on the page
-  $(".close-ingredient").click(function() {
-    var id = this.id;
-    $("tr").remove("#" + id);
-  });
-
   // autocomplete for food search
   $("#autocomplete").autocomplete({
     minLength: 2,
@@ -106,7 +94,7 @@ $(document).on('ready', function() {
       });
     });
 
-    // submits meal and will update it in the db
+    // submits meal and will create it in the db
     $("#create-meal").click(function() {
       $.ajax({
         method: "POST",
@@ -144,6 +132,47 @@ $(document).on('ready', function() {
           })
       .fail(function() {
         console.log("post meal failure");
+      });
+    });
+
+
+    // removes foods from meal div on the page
+    $(".close-food").click(function() {
+      console.log("click");
+      var id = this.id;
+      $("tr").remove("#" + id);
+    });
+
+    // removes ingredients from meal div on the page
+    $(".close-ingredient").click(function() {
+      console.log("click");
+      var id = this.id;
+      $("tr").remove("#" + id);
+    });
+
+    // updates meal in the database after meal is edited
+    $("#update-meal").click(function() {
+      var foodRows = $("#table-foods").children().children();
+      var ingRows = $("#table-ingredients").children().children();
+      var foods = [];
+      var ingredients = [];
+      for (var i = 0; i < foodRows.length; i++) {
+        foods.push(foodRows[i].id.slice(1,2));
+      }
+      for (var j = 0; j < ingRows.length; j++) {
+        ingredients.push(ingRows[j].id.slice(1,2));
+      }
+      var patchUrl = "/meals/" + $("#meal-id").val();
+      $.ajax({
+        method: "PATCH",
+        url: patchUrl,
+        data: { id: $("#meal-id").val(), name: $("#name").val(), user_id: $("#user-id").val(), category: $("#category-select").val(), food_ids: foods, ingredient_ids: ingredients }
+      })
+      .done(function() {
+        console.log("patch meal success");
+          })
+      .fail(function() {
+        console.log("patch meal failure");
       });
     });
 

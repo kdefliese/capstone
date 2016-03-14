@@ -38,6 +38,7 @@
                 <% end %>
               </select>
               <input type="hidden" id="user-id" value="<%= @current_user.id %>"></input>
+              <input type="hidden" id="meal-id" value="<%= @meal.id %>"></input>
             </div>
           </div>
         </div>
@@ -47,7 +48,7 @@
             <div id="existing-meal-components">
               <% if !@meal.foods.empty? %>
               <h4>Foods:</h4>
-              <table class="table">
+              <table class="table" id="table-foods">
                 <% @meal.foods.each do |f| %>
                   <tr id="f<%=f.id%>">
                     <td>
@@ -62,7 +63,7 @@
               <% end %>
               <% if !@meal.ingredients.empty? %>
               <h4>Ingredients:</h4>
-              <table class="table">
+              <table class="table" id="table-ingredients">
                 <% @meal.ingredients.each do |i| %>
                 <tr id="i<%=i.id%>">
                   <td>
@@ -111,7 +112,7 @@
           </div>
         </div>
       </div>
-      <button id="create-meal" class="btn btn-success bottom-button-margin xs-centered-button">Save meal</button>
+      <button id="update-meal" class="btn btn-success bottom-button-margin xs-centered-button">Save meal</button>
     </div>
   </div>
 </div>

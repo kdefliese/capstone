@@ -12,7 +12,7 @@
         <% @meals.each do |m| %>
         <tr>
           <td>
-            <%= link_to "#{m.name.upcase}", edit_meal_path(m), class: "meal-name" %>
+            <%= link_to "#{m.name.upcase}", edit_meal_path(m), method: :get, class: "meal-name" %>
           </td>
           <td class="food-ing-list hidden-xs">
             <% if !m.foods.empty? %>
