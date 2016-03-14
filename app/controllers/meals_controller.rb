@@ -35,6 +35,14 @@ class MealsController < ApplicationController
     @meal = Meal.find(id)
   end
 
+  def edit
+    id = params[:id]
+    @meal = Meal.find(id)
+  end
+
+  def update
+  end
+
   def destroy
     @meal = Meal.find(params[:id])
     @meal.destroy
