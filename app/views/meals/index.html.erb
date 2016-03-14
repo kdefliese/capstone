@@ -14,8 +14,13 @@
           <td>
             <%= m.name %>
           </td>
-          <td>
-
+          <td class="food-ing-list">
+            <% if !m.foods.empty? %>
+              <%= m.foods[0].name %>...
+            <% end %>
+            <% if m.foods.empty? && !m.ingredients.empty? %>
+              <%= m.ingredients[0].name %>...
+            <% end %>
           </td>
           <td>
             <button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
