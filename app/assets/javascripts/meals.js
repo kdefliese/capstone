@@ -37,7 +37,7 @@ $(document).on('ready', function() {
     });
   });
 
-  // adds foods from db to the meal entry div on the page
+  // adds foods/ingredients from db to the meal entry div on the page
   $("#add-from-db").click(function() {
     event.preventDefault();
     var type = $("#food-type-select option:selected").val().slice(0,-1);
@@ -53,6 +53,13 @@ $(document).on('ready', function() {
       ingredientVals.push($("#dynamic-food-list option:selected")[0].id);
       $("#print-new-meal").data(type, ingredientVals);
     }
+  });
+
+  // removes foods/ingredients from meal div on the page
+  $(".close-food").click(function() {
+    console.log(this);
+    var id = this.id;
+    $("tr").remove("#" + id);
   });
 
   // autocomplete for food search

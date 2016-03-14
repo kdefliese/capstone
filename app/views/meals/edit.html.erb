@@ -49,12 +49,12 @@
               <h4>Foods:</h4>
               <table class="table">
                 <% @meal.foods.each do |f| %>
-                  <tr>
+                  <tr id="<%=f.id%>">
                     <td>
                       <%= f.name %>
                     </td>
                     <td>
-                      <button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                      <button type="button" class="close close-food" id="<%=f.id%>" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     </td>
                   </tr>
                 <% end %>

@@ -40,7 +40,7 @@
               <div class="hidden-xs inline-form-padding"></div>
               <select id="dynamic-food-list" class="form-control xs-margin-top">
                 <% @all_foods.each do |f| %>
-                  <option value="<%= f.name %>" selected="selected" id="<%= f.id %>"><%= f.name %></option>
+                  <option value="<%= f.name %>" selected="selected"><%= f.name %></option>
                 <% end %>
               </select>
               <div class="hidden-xs inline-form-padding"></div>
