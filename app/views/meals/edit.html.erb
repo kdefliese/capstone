@@ -47,23 +47,33 @@
             <div id="existing-meal-components">
               <% if !@meal.foods.empty? %>
               <h4>Foods:</h4>
-              <ul>
+              <table class="table">
                 <% @meal.foods.each do |f| %>
-                <li>
-                  <%= f.name %>
-                </li>
+                  <tr>
+                    <td>
+                      <%= f.name %>
+                    </td>
+                    <td>
+                      <button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    </td>
+                  </tr>
                 <% end %>
-              </ul>
+              </table>
               <% end %>
               <% if !@meal.ingredients.empty? %>
               <h4>Ingredients:</h4>
-              <ul>
+              <table class="table">
                 <% @meal.ingredients.each do |i| %>
-                <li>
-                  <%= i.name %>
-                </li>
+                <tr>
+                  <td>
+                    <%= i.name %>
+                  </td>
+                  <td>
+                    <button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  </td>
+                </tr>
                 <% end %>
-              </ul>
+              </table>
               <% end %>
             </div>
             <div id="print-new-meal">
