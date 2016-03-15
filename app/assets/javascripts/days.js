@@ -256,10 +256,8 @@ $(document).on('ready', function() {
           $.ajax("/symptoms/last")
             .done(function(data) {
               console.log("last symptom success");
-              $("#added-symptoms").append(
-                "<div class=\"symptom\">" + data.symptom.name + "<br />" + data.symptom.severity + "<br />" + data.symptom_start_time + "<br />" + data.symptom_end_time + "<br />" + data.symptom.notes + "<br /></div>"
-              );
-              document.getElementById("symptom-entry-form").reset();
+              // document.getElementById("symptom-entry-form").reset();
+              location.reload();
             })
             .fail(function() {
               console.log("last symptom failure");
