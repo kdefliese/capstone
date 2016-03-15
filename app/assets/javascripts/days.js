@@ -65,21 +65,20 @@ $(document).on('ready', function() {
     }
   });
 
-
-  // removes meals from entry div on the page
-  $(".close-meal").click(function() {
+  // removes meals from meal div on the page
+  $("#table-meals").on("click", ".close-meal", function() {
     var id = this.id;
     $("tr").remove("#" + id);
   });
 
-  // removes foods from entry div on the page
-  $(".close-food").click(function() {
+  // removes foods from meal div on the page
+  $("#table-foods").on("click", ".close-food", function() {
     var id = this.id;
     $("tr").remove("#" + id);
   });
 
-  // removes ingredients from entry div on the page
-  $(".close-ingredient").click(function() {
+  // removes ingredients from meal div on the page
+  $("#table-ingredients").on("click", ".close-ingredient", function() {
     var id = this.id;
     $("tr").remove("#" + id);
   });

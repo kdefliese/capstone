@@ -122,21 +122,16 @@ $(document).on('ready', function() {
       });
     });
 
-
     // removes foods from meal div on the page
-    $(".close-food").click(function() {
-      console.log("click");
-      console.log(this.id);
+    $("#table-foods").on("click", ".close-food", function() {
       var id = this.id;
       $("tr").remove("#" + id);
     });
 
     // removes ingredients from meal div on the page
-    $(".close-ingredient").click(function() {
-      console.log("click");
-      console.log(this.id);
+    $("#table-ingredients").on("click", ".close-ingredient", function() {
       var id = this.id;
-      $("tr").remove("#i" + id);
+      $("tr").remove("#" + id);
     });
 
     // updates meal in the database after meal is edited
