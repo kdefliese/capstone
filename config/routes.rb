@@ -26,7 +26,6 @@ Rails.application.routes.draw do
   resources :days
   get "days/:id/summary" => "days#summary", as: :get_day_summary
 
-  get "entries/:id/print_test" => "entries#print_meals"
   resources :entries
   resources :meals
   resources :foods

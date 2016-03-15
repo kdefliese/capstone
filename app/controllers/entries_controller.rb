@@ -41,18 +41,7 @@ class EntriesController < ApplicationController
 
   def print_meals
     @entry = Entry.find(params[:id])
-    @print_caps = ""
-    if !@entry.meals.empty? && @entry.meals.length <= 1
-      @print_caps = @entry.meals[0].name
-    elsif !@entry.meals.empty? && @entry.meals.length >= 2
-      build_print_caps = ""
-      @entry.meals.each do |m|
-        build_print_caps += "#{m.name}, "
-      end
-      @print_caps = build_print_caps[0...-2]
-    elsif @entry.meals.empty?
-      @print_caps = nil
-    end
+    @id = params[:id]
   end
 
   def destroy
@@ -66,10 +55,6 @@ class EntriesController < ApplicationController
 
   def entry_params
     params.permit(:time, :category, :notes, :user_id, :day_id)
-  end
-
-
-  def print_italic
   end
 
 end

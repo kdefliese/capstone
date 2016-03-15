@@ -12,41 +12,18 @@
               <span class="glyphicon glyphicon-pencil inline-button"></span>
             <% end %>
           </div>
-            <% if !e.meals.empty? && e.meals.length <= 1 %>
-              <div class="meal">
-                <% e.meals.each do |m| %>
-                  <%= m.name.upcase %>
-                <% end %>
-              </div>
-            <% elsif !e.meals.empty? && e.meals.length >= 2 %>
-              <div class="meal">
-                <% e.meals.each do |m| %>
-                  <%= m.name.upcase %>,
-                <% end %>
-              </div>
-            <% elsif e.meals.empty? %>
-              <% if !e.foods.empty? && e.foods.length >= 2 %>
-                <div class="food food-ing-list">
-                  <%= e.foods[0].name %>, <%= e.foods[1].name %>...
-                </div>
-              <% elsif !e.foods.empty? && e.foods.length <= 1 %>
-              <div class="food food-ing-list">
-                <%= e.foods[0].name %>
-              </div>
-              <% end %>
-              <!-- <% if !e.ingredients.empty? %>
-                <div class="ingredient food-ing-list">
-                  <%= e.ingredients[0].name %>...
-                </div>
-              <% end %>
-              <% if !e.foods.empty? %>
-                <div class="food food-ing-list">
-                  <%= e.foods[0].name %>...
-                </div>
-              <% end %> -->
+          <div class="meal">
+            <% if !e.print_capitals(e.id).nil? %>
+              <%= e.print_capitals(e.id).upcase %>
             <% end %>
-            NOTES: <%= e.notes %>
-            <br />
+          </div>
+          <div class="food-ing-list">
+            <% if !e.print_italics(e.id).nil? %>
+              <%= e.print_italics(e.id) %>
+            <% end %>
+          </div>
+          NOTES: <%= e.notes %>
+          <br />
         </td>
       </tr>
     <% end %>
