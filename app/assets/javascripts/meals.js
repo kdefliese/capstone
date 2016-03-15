@@ -49,7 +49,7 @@ $(document).on('ready', function() {
     }
     else if (type === "Ingredient") {
       $("#table-ingredients").append(
-        "<tr id=\"i" + $("#dynamic-food-list option:selected")[0].id + "\"><td>" + name + "</td><td><button type=\"button\" class=\"close close-food\" id=\"i" + $("#dynamic-food-list option:selected")[0].id +  "\"aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button></td></tr>"
+        "<tr id=\"i" + $("#dynamic-food-list option:selected")[0].id + "\"><td>" + name + "</td><td><button type=\"button\" class=\"close close-ingredient\" id=\"i" + $("#dynamic-food-list option:selected")[0].id +  "\"aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button></td></tr>"
       );
     }
   });
@@ -126,6 +126,7 @@ $(document).on('ready', function() {
     // removes foods from meal div on the page
     $(".close-food").click(function() {
       console.log("click");
+      console.log(this.id);
       var id = this.id;
       $("tr").remove("#" + id);
     });
@@ -133,8 +134,9 @@ $(document).on('ready', function() {
     // removes ingredients from meal div on the page
     $(".close-ingredient").click(function() {
       console.log("click");
+      console.log(this.id);
       var id = this.id;
-      $("tr").remove("#" + id);
+      $("tr").remove("#i" + id);
     });
 
     // updates meal in the database after meal is edited

@@ -50,7 +50,7 @@ $(document).on('ready', function() {
     var name = $("#dynamic-food-list-day-page").val();
     if (type === "Meal") {
       $("#table-meals").append(
-        "<tr id=\"m" + $("#dynamic-food-list-day-page option:selected")[0].id + "\"><td>" + name + "</td><td><button type=\"button\" class=\"close close-food\" id=\"m" + $("#dynamic-food-list-day-page option:selected")[0].id +  "\"aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button></td></tr>"
+        "<tr id=\"m" + $("#dynamic-food-list-day-page option:selected")[0].id + "\"><td>" + name + "</td><td><button type=\"button\" class=\"close close-meal\" id=\"m" + $("#dynamic-food-list-day-page option:selected")[0].id +  "\"aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button></td></tr>"
       );
     }
     else if (type === "Food") {
@@ -60,9 +60,28 @@ $(document).on('ready', function() {
     }
     else if (type === "Ingredient") {
       $("#table-ingredients").append(
-        "<tr id=\"i" + $("#dynamic-food-list-day-page option:selected")[0].id + "\"><td>" + name + "</td><td><button type=\"button\" class=\"close close-food\" id=\"i" + $("#dynamic-food-list-day-page option:selected")[0].id +  "\"aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button></td></tr>"
+        "<tr id=\"i" + $("#dynamic-food-list-day-page option:selected")[0].id + "\"><td>" + name + "</td><td><button type=\"button\" class=\"close close-ingredient\" id=\"i" + $("#dynamic-food-list-day-page option:selected")[0].id +  "\"aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button></td></tr>"
       );
     }
+  });
+
+
+  // removes meals from entry div on the page
+  $(".close-meal").click(function() {
+    var id = this.id;
+    $("tr").remove("#" + id);
+  });
+
+  // removes foods from entry div on the page
+  $(".close-food").click(function() {
+    var id = this.id;
+    $("tr").remove("#" + id);
+  });
+
+  // removes ingredients from entry div on the page
+  $(".close-ingredient").click(function() {
+    var id = this.id;
+    $("tr").remove("#" + id);
   });
 
   // if checkbox for "save as meal" is checked
