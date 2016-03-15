@@ -138,7 +138,7 @@ $(document).on('ready', function() {
                     .done(function(data) {
                       console.log("last entry success");
                       console.log(data);
-                      $("#print-new-entry").empty();
+                      $("#print-new-entry").html("<h4>Meals:</h4><table class=\"table\" id=\"table-meals\"></table><h4>Foods:</h4><table class=\"table\" id=\"table-foods\"></table><h4>Ingredients:</h4><table class=\"table\" id=\"table-ingredients\"></table>");
                       $("#print-new-entry").removeData();
                       document.getElementById("food-entry-form").reset();
                       $("#save-meal-name").addClass("hidden-field");
@@ -181,7 +181,7 @@ $(document).on('ready', function() {
             .done(function(data) {
               console.log("last entry success");
               console.log(data);
-              $("#print-new-entry").empty();
+              $("#print-new-entry").html("<h4>Meals:</h4><table class=\"table\" id=\"table-meals\"></table><h4>Foods:</h4><table class=\"table\" id=\"table-foods\"></table><h4>Ingredients:</h4><table class=\"table\" id=\"table-ingredients\"></table>");
               $("#print-new-entry").removeData();
               document.getElementById("food-entry-form").reset();
               $("#save-meal-name").addClass("hidden-field");
