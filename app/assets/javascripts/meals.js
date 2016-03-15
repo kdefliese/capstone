@@ -94,40 +94,27 @@ $(document).on('ready', function() {
 
     // submits meal and will create it in the db
     $("#create-meal").click(function() {
+      event.preventDefault();
+      var foodRows = $("#table-foods").children().children();
+      var ingRows = $("#table-ingredients").children().children();
+      var foods = [];
+      var ingredients = [];
+      for (var i = 0; i < foodRows.length; i++) {
+        foods.push(foodRows[i].id.slice(1));
+      }
+      for (var j = 0; j < ingRows.length; j++) {
+        ingredients.push(ingRows[j].id.slice(1));
+      }
       $.ajax({
         method: "POST",
         url: "/meals",
-        data: { name: $("#name").val(), user_id: $("#user-id").val(), category: $("#category-select").val(), food_ids: $("#print-new-meal").data("Food"), ingredient_ids: $("#print-new-meal").data("Ingredient") }
+        data: { name: $("#name").val(), user_id: $("#user-id").val(), category: $("#category-select").val(), food_ids: foods, ingredient_ids: ingredients }
       })
       .done(function() {
         console.log("post meal success");
           // make another call to get the most recent entry and add it to the page
-          $.ajax("/meals/last")
-            .done(function(data) {
-              console.log("last meal success");
-              $(".new-meal-success").html("<div class=\"alert alert-success alert-dismissible\" role=\"alert\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" + data.meal.name + " added!</div>");
-              // var foods = "";
-              // var ingredients = "";
-              // for (var j = 0; j < data.foods.length; j++) {
-              //     foods += "<div class=\"food\">" + data.foods[j].name + "</div>";
-              // }
-              // for (var k = 0; k < data.ingredients.length; k++) {
-              //     ingredients += "<div class=\"ingredient\">" + data.ingredients[k].name + "</div>";
-              // }
-              // var category = data.entry.category.toUpperCase();
-              // $("#added-entries").append(
-              //   "<div class=\"entry\" id=\"" + data.entry_time + "\">" + category + "<br />" + data.entry_time + "<br />" + data.entry.notes + "<br /> <a class=\"btn btn-danger\" data-confirm=\"Are you sure?\" rel=\"nofollow\" data-method=\"delete\" href=\"/entries/" + data.entry.id + "\">Remove entry</a><a class=\"edit-entry\" rel=\"nofollow\" data-method=\"patch\" href=\"/entries/" + data.entry.id + "\">Edit entry</a>" + meals + "<br />" + foods + "<br />" + ingredients + "<br />" + "</div>"
-              // );
-              $("#print-new-meal").empty();
-              $("#print-new-meal").removeData();
-              document.getElementById("meal-entry-form").reset();
-              foodVals = [];
-              ingredientVals = [];
-            })
-            .fail(function() {
-              console.log("last meal failure");
-            });
-          })
+          $(".new-meal-success").html("<div class=\"alert alert-success alert-dismissible\" role=\"alert\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" + $("#name").val() + " added!</div>");
+        })
       .fail(function() {
         console.log("post meal failure");
       });
@@ -162,7 +149,6 @@ $(document).on('ready', function() {
         ingredients.push(ingRows[j].id.slice(1));
       }
       var patchUrl = "/meals/" + $("#meal-id").val();
-      console.log(patchUrl);
       $.ajax({
         method: "PATCH",
         url: patchUrl,
