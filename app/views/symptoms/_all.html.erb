@@ -1,0 +1,15 @@
+<div id="existing-symptoms">
+  <% @symptoms.each do |s| %>
+  <div class="symptom">
+    <div class="food-entry-header"><%= s.name %> - <%= s.start_time.strftime("%l:%M %p") %><% if !s.end_time.nil? %>
+       - <%= s.end_time.strftime("%l:%M %p") %>
+      <% end %></div>
+    Severity: <%= s.severity %>
+    <br />
+    Notes: <%= s.notes %>
+    <br />
+    <%= link_to "Edit", symptom_path(s), method: :patch, class: "btn btn-success edit-entry" %>
+    <%= link_to "Delete", symptom_path(s), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+  </div>
+  <% end %>
+</div>
