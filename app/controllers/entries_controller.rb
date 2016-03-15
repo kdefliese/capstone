@@ -33,7 +33,7 @@ class EntriesController < ApplicationController
   def last
     entry = @current_user.entries.last
     entry_time = entry.time.strftime("%l:%M %p")
-    render :json => {:entry => entry.as_json, :entry_time => entry_time.as_json, :meals => entry.meals.as_json, :foods => entry.foods.as_json, :ingredients => entry.ingredients.as_json}, :status => :ok
+    render :json => {:entry => entry.as_json, :entry_time => entry_time.as_json, :caps => entry.print_capitals(entry.id).as_json, :italics => entry.print_italics(entry.id).as_json}, :status => :ok
   end
 
   def update
