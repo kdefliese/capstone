@@ -37,26 +37,8 @@ $(document).on('ready', function() {
     });
   });
 
-  // for meal create page - adds foods/ingredients from db to the meal entry div on the page
+  // adds foods/ingredients from db to the tables on the page
   $("#add-from-db").click(function() {
-    event.preventDefault();
-    var type = $("#food-type-select option:selected").val().slice(0,-1);
-    var name = $("#dynamic-food-list").val();
-    $("#print-new-meal").append(
-      "<p>" + type + ": " + name + "</p>"
-    );
-    if (type === "Food") {
-      foodVals.push($("#dynamic-food-list option:selected")[0].id);
-      $("#print-new-meal").data(type, foodVals);
-    }
-    else if (type === "Ingredient") {
-      ingredientVals.push($("#dynamic-food-list option:selected")[0].id);
-      $("#print-new-meal").data(type, ingredientVals);
-    }
-  });
-
-  // for meal edit page - adds foods/ingredients from db to the tables on the page
-  $("#update-add-from-db").click(function() {
     event.preventDefault();
     var type = $("#food-type-select option:selected").val().slice(0,-1);
     var name = $("#dynamic-food-list").val();
@@ -93,8 +75,8 @@ $(document).on('ready', function() {
     }
   });
 
-  // for new meal page - adds food from search to meal div on the page
-  $("#update-add-from-search").click(function() {
+  // adds food from search to meal tables on the page
+  $("#add-from-search").click(function() {
     var factual_id = $("#factual-id").val();
     var url = "/foods/search_specific?factual_id=" + factual_id;
     $.ajax(url)
@@ -109,25 +91,6 @@ $(document).on('ready', function() {
         console.log("failure");
       });
     });
-
-    // for meal edit page - adds food from search to meal div on the page
-    $("#add-from-search").click(function() {
-      var factual_id = $("#factual-id").val();
-      var url = "/foods/search_specific?factual_id=" + factual_id;
-      $.ajax(url)
-        .done(function(data) {
-          console.log("success");
-          // adds the food to the food entry on the page
-          $("#print-new-meal").append(
-            "<p> Foods: " + data.name + "</p>"
-          );
-          foodVals.push(data.id);
-          $("#print-new-meal").data("Food", foodVals);
-        })
-        .fail(function() {
-          console.log("failure");
-        });
-      });
 
     // submits meal and will create it in the db
     $("#create-meal").click(function() {
