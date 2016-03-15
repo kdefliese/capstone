@@ -1,7 +1,5 @@
 // these vars will keep track of what food/meal/ing ids we have in our entry w/o displaying ids on the page
 var mealVals = [];
-var foodVals = [];
-var ingredientVals = [];
 
 $(document).on('ready', function() {
 
@@ -145,8 +143,7 @@ $(document).on('ready', function() {
                       $("#save-meal-checkbox").val(false);
                       $("#save-meal-checkbox").attr("checked", false);
                       mealVals = [];
-                      foodVals = [];
-                      ingredientVals = [];
+                      location.reload();
                     })
                     .fail(function() {
                       console.log("last entry failure");
@@ -188,8 +185,7 @@ $(document).on('ready', function() {
               $("#save-meal-checkbox").val(false);
               $("#save-meal-checkbox").attr("checked", false);
               mealVals = [];
-              foodVals = [];
-              ingredientVals = [];
+              location.reload();
             })
             .fail(function() {
               console.log("last entry failure");
