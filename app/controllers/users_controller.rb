@@ -12,7 +12,6 @@ class UsersController < ApplicationController
 
   def update
     # need to do something with the three array fields here so they'll update properly
-    binding.pry
     @user = User.update(params[:id], user_params)
     redirect_to user_path
   end
