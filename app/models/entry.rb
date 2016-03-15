@@ -25,15 +25,25 @@ class Entry < ActiveRecord::Base
     @entry = Entry.find(id)
     @print_italics = ""
     if !@entry.meals.empty? && !@entry.meals[0].foods.empty?
-      first_food = @entry.meals[0].foods[0]
-      @print_italics = first_food.name
+      @print_italics = @entry.meals[0].foods[0].name
+      if @entry.meals[0].foods.length >= 1
+        @print_italics += ", #{@entry.meals[0].foods[1].name}"
+      end
+      @print_italics += "..."
     elsif @entry.meals.empty?
       if !@entry.foods.empty?
         @print_italics = @entry.foods[0].name
-      elsif @entry.foods.empty?
+        if @entry.foods.length > 1
+          @print_italics += " , #{@entry.foods[1].name}..."
+        end
+      elsif @entry.foods.empty? && !@entry.ingredients.empty?
         @print_italics = @entry.ingredients[0].name
+        if @entry.ingredients.length > 1
+          @print_italics += " , #{@entry.ingredients[1].name}..."
+        end
       end
     end
+    return @print_italics
   end
 
 end
