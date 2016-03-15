@@ -8,7 +8,6 @@ class MealsController < ApplicationController
   end
 
   def create
-    binding.pry
     @meal = Meal.new(meal_params)
     if @meal.save
       if !params[:food_ids].empty?

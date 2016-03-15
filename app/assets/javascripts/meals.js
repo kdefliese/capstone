@@ -92,6 +92,7 @@ $(document).on('ready', function() {
       });
     });
 
+    // used in meal creation and meal editing, since they share the same table structure
     var prepareForSave = function(type) {
       var rows = $(type).children().children();
       var arr = [];
