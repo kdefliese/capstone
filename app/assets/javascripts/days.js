@@ -48,22 +48,20 @@ $(document).on('ready', function() {
     event.preventDefault();
     var type = $("#food-type-select option:selected").val().slice(0,-1);
     var name = $("#dynamic-food-list-day-page").val();
-    console.log(type);
-    console.log(name);
-    $("#print-new-entry").append(
-      "<p>" + type + ": " + name + "</p>"
-    );
     if (type === "Meal") {
-      mealVals.push($("#dynamic-food-list-day-page option:selected")[0].id);
-      $("#print-new-entry").data(type, mealVals);
+      $("#table-meals").append(
+        "<tr id=\"m" + $("#dynamic-food-list-day-page option:selected")[0].id + "\"><td>" + name + "</td><td><button type=\"button\" class=\"close close-food\" id=\"m" + $("#dynamic-food-list-day-page option:selected")[0].id +  "\"aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button></td></tr>"
+      );
     }
     else if (type === "Food") {
-      foodVals.push($("#dynamic-food-list-day-page option:selected")[0].id);
-      $("#print-new-entry").data(type, foodVals);
+      $("#table-foods").append(
+        "<tr id=\"f" + $("#dynamic-food-list-day-page option:selected")[0].id + "\"><td>" + name + "</td><td><button type=\"button\" class=\"close close-food\" id=\"f" + $("#dynamic-food-list-day-page option:selected")[0].id +  "\"aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button></td></tr>"
+      );
     }
     else if (type === "Ingredient") {
-      ingredientVals.push($("#dynamic-food-list-day-page option:selected")[0].id);
-      $("#print-new-entry").data(type, ingredientVals);
+      $("#table-ingredients").append(
+        "<tr id=\"i" + $("#dynamic-food-list-day-page option:selected")[0].id + "\"><td>" + name + "</td><td><button type=\"button\" class=\"close close-food\" id=\"i" + $("#dynamic-food-list-day-page option:selected")[0].id +  "\"aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button></td></tr>"
+      );
     }
   });
 
@@ -78,6 +76,16 @@ $(document).on('ready', function() {
       $("#save-meal-checkbox").val(false);
     }
 });
+
+  // used in creating food entry
+  var prepareForSave = function(type) {
+    var rows = $(type).children().children();
+    var arr = [];
+    for (var i = 0; i < rows.length; i++) {
+      arr.push(rows[i].id.slice(1));
+    }
+    return arr;
+  };
 
   // submits food entry and will update it in the db
   $("#create-food-entry").click(function() {
@@ -233,11 +241,9 @@ $(document).on('ready', function() {
       .done(function(data) {
         console.log("success");
         // adds the food to the food entry on the page
-        $("#print-new-entry").append(
-          "<p> Foods: " + data.name + "</p>"
+        $("#table-foods").append(
+          "<tr id=\"f" + data.id + "\"><td>" + data.name + "</td><td><button type=\"button\" class=\"close close-food\" id=\"f" + data.id +  "\"aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button></td></tr>"
         );
-        foodVals.push(data.id);
-        $("#print-new-entry").data("Foods", foodVals);
       })
       .fail(function() {
         console.log("failure");
