@@ -92,19 +92,20 @@ $(document).on('ready', function() {
       });
     });
 
+    var prepareForSave = function(type) {
+      var rows = $(type).children().children();
+      var arr = [];
+      for (var i = 0; i < rows.length; i++) {
+        arr.push(rows[i].id.slice(1));
+      }
+      return arr;
+    };
+
     // submits meal and will create it in the db
     $("#create-meal").click(function() {
       event.preventDefault();
-      var foodRows = $("#table-foods").children().children();
-      var ingRows = $("#table-ingredients").children().children();
-      var foods = [];
-      var ingredients = [];
-      for (var i = 0; i < foodRows.length; i++) {
-        foods.push(foodRows[i].id.slice(1));
-      }
-      for (var j = 0; j < ingRows.length; j++) {
-        ingredients.push(ingRows[j].id.slice(1));
-      }
+      var foods = prepareForSave("#table-foods");
+      var ingredients = prepareForSave("#table-ingredients");
       $.ajax({
         method: "POST",
         url: "/meals",
@@ -138,16 +139,8 @@ $(document).on('ready', function() {
     // updates meal in the database after meal is edited
     $("#update-meal").click(function(event) {
       event.preventDefault();
-      var foodRows = $("#table-foods").children().children();
-      var ingRows = $("#table-ingredients").children().children();
-      var foods = [];
-      var ingredients = [];
-      for (var i = 0; i < foodRows.length; i++) {
-        foods.push(foodRows[i].id.slice(1));
-      }
-      for (var j = 0; j < ingRows.length; j++) {
-        ingredients.push(ingRows[j].id.slice(1));
-      }
+      var foods = prepareForSave("#table-foods");
+      var ingredients = prepareForSave("#table-ingredients");
       var patchUrl = "/meals/" + $("#meal-id").val();
       $.ajax({
         method: "PATCH",
