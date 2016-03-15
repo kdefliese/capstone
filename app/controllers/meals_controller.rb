@@ -9,20 +9,19 @@ class MealsController < ApplicationController
 
   def create
     @meal = Meal.new(meal_params)
+    binding.pry
     if @meal.save
-      if !params[:food_ids].empty? && !params[:food_ids].nil?
+      if !params[:food_ids].nil? && !params[:food_ids].empty?
         params[:food_ids].each do |i|
           @meal.foods << Food.find(i.to_i)
         end
       end
-      if !params[:ingredient_ids].empty? && !params[:ingredient_ids].nil?
+      if !params[:ingredient_ids].nil? && !params[:ingredient_ids].empty?
         params[:ingredient_ids].each do |i|
           @meal.ingredients << Ingredient.find(i.to_i)
         end
       end
-      redirect_to meals_path
-    else
-      render "new"
+      render nothing: true
     end
   end
 
@@ -58,7 +57,6 @@ class MealsController < ApplicationController
         end
       end
       render nothing: true
-      # redirect_to meals_path
     end
   end
 
