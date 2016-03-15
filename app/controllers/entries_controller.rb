@@ -41,8 +41,9 @@ class EntriesController < ApplicationController
 
   def destroy
     @entry = Entry.find(params[:id])
+    day_id = @entry.day_id
     @entry.destroy
-    redirect_to day_path(1)
+    redirect_to day_path(day_id)
   end
 
   private
