@@ -9,7 +9,6 @@ class MealsController < ApplicationController
 
   def create
     @meal = Meal.new(meal_params)
-    binding.pry
     if @meal.save
       if !params[:food_ids].nil? && !params[:food_ids].empty?
         params[:food_ids].each do |i|
