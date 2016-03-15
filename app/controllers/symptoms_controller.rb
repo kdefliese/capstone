@@ -18,6 +18,14 @@ class SymptomsController < ApplicationController
     end
   end
 
+  def destroy
+    @symptom = Symptom.find(params[:id])
+    day_id = @symptom.day_id
+    @symptom.destroy
+    redirect_to day_path(day_id)
+  end
+
+
   def last
     symptom = Symptom.last
     symptom_start_time = symptom.start_time.strftime("%l:%M %p")
