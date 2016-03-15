@@ -9,17 +9,17 @@ class EntriesController < ApplicationController
     @entry = Entry.new(entry_params)
     @entry.time = entry_datetime
     if @entry.save
-      if !params[:meal_ids].nil?
+      if !params[:meal_ids].nil? && !params[:meal_ids].empty?
         params[:meal_ids].each do |i|
           @entry.meals << Meal.find(i.to_i)
         end
       end
-      if !params[:food_ids].nil?
+      if !params[:food_ids].nil? && !params[:food_ids].empty?
         params[:food_ids].each do |i|
           @entry.foods << Food.find(i.to_i)
         end
       end
-      if !params[:ingredient_ids].nil?
+      if !params[:ingredient_ids].nil? && !params[:ingredient_ids].empty?
         params[:ingredient_ids].each do |i|
           @entry.ingredients << Ingredient.find(i.to_i)
         end

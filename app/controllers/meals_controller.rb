@@ -10,12 +10,12 @@ class MealsController < ApplicationController
   def create
     @meal = Meal.new(meal_params)
     if @meal.save
-      if !params[:food_ids].empty?
+      if !params[:food_ids].empty? && !params[:food_ids].nil?
         params[:food_ids].each do |i|
           @meal.foods << Food.find(i.to_i)
         end
       end
-      if !params[:ingredient_ids].empty?
+      if !params[:ingredient_ids].empty? && !params[:ingredient_ids].nil?
         params[:ingredient_ids].each do |i|
           @meal.ingredients << Ingredient.find(i.to_i)
         end

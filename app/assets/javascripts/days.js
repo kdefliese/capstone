@@ -109,10 +109,12 @@ $(document).on('ready', function() {
   $("#create-food-entry").click(function() {
     // if saving meal, do that first
     if ($("#save-meal-checkbox").val() === "save") {
+      var foods = prepareForSave("#table-foods");
+      var ingredients = prepareForSave("#table-ingredients");
       $.ajax({
         method: "POST",
         url: "/meals",
-        data: { name: $("#meal-name").val(), user_id: $("#user-id").val(), category: $("#category-select").val(), food_ids: $("#print-new-entry").data("Food"), ingredient_ids: $("#print-new-entry").data("Ingredient") }
+        data: { name: $("#meal-name").val(), user_id: $("#user-id").val(), category: $("#category-select").val(), food_ids: foods, ingredient_ids: ingredients }
       })
       .done(function() {
         console.log("post meal success");
@@ -120,18 +122,14 @@ $(document).on('ready', function() {
           $.ajax("/meals/last")
             .done(function(data) {
               console.log("last meal success");
-              // removes foods and ingredients because they're now contained in the meal
-              foodVals = [];
-              ingredientVals = [];
               // adds meal ID
               mealVals.push(data.meal.id);
-              $("#print-new-entry").removeData();
               $("#print-new-entry").data("Meal", mealVals);
               // now make call to create entry in db
               $.ajax({
                 method: "POST",
                 url: "/entries",
-                data: {notes: $("#notes").val(), time: $("#time").val(), user_id: $("#user-id").val(), day_id: $("#day-id").val(), category: $("#category-select").val(), meal_ids: $("#print-new-entry").data("Meal"), food_ids: $("#print-new-entry").data("Food"), ingredient_ids: $("#print-new-entry").data("Ingredient") }
+                data: {notes: $("#notes").val(), time: $("#time").val(), user_id: $("#user-id").val(), day_id: $("#day-id").val(), category: $("#category-select").val(), meal_ids: $("#print-new-entry").data("Meal") }
               })
               .done(function() {
                 console.log("post entry success");
@@ -158,6 +156,7 @@ $(document).on('ready', function() {
                       $("#print-new-entry").empty();
                       $("#print-new-entry").removeData();
                       document.getElementById("food-entry-form").reset();
+                      document.getElementById("save-meal-checkbox").reset();
                       mealVals = [];
                       foodVals = [];
                       ingredientVals = [];
@@ -180,10 +179,13 @@ $(document).on('ready', function() {
     }
     else {
       // now make call to create entry in db
+      var foods = prepareForSave("#table-foods");
+      var ingredients = prepareForSave("#table-ingredients");
+      var meals = prepareForSave("#table-meals");
       $.ajax({
         method: "POST",
         url: "/entries",
-        data: {notes: $("#notes").val(), time: $("#time").val(), user_id: $("#user-id").val(), day_id: $("#day-id").val(), category: $("#category-select").val(), meal_ids: $("#print-new-entry").data("Meal"), food_ids: $("#print-new-entry").data("Food"), ingredient_ids: $("#print-new-entry").data("Ingredient") }
+        data: {notes: $("#notes").val(), time: $("#time").val(), user_id: $("#user-id").val(), day_id: $("#day-id").val(), category: $("#category-select").val(), meal_ids: meals, food_ids: foods, ingredient_ids: ingredients }
       })
       .done(function() {
         console.log("post entry success");
