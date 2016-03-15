@@ -156,7 +156,9 @@ $(document).on('ready', function() {
                       $("#print-new-entry").empty();
                       $("#print-new-entry").removeData();
                       document.getElementById("food-entry-form").reset();
-                      document.getElementById("save-meal-checkbox").reset();
+                      $("#save-meal-name").addClass("hidden-field");
+                      $("#save-meal-checkbox").val(false);
+                      $("#save-meal-checkbox").attr("checked", false);
                       mealVals = [];
                       foodVals = [];
                       ingredientVals = [];
@@ -212,6 +214,9 @@ $(document).on('ready', function() {
               $("#print-new-entry").empty();
               $("#print-new-entry").removeData();
               document.getElementById("food-entry-form").reset();
+              $("#save-meal-name").addClass("hidden-field");
+              $("#save-meal-checkbox").val(false);
+              $("#save-meal-checkbox").attr("checked", false);
               mealVals = [];
               foodVals = [];
               ingredientVals = [];
