@@ -1,5 +1,8 @@
 <div class="row">
   <div class="col-md-8 col-md-offset-2">
+    <div class="updated-symptom-success">
+    </div>
+    <br />
     <div class="panel panel-default">
       <div class="panel-heading"><h1 class="panel-title"><strong>Edit symptom:</strong></h1></div>
       <div class="panel-body">
@@ -145,6 +148,7 @@
             <% end %>
             <input type="hidden" id="user-id" value="<%= @user_id %>"></input>
             <input type="hidden" id="day-id" value="<%= @day_id %>"></input>
+            <input type="hidden" id="symptom-id" value="<%= @symptom.id %>"></input>
           </div>
       </div>
     </div>

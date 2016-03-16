@@ -47,9 +47,7 @@ class SymptomsController < ApplicationController
     @symptom.name = params[:name]
     @symptom.severity = params[:severity]
     @symptom.notes = params[:notes]
-    if @symptom.save
-      redirect_to day_path(Day.find(params[:day_id]))
-    end
+    @symptom.save
   end
 
   def destroy
