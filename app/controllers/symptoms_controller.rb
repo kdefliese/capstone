@@ -44,7 +44,11 @@ class SymptomsController < ApplicationController
     end
     @symptom.start_time = symptom_start_datetime
     @symptom.end_time = symptom_end_datetime
-    if @symptom.update()
+    @symptom.name = params[:name]
+    @symptom.severity = params[:severity]
+    @symptom.notes = params[:notes]
+    if @symptom.save
+      redirect_to day_path(Day.find(params[:day_id]))
     end
   end
 

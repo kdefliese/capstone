@@ -2,7 +2,7 @@
 
 # Version of your assets, change this if you want to expire all your assets.
 Rails.application.config.assets.version = '1.0'
-%w( days users meals ).each do |controller|
+%w( days users meals symptoms ).each do |controller|
   Rails.application.config.assets.precompile += ["#{controller}.js"]
 end
 # Add additional assets to the asset load path
