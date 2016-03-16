@@ -42,7 +42,26 @@ class EntriesController < ApplicationController
     entry_time = params[:time]
     entry_datetime = DateTime.parse(date + " " + entry_time)
     @entry.time = entry_datetime
-    @entry.save
+    @entry.category = params[:category]
+    @entry.notes = params[:notes]
+    if @entry.save
+      # need to update associations
+      if !params[:meal_ids].nil? && !params[:meal_ids].empty?
+        params[:meal_ids].each do |i|
+          @entry.meals << Meal.find(i.to_i)
+        end
+      end
+      if !params[:food_ids].nil? && !params[:food_ids].empty?
+        params[:food_ids].each do |i|
+          @entry.foods << Food.find(i.to_i)
+        end
+      end
+      if !params[:ingredient_ids].nil? && !params[:ingredient_ids].empty?
+        params[:ingredient_ids].each do |i|
+          @entry.ingredients << Ingredient.find(i.to_i)
+        end
+      end
+    end
     render nothing: true
   end
 
