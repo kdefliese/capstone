@@ -18,6 +18,13 @@ class SymptomsController < ApplicationController
     end
   end
 
+  def edit
+    @symptom = Symptom.find(params[:id])
+  end
+
+  def update
+  end
+
   def destroy
     @symptom = Symptom.find(params[:id])
     day_id = @symptom.day_id

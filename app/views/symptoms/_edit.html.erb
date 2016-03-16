@@ -1,0 +1,152 @@
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <div class="panel panel-default">
+      <div class="panel-heading"><h1 class="panel-title"><strong>Edit symptom:</strong></h1></div>
+      <div class="panel-body">
+        <form id="symptom-entry-form">
+          <div class="form-group">
+            <label>Choose a symptom type:</label>
+            <select id="symptom-select" class="form-control">
+              <% if @symptom.name == "Gas" %>
+                <option value="Gas" selected>Gas</option>
+                <option value="Diarrhea">Diarrhea</option>
+                <option value="Constipation">Constipation</option>
+                <option value="Pain">Pain</option>
+                <option value="Headache/Migraine">Headache/Migraine</option>
+                <option value="Bloating">Bloating</option>
+                <option value="Nausea">Nausea</option>
+                <option value="Heartburn">Heartburn</option>
+                <option value="Burping">Burping</option>
+                <option value="Skin Problems">Skin Problems</option>
+              <% elsif @symptom.name == "Diarrhea" %>
+                <option value="Gas">Gas</option>
+                <option value="Diarrhea" selected>Diarrhea</option>
+                <option value="Constipation">Constipation</option>
+                <option value="Pain">Pain</option>
+                <option value="Headache/Migraine">Headache/Migraine</option>
+                <option value="Bloating">Bloating</option>
+                <option value="Nausea">Nausea</option>
+                <option value="Heartburn">Heartburn</option>
+                <option value="Burping">Burping</option>
+                <option value="Skin Problems">Skin Problems</option>
+              <% elsif @symptom.name == "Constipation" %>
+                <option value="Gas">Gas</option>
+                <option value="Diarrhea">Diarrhea</option>
+                <option value="Constipation" selected>Constipation</option>
+                <option value="Pain">Pain</option>
+                <option value="Headache/Migraine">Headache/Migraine</option>
+                <option value="Bloating">Bloating</option>
+                <option value="Nausea">Nausea</option>
+                <option value="Heartburn">Heartburn</option>
+                <option value="Burping">Burping</option>
+                <option value="Skin Problems">Skin Problems</option>
+              <% elsif @symptom.name == "Pain" %>
+                <option value="Gas">Gas</option>
+                <option value="Diarrhea">Diarrhea</option>
+                <option value="Constipation">Constipation</option>
+                <option value="Pain" selected>Pain</option>
+                <option value="Headache/Migraine">Headache/Migraine</option>
+                <option value="Bloating">Bloating</option>
+                <option value="Nausea">Nausea</option>
+                <option value="Heartburn">Heartburn</option>
+                <option value="Burping">Burping</option>
+                <option value="Skin Problems">Skin Problems</option>
+              <% elsif @symptom.name == "Headache/Migraine" %>
+                <option value="Gas">Gas</option>
+                <option value="Diarrhea">Diarrhea</option>
+                <option value="Constipation">Constipation</option>
+                <option value="Pain">Pain</option>
+                <option value="Headache/Migraine" selected>Headache/Migraine</option>
+                <option value="Bloating">Bloating</option>
+                <option value="Nausea">Nausea</option>
+                <option value="Heartburn">Heartburn</option>
+                <option value="Burping">Burping</option>
+                <option value="Skin Problems">Skin Problems</option>
+              <% elsif @symptom.name == "Bloating" %>
+                <option value="Gas">Gas</option>
+                <option value="Diarrhea">Diarrhea</option>
+                <option value="Constipation">Constipation</option>
+                <option value="Pain">Pain</option>
+                <option value="Headache/Migraine">Headache/Migraine</option>
+                <option value="Bloating" selected>Bloating</option>
+                <option value="Nausea">Nausea</option>
+                <option value="Heartburn">Heartburn</option>
+                <option value="Burping">Burping</option>
+                <option value="Skin Problems">Skin Problems</option>
+              <% elsif @symptom.name == "Nausea" %>
+                <option value="Gas">Gas</option>
+                <option value="Diarrhea">Diarrhea</option>
+                <option value="Constipation">Constipation</option>
+                <option value="Pain">Pain</option>
+                <option value="Headache/Migraine">Headache/Migraine</option>
+                <option value="Bloating">Bloating</option>
+                <option value="Nausea" selected>Nausea</option>
+                <option value="Heartburn">Heartburn</option>
+                <option value="Burping">Burping</option>
+                <option value="Skin Problems">Skin Problems</option>
+              <% elsif @symptom.name == "Heartburn" %>
+                <option value="Gas">Gas</option>
+                <option value="Diarrhea">Diarrhea</option>
+                <option value="Constipation">Constipation</option>
+                <option value="Pain">Pain</option>
+                <option value="Headache/Migraine">Headache/Migraine</option>
+                <option value="Bloating">Bloating</option>
+                <option value="Nausea">Nausea</option>
+                <option value="Heartburn" selected>Heartburn</option>
+                <option value="Burping">Burping</option>
+                <option value="Skin Problems">Skin Problems</option>
+              <% elsif @symptom.name == "Burping" %>
+                <option value="Gas">Gas</option>
+                <option value="Diarrhea">Diarrhea</option>
+                <option value="Constipation">Constipation</option>
+                <option value="Pain">Pain</option>
+                <option value="Headache/Migraine">Headache/Migraine</option>
+                <option value="Bloating">Bloating</option>
+                <option value="Nausea">Nausea</option>
+                <option value="Heartburn">Heartburn</option>
+                <option value="Burping" selected>Burping</option>
+                <option value="Skin Problems">Skin Problems</option>
+              <% elsif @symptom.name == "Skin Problems" %>
+                <option value="Gas">Gas</option>
+                <option value="Diarrhea">Diarrhea</option>
+                <option value="Constipation">Constipation</option>
+                <option value="Pain">Pain</option>
+                <option value="Headache/Migraine">Headache/Migraine</option>
+                <option value="Bloating">Bloating</option>
+                <option value="Nausea">Nausea</option>
+                <option value="Heartburn">Heartburn</option>
+                <option value="Burping">Burping</option>
+                <option value="Skin Problems" selected>Skin Problems</option>
+              <% end %>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Severity (1 - 10):</label>
+            <input type="number" id="symptom-severity" min="1" max="10" class="form-control" required value="<%= @symptom.severity %>">
+          </div>
+          <div class="form-group">
+            <label>Start time:</label>
+            <input type="time" id="symptom-start-time" class="form-control" required value="<%= @symptom.start_time %>">
+          </div>
+          <div class="form-group">
+            <label>End time:</label>
+            <% if @symptom.end_time? %>
+            <input type="time" id="symptom-end-time" class="form-control" value="<%= @symptom.end_time %>">
+            <% else %>
+            <input type="time" id="symptom-end-time" class="form-control">
+            <% end %>
+          </div>
+          <div class="form-group">
+            <label>Notes:</label>
+            <% if @symptom.notes? %>
+            <input type="text" id="symptom-notes" class="form-control" value="<%= @symptom.notes %>">
+            <% else %>
+            <input type="text" id="symptom-notes" class="form-control">
+            <% end %>
+          </div>
+        </form>
+      </div>
+    </div>
+    <button id="submit-symptom" class="btn btn-success bottom-button-margin xs-centered-button">Save symptom</button>
+  </div>
+</div>
