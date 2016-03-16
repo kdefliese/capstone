@@ -40,7 +40,7 @@ class EntriesController < ApplicationController
     @all_ingredients = Ingredient.all
     @meals = @entry.meals
     @foods = @entry.foods
-    @ingredients = @entry.ingredients 
+    @ingredients = @entry.ingredients
   end
 
   def update
@@ -54,16 +54,19 @@ class EntriesController < ApplicationController
     if @entry.save
       # need to update associations
       if !params[:meal_ids].nil? && !params[:meal_ids].empty?
+        @entry.meals = []
         params[:meal_ids].each do |i|
           @entry.meals << Meal.find(i.to_i)
         end
       end
       if !params[:food_ids].nil? && !params[:food_ids].empty?
+        @entry.foods = []
         params[:food_ids].each do |i|
           @entry.foods << Food.find(i.to_i)
         end
       end
       if !params[:ingredient_ids].nil? && !params[:ingredient_ids].empty?
+        @entry.ingredients = []
         params[:ingredient_ids].each do |i|
           @entry.ingredients << Ingredient.find(i.to_i)
         end
@@ -76,9 +79,6 @@ class EntriesController < ApplicationController
     entry = @current_user.entries.last
     entry_time = entry.time.strftime("%l:%M %p")
     render :json => {:entry => entry.as_json, :entry_time => entry_time.as_json, :caps => entry.print_capitals(entry.id).as_json, :italics => entry.print_italics(entry.id).as_json}, :status => :ok
-  end
-
-  def update
   end
 
   def destroy

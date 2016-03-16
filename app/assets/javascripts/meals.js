@@ -114,7 +114,6 @@ $(document).on('ready', function() {
       })
       .done(function() {
         console.log("post meal success");
-          // make another call to get the most recent entry and add it to the page
           $(".new-meal-success").html("<div class=\"alert alert-success alert-dismissible\" role=\"alert\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" + $("#name").val() + " added!</div>");
         })
       .fail(function() {

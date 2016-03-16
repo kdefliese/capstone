@@ -40,6 +40,43 @@ $(document).on('ready', function() {
     $("tr").remove("#" + id);
   });
 
+  // autocomplete for food search
+  $("#autocomplete").autocomplete({
+    minLength: 2,
+    source: function(request, response) {
+      var term = request.term;
+      var url = "/foods/search";
+      if ($("#search-type-select").val() === "Barcode") {
+        url = "/foods/search_barcode";
+      }
+      $.getJSON(url, request, function(data) {
+        response(data);
+      });
+    },
+    select: function( event, ui ) {
+      $("#autocomplete").val(ui.item.label);
+      $("#factual-id").val(ui.item.value);
+      return false;
+    }
+  });
+
+  // adds food from search to entry div on the page
+  $("#add-from-search").click(function() {
+    var factual_id = $("#factual-id").val();
+    var url = "/foods/search_specific?factual_id=" + factual_id;
+    $.ajax(url)
+      .done(function(data) {
+        console.log("success");
+        // adds the food to the food entry on the page
+        $("#table-foods").append(
+          "<tr id=\"f" + data.id + "\"><td>" + data.name + "</td><td><button type=\"button\" class=\"close close-food\" id=\"f" + data.id +  "\"aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button></td></tr>"
+        );
+      })
+      .fail(function() {
+        console.log("failure");
+      });
+    });
+
   // if checkbox for "save as meal" is checked
   $("#save-meal-checkbox").change(function() {
     if(this.checked) {
@@ -64,6 +101,7 @@ $(document).on('ready', function() {
 
   // submits food entry and will update it in the db
   $("#update-food-entry").click(function() {
+    event.preventDefault();
     // if saving meal, do that first
     if ($("#save-meal-checkbox").val() === "save") {
       var foods = prepareForSave("#table-foods");
@@ -87,10 +125,11 @@ $(document).on('ready', function() {
               $.ajax({
                 method: "PATCH",
                 url: patchUrl,
-                data: {notes: $("#notes").val(), time: $("#time").val(), user_id: $("#user-id").val(), day_id: $("#day-id").val(), category: $("#category-select").val(), meal_ids: $("#print-new-entry").data("Meal") }
+                data: {id: $("#entry-id").val(), notes: $("#notes").val(), time: $("#time").val(), user_id: $("#user-id").val(), day_id: $("#day-id").val(), category: $("#category-select").val(), meal_ids: $("#print-new-entry").data("Meal") }
               })
               .done(function() {
                 console.log("patch entry success");
+                $(".entry-update-success").html("<div class=\"alert alert-success alert-dismissible\" role=\"alert\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button> Entry updated!</div>");
                   })
               .fail(function() {
                 console.log("patch entry failure");
@@ -113,10 +152,11 @@ $(document).on('ready', function() {
       $.ajax({
         method: "PATCH",
         url: patchUrl,
-        data: {notes: $("#notes").val(), time: $("#time").val(), user_id: $("#user-id").val(), day_id: $("#day-id").val(), category: $("#category-select").val(), meal_ids: meals, food_ids: foods, ingredient_ids: ingredients }
+        data: {id: $("#entry-id").val(), notes: $("#notes").val(), time: $("#time").val(), user_id: $("#user-id").val(), day_id: $("#day-id").val(), category: $("#category-select").val(), meal_ids: meals, food_ids: foods, ingredient_ids: ingredients }
       })
       .done(function() {
         console.log("patch entry success");
+            $(".entry-update-success").html("<div class=\"alert alert-success alert-dismissible\" role=\"alert\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button> Entry updated!</div>");
           })
       .fail(function() {
         console.log("patch entry failure");
