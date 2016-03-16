@@ -63,7 +63,7 @@ $(document).on('ready', function() {
     .done(function(data) {
       console.log("success");
       $("#day-heading").empty();
-      $("#day-heading").append("<h1>Your food entries for </h1>");
+      $("#day-heading").append("<h1>Here's what you ate:</h1>");
       console.log(data);
     })
     .fail(function() {
@@ -100,8 +100,8 @@ $(document).on('ready', function() {
         },
         legend: {
           layout: 'vertical',
-          align: 'right',
-          verticalAlign: 'middle',
+          align: 'center',
+          verticalAlign: 'bottom',
           borderWidth: 0
         },
         series: []
@@ -124,6 +124,7 @@ $(document).on('ready', function() {
             point: {
               events: {
                 click: function () {
+                  console.log(this);
                   pointClick(this.id);
                 }
               }
