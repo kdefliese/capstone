@@ -30,6 +30,22 @@ class EntriesController < ApplicationController
     end
   end
 
+  def edit
+    @entry = Entry.find(params[:id])
+    @day_id = @entry.day_id
+    @user_id = @current_user.id
+  end
+
+  def update
+    @entry = Entry.find(params[:id])
+    date = Day.find(params[:day_id]).day.to_s.slice(0,10)
+    entry_time = params[:time]
+    entry_datetime = DateTime.parse(date + " " + entry_time)
+    @entry.time = entry_datetime
+    @entry.save
+    render nothing: true
+  end
+
   def last
     entry = @current_user.entries.last
     entry_time = entry.time.strftime("%l:%M %p")
