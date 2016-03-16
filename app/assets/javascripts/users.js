@@ -56,7 +56,10 @@ $(document).on('ready', function() {
 
   // testing alternate pointClick function for rendering partial
   var pointClick = function(pointId) {
-    $.ajax("/users/new")
+    console.log(pointId);
+    var user_id = 1;
+    var url = "/users/" + user_id + "/chart_click/" + pointId;
+    $.ajax(url)
     .done(function(data) {
       console.log("success");
       console.log(data);
@@ -69,7 +72,7 @@ $(document).on('ready', function() {
   // point click function used inside the highcharts function below
   var pointClick2 = function(pointId) {
     var id = pointId;
-    url = "/days/" + id + "/summary";
+    var url = "/days/" + id + "/summary";
     $.ajax(url)
     .done(function(data) {
       console.log("success");

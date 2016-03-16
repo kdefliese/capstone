@@ -10,6 +10,7 @@ Rails.application.routes.draw do
 
   resources :users
   get "users/:id/stats" => "users#stats", as: :user_stats
+  get "users/:id/chart_click/:day_id" => "users#chart_click", as: :user_chart_click
 
   get "foods/all" => "foods#all", as: :all_foods
   get "meals/all" => "meals#all", as: :all_meals

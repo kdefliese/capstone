@@ -2,8 +2,8 @@ class UsersController < ApplicationController
   before_action :current_user
   before_action :current_day_for_user
 
-  def new
-    @entries = @current_user.entries.where("day_id = ?", 22)
+  def chart_click
+    @entries = @current_user.entries.where("day_id = ?", params[:day_id])
   end
 
   def show
