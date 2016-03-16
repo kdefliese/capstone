@@ -52,12 +52,48 @@
             <!-- JS will fill this in -->
             <h4>Meals:</h4>
             <table class="table" id="table-meals">
+              <% if !@meals.empty? %>
+                <% @meals.each do |m| %>
+                  <tr id="m<%=m.id%>">
+                    <td>
+                      <%= m.name %>
+                    </td>
+                    <td>
+                      <button type="button" class="close close-meal" id="m<%=m.id%>" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    </td>
+                  </tr>
+                <% end %>
+              <% end %>
             </table>
             <h4>Foods:</h4>
             <table class="table" id="table-foods">
+              <% if !@foods.empty? %>
+                <% @foods.each do |f| %>
+                  <tr id="f<%=f.id%>">
+                    <td>
+                      <%= f.name %>
+                    </td>
+                    <td>
+                      <button type="button" class="close close-food" id="f<%=f.id%>" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    </td>
+                  </tr>
+                <% end %>
+              <% end %>
             </table>
             <h4>Ingredients:</h4>
             <table class="table" id="table-ingredients">
+              <% if !@ingredients.empty? %>
+                <% @ingredients.each do |i| %>
+                  <tr id="i<%=i.id%>">
+                    <td>
+                      <%= i.name %>
+                    </td>
+                    <td>
+                      <button type="button" class="close close-ingredient" id="i<%=i.id%>" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    </td>
+                  </tr>
+                <% end %>
+              <% end %>
             </table>
           </div>
           <form>

@@ -38,6 +38,9 @@ class EntriesController < ApplicationController
     @all_meals = @current_user.meals
     @all_foods = Food.all
     @all_ingredients = Ingredient.all
+    @meals = @entry.meals
+    @foods = @entry.foods
+    @ingredients = @entry.ingredients 
   end
 
   def update
