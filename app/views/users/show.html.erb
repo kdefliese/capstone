@@ -8,7 +8,9 @@
       <% if @user.image? %>
       <img src="<%= @user.image %>" />
       <% end %>
-      <%= link_to "Edit Profile", edit_user_path(@current_user), method: :get, class: "btn btn-default" %>
+      <div class="profile-edit-button">
+        <%= link_to "Edit Profile", edit_user_path(@current_user), method: :get, class: "btn btn-default" %>
+      </div>
     </div>
   </div>
 </div>
