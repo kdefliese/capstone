@@ -50,7 +50,7 @@ class Entry < ActiveRecord::Base
     @entry = Entry.find(id)
     if @entry.time.strftime("%p") == "AM" && @entry.time.strftime("%l").to_i < 10
       @return_time = "0" + @entry.time.strftime("%l:%M").strip
-    elsif time.strftime("%p") == "AM" && @entry.time.strftime("%l").to_i > 10
+    elsif time.strftime("%p") == "AM" && @entry.time.strftime("%l").to_i >= 10
       @return_time = @entry.time.strftime("%l:%M").strip
     else
       hour = @entry.time.strftime("%l").to_i
