@@ -48,6 +48,7 @@ class SymptomsController < ApplicationController
     @symptom.severity = params[:severity]
     @symptom.notes = params[:notes]
     @symptom.save
+    render nothing: true
   end
 
   def destroy
