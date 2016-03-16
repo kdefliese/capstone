@@ -2,6 +2,10 @@ class UsersController < ApplicationController
   before_action :current_user
   before_action :current_day_for_user
 
+  def new
+    @entries = @current_user.entries.where("day_id = ?", 22)
+  end
+
   def show
     @user = @current_user
   end
@@ -18,6 +22,11 @@ class UsersController < ApplicationController
 
   def stats
     @entries = @current_user.entries
+
+    respond_to do |format|
+      format.html
+      format.json
+    end
   end
 
   def stats_endpoint

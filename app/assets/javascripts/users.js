@@ -54,13 +54,26 @@ $(document).on('ready', function() {
     });
   });
 
-  // point click function used inside the highcharts function below
+  // testing alternate pointClick function for rendering partial
   var pointClick = function(pointId) {
+    $.ajax("/users/new")
+    .done(function(data) {
+      console.log("success");
+      console.log(data);
+    })
+    .fail(function() {
+      console.log("fail");
+    });
+  };
+
+  // point click function used inside the highcharts function below
+  var pointClick2 = function(pointId) {
     var id = pointId;
     url = "/days/" + id + "/summary";
     $.ajax(url)
     .done(function(data) {
       console.log("success");
+      console.log(data);
       // remove content for any other days that you previously clicked on
       $("#day-heading").empty();
       $("#day-data").empty();
