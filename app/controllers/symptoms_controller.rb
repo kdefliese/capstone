@@ -1,4 +1,6 @@
 class SymptomsController < ApplicationController
+  before_action :current_user
+  before_action :current_day_for_user
 
   def create
     date = Day.find(params[:day_id]).day.to_s.slice(0,10)
@@ -20,6 +22,11 @@ class SymptomsController < ApplicationController
 
   def edit
     @symptom = Symptom.find(params[:id])
+    # need to convert to military time because HTML time form field only accepts 24 hour clock
+    @start_time = @symptom.military_conversion(params[:id],"start_time")
+    if @symptom.end_time?
+      @end_time = @symptom.military_conversion(params[:id],"end_time")
+    end
   end
 
   def update
@@ -49,4 +56,6 @@ class SymptomsController < ApplicationController
   def symptom_params
     params.permit(:name, :severity, :start_time, :end_time, :notes, :user_id, :day_id)
   end
+
+
 end

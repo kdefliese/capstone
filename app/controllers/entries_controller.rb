@@ -39,11 +39,6 @@ class EntriesController < ApplicationController
   def update
   end
 
-  def print_meals
-    @entry = Entry.find(params[:id])
-    @id = params[:id]
-  end
-
   def destroy
     @entry = Entry.find(params[:id])
     day_id = @entry.day_id

@@ -126,12 +126,12 @@
           </div>
           <div class="form-group">
             <label>Start time:</label>
-            <input type="time" id="symptom-start-time" class="form-control" required value="<%= @symptom.start_time %>">
+            <input type="time" id="symptom-start-time" class="form-control" required value="<%= @start_time %>">
           </div>
           <div class="form-group">
             <label>End time:</label>
-            <% if @symptom.end_time? %>
-            <input type="time" id="symptom-end-time" class="form-control" value="<%= @symptom.end_time %>">
+            <% if !@end_time.nil? %>
+            <input type="time" id="symptom-end-time" class="form-control" value="<%= @end_time %>">
             <% else %>
             <input type="time" id="symptom-end-time" class="form-control">
             <% end %>
