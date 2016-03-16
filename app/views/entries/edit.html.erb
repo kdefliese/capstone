@@ -9,15 +9,32 @@
             <div class="form-group">
               <label>Category:</label>
               <select id="category-select" class="form-control">
-                <option value="Breakfast">Breakfast</option>
-                <option value="Lunch">Lunch</option>
-                <option value="Dinner">Dinner</option>
-                <option value="Snack">Snack</option>
+                <% if @entry.category == "Breakfast" %>
+                  <option value="Breakfast" selected>Breakfast</option>
+                  <option value="Lunch">Lunch</option>
+                  <option value="Dinner">Dinner</option>
+                  <option value="Snack">Snack</option>
+                <% elsif @entry.category == "Lunch" %>
+                  <option value="Breakfast">Breakfast</option>
+                  <option value="Lunch" selected>Lunch</option>
+                  <option value="Dinner">Dinner</option>
+                  <option value="Snack">Snack</option>
+                <% elsif @entry.category == "Dinner" %>
+                  <option value="Breakfast">Breakfast</option>
+                  <option value="Lunch">Lunch</option>
+                  <option value="Dinner" selected>Dinner</option>
+                  <option value="Snack">Snack</option>
+                <% elsif @entry.category == "Snack" %>
+                  <option value="Breakfast">Breakfast</option>
+                  <option value="Lunch">Lunch</option>
+                  <option value="Dinner">Dinner</option>
+                  <option value="Snack" selected>Snack</option>
+                <% end %>
               </select>
             </div>
             <div class="form-group">
               <label>Notes:</label>
-              <input type="text" id="notes" class="form-control">
+              <input type="text" id="notes" class="form-control" value="<%= @entry.notes %>">
             </div>
             <div class="form-group">
               <label>Time eaten:</label>

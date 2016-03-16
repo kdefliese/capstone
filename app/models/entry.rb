@@ -46,4 +46,20 @@ class Entry < ActiveRecord::Base
     return @print_italics
   end
 
+  def military_conversion(id)
+    @entry = Entry.find(id)
+    if @entry.time.strftime("%p") == "AM"
+      @return_time = @entry.time.strftime("%l:%M")
+    else
+      hour = @entry.time.strftime("%l").to_i
+      if hour != 12
+        military_hour = hour + 12
+        @return_time = military_hour.to_s + ":" + @entry.time.strftime("%M")
+      else
+        @return_time = hour.to_s + ":" + @entry.time.strftime("%M")
+      end
+    end
+    return @return_time
+  end
+
 end
