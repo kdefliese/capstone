@@ -41,6 +41,7 @@
               <input type="time" id="time" class="form-control" required value="<%= @time %>">
               <input type="hidden" id="user-id" value="<%= @user_id %>"></input>
               <input type="hidden" id="day-id" value="<%= @day_id %>"></input>
+              <input type="hidden" id="entry-id" value="<%= @entry.id %>"></input>
             </div>
           </form>
         </div>
@@ -137,7 +138,7 @@
           </div>
         </div>
       </div>
-      <button id="create-food-entry" class="btn btn-success bottom-button-margin xs-centered-button">Save food entry</button>
+      <button id="update-food-entry" class="btn btn-success bottom-button-margin xs-centered-button">Save food entry</button>
     </div>
   </div>
 </div>
