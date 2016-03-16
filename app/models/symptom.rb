@@ -11,8 +11,10 @@ class Symptom < ActiveRecord::Base
     elsif start_or_end == "end_time"
       time = @symptom.end_time
     end
-    if time.strftime("%p") == "AM"
-      @return_time = time.strftime("%l:%M")
+    if time.strftime("%p") == "AM" && time.strftime("%l").to_i < 10
+      @return_time = "0" + time.strftime("%l:%M").strip
+    elsif time.strftime("%p") == "AM" && time.strftime("%l").to_i > 10
+      @return_time = time.strftime("%l:%M").strip
     else
       hour = time.strftime("%l").to_i
       if hour != 12

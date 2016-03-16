@@ -34,6 +34,7 @@ class EntriesController < ApplicationController
     @entry = Entry.find(params[:id])
     @day_id = @entry.day_id
     @user_id = @current_user.id
+    @time = @entry.military_conversion(params[:id])
     @all_meals = @current_user.meals
     @all_foods = Food.all
     @all_ingredients = Ingredient.all
