@@ -54,7 +54,7 @@ $(document).on('ready', function() {
     });
   });
 
-  // testing alternate pointClick function for rendering partial
+  // used inside HighCharts chart below, for rendering partial of food entries on user stats page
   var pointClick = function(pointId) {
     console.log(pointId);
     var user_id = 1;
@@ -62,41 +62,12 @@ $(document).on('ready', function() {
     $.ajax(url)
     .done(function(data) {
       console.log("success");
+      $("#day-heading").empty();
+      $("#day-heading").append("<h1>Your food entries for </h1>");
       console.log(data);
     })
     .fail(function() {
       console.log("fail");
-    });
-  };
-
-  // point click function used inside the highcharts function below
-  var pointClick2 = function(pointId) {
-    var id = pointId;
-    var url = "/days/" + id + "/summary";
-    $.ajax(url)
-    .done(function(data) {
-      console.log("success");
-      console.log(data);
-      // remove content for any other days that you previously clicked on
-      $("#day-heading").empty();
-      $("#day-data").empty();
-      var formatDate = data[0].time.slice(0,10);
-      $("#day-heading").append("<h1>Your food entries for " + formatDate + "</h1>");
-      // now add content for the day that you clicked on
-      for (var i = 0; i < data.length; i++) {
-        $("#day-data").append(
-          "<div class=\"entry\" id=\"" + data[i].id + "\">" + data[i].category + "<br />" + data[i].time.slice(11,19) + "<br />" + data[i].notes + "</div>"
-        );
-        for (var j = 0; j < data[i].meals.length; j++) {
-          $("#" + data[i].id).append(
-            "<div class=\"meal\">" + data[i].meals[j].name + "</div>"
-          );
-        }
-      }
-
-    })
-    .fail(function() {
-      console.log("failure");
     });
   };
 
