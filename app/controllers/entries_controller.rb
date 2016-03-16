@@ -34,6 +34,9 @@ class EntriesController < ApplicationController
     @entry = Entry.find(params[:id])
     @day_id = @entry.day_id
     @user_id = @current_user.id
+    @all_meals = @current_user.meals
+    @all_foods = Food.all
+    @all_ingredients = Ingredient.all
   end
 
   def update

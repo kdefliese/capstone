@@ -3,44 +3,6 @@ var mealVals = [];
 
 $(document).on('ready', function() {
 
-  // updates foods/meals/ingredients dropdown based on first dropdown selection
-  $("#food-type-select").change(function() {
-    $("#food-type-select option:selected").each(function() {
-      var select_val = $("#food-type-select option:selected").val();
-      var url = "";
-      if (select_val === "Meals") {
-        url = "/meals/all";
-        button_word = "meal";
-      }
-      else if (select_val === "Foods") {
-        url = "/foods/all";
-        button_word = "food";
-      }
-      else if (select_val === "Ingredients") {
-        url = "/ingredients/all";
-        button_word = "ingredient";
-      }
-      $.ajax(url)
-      .done(function(data) {
-        console.log("success");
-        var replace_html = "<select id=\"dynamic-food-list-day-page\" class=\"form-control\">";
-        for (var i = 0; i < data.length; i++) {
-          replace_html += "<option value=\"" + data[i].name + "\" id=\"" + data[i].id + "\">" + data[i].name + "</option>";
-        }
-        replace_html += "</select>";
-        $("#dynamic-food-list-day-page").replaceWith(
-          replace_html
-        );
-        $("#add-to-entry").val(
-          "Add " + button_word + " to entry"
-        );
-      })
-      .fail(function() {
-        console.log("failure");
-      });
-    });
-  });
-
   // adds things to the food entry on the page
   $("#add-from-db").click(function() {
     event.preventDefault();
