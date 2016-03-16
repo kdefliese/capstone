@@ -212,6 +212,12 @@
     }
   }
 
+  @media only screen and (max-width: 992px) {
+    .login-modal-spacing {
+      height: 5px;
+    }
+  }
+
   @media only screen and (max-width: 500px) {
     .xs-margin-top {
       margin-top: 15px;
@@ -222,6 +228,7 @@
       margin: 0 auto;
       margin-bottom: 25px;
     }
+
   }
 
   .table-header {
