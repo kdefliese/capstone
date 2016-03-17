@@ -3,12 +3,33 @@ class DaysController < ApplicationController
   before_action :current_day_for_user
 
   def show
+    # what if this day ID doesn't exist yet?
     @day = Day.find(params[:id])
     # if this day doesn't belong to this user, redirect to today for this user
     if @day.user_id != @current_user.id
       redirect_to day_path(@current_day.id)
     else
-      # if @day is nil, create the day for that user somehow
+      day_before = @day.day - 1
+      check_day_before = @current_user.days.where("day = ?, user_id = ?", day_before, @current_user.id)
+      if check_day_before.empty?
+        # create day before for this user
+        d = Day.new
+        d.day = @day.day - 1
+        d.user_id = @current_user.id
+        d.save
+      end
+      @day_before = @current_user.days.where("day = ?, user_id = ?", day_before, @current_user.id)
+      # now repeat with day after
+      day_after = @day.day + 1
+      check_day_after = @current_user.days.where("day = ?, user_id = ?", day_after, @current_user.id)
+      if check_day_after.empty?
+        # create day after for this user
+        d = Day.new
+        d.day = @day.day + 1
+        d.user_id = @current_user.id
+        d.save
+      end
+      @day_after = @current_user.days.where("day = ?, user_id = ?", day_after, @current_user.id)
       @day_id = @day.id
       @user_id = @current_user.id
       @entries = @current_user.entries.where("day_id = ?", @day_id).order("time")
