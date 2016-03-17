@@ -3,13 +3,13 @@
     <div class="col-md-3">
     </div>
     <div class="col-md-6 text-center">
-      <%= link_to "<", day_path(@day.id - 1), method: :get, class: "btn btn-default hidden-xs" %>
+      <%= link_to "<", day_path(@day_before.id), method: :get, class: "btn btn-default hidden-xs" %>
       <h1 class="day-show-header"><%= @day.day.strftime("%A, %b %d") %></h1>
-      <%= link_to ">", day_path(@day.id + 1), method: :get, class: "btn btn-default hidden-xs" %>
+      <%= link_to ">", day_path(@day_after.id), method: :get, class: "btn btn-default hidden-xs" %>
     </div>
     <div class="col-md-3 text-center">
-      <%= link_to "<", day_path(@day.id - 1), method: :get, class: "btn btn-default visible-xs-inline-block" %>
-      <%= link_to ">", day_path(@day.id + 1), method: :get, class: "btn btn-default visible-xs-inline-block" %>
+      <%= link_to "<", day_path(@day_before.id), method: :get, class: "btn btn-default visible-xs-inline-block" %>
+      <%= link_to ">", day_path(@day_after.id), method: :get, class: "btn btn-default visible-xs-inline-block" %>
     </div>
   </div>
   <div class="row">
@@ -21,8 +21,6 @@
       </h2>
       <%= render 'entries/all' %>
       <div id="added-entries">
-        <%= @day_before.day %>
-        <%= @day_after.day %>
       </div>
     </div>
     <div class="col-md-2">
