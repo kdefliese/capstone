@@ -15,6 +15,7 @@ class WelcomeController < ApplicationController
       d.user_id = @current_user.id
       d.save
     end
+    redirect_to day_path(@current_day.id)
   end
 
   def about
