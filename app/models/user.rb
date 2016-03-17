@@ -22,11 +22,21 @@ class User < ActiveRecord::Base
       user.image = auth_hash["info"]["image"]
       user.email = auth_hash["info"]["email"]
       if user.save
-        # create today for the new user
+        # create yesterday
+        y = Day.new
+        y.day = Date.yesterday
+        y.user_id = user.id
+        y.save
+        # create today 
         d = Day.new
         d.day = Date.today
         d.user_id = user.id
         d.save
+        # create tomorrow
+        t = Day.new
+        t.day = Date.tomorrow
+        t.user_id = user.id
+        t.save
         return user
       else
         return nil
