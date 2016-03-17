@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_action :current_day_for_user
 
   def chart_click
-    @entries = @current_user.entries.where("day_id = ?", params[:day_id])
+    @entries = @current_user.entries.where("day_id = ?", params[:day_id]).order("time")
   end
 
   def show

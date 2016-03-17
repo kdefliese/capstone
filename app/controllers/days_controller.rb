@@ -40,7 +40,7 @@ class DaysController < ApplicationController
       @all_foods = Food.all
       @all_ingredients = Ingredient.all
       @symptom = Symptom.new
-      @symptoms = @current_user.symptoms.where("day_id = ?", @day_id)
+      @symptoms = @current_user.symptoms.where("day_id = ?", @day_id).order("start_time")
     end
   end
 
