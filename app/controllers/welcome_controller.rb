@@ -9,15 +9,7 @@ class WelcomeController < ApplicationController
   end
 
   def index
-    today = Day.where("day = ? AND user_id = ?", Date.today, @current_user.id)
-    if today.empty?
-      d = Day.new
-      d.day = Date.today
-      d.user_id = @current_user.id
-      d.save
-    end
-    goto = Day.where("day = ? AND user_id = ?", Date.today, @current_user.id)[0]
-    redirect_to day_path(goto.id)
+    redirect_to day_path(@current_user.id)
   end
 
   def about
