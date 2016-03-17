@@ -1,6 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe FoodsController, type: :controller do
+  let(:day) do
+    Day.create(day: DateTime.new(2016,03,17), user_id: 1)
+  end
+
   let(:good_params) do
     {food: {
       name: "Flour",
@@ -21,6 +25,21 @@ RSpec.describe FoodsController, type: :controller do
     {food: {
       }
     }
+  end
+
+  let(:user_params) do
+    { user: {
+        name: "kdefliese",
+        email: "kdefliese@gmail.com",
+        uid: "11111111",
+        provider: "test",
+        notifications_preference: true}
+    }
+  end
+
+  before :each do
+    user = User.create(user_params[:user])
+    session[:user_id] = user.id
   end
 
   describe "GET 'new'" do
@@ -66,4 +85,5 @@ RSpec.describe FoodsController, type: :controller do
       expect(response.header['Content-Type']).to include 'application/json'
     end
   end
+
 end

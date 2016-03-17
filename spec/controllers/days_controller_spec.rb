@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe DaysController, type: :controller do
   let(:day) do
-    Day.create(day: DateTime.new(2016,03,03), user_id: 1)
+    Day.create(day: DateTime.new(2016,03,17), user_id: 1)
   end
 
   let(:good_params) do
