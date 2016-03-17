@@ -20,8 +20,8 @@ class MealsController < ApplicationController
           @meal.ingredients << Ingredient.find(i.to_i)
         end
       end
-      render nothing: true
     end
+    render nothing: true
   end
 
   def index

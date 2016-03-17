@@ -47,17 +47,11 @@ RSpec.describe MealsController, type: :controller do
   end
 
   describe "POST 'create'" do
-    it "successful create redirects to show page" do
-      post :create, good_params
+    it "does not redirect" do
+      post :create, good_params[:meal]
       expect(Meal.all.length).to eq 1
-      expect(response.status).to eq 302
-      expect(subject).to redirect_to meal_path(Meal.last)
-    end
-    it "unsuccessful create renders new page" do
-      post :create, bad_params
-      expect(Meal.all.length).to eq 0
       expect(response.status).to eq 200
-      expect(subject).to render_template :new
+      expect(response.body).to be_blank
     end
   end
 
