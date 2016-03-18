@@ -66,7 +66,7 @@ class MealsController < ApplicationController
   end
 
   def all
-    render :json => Meal.order("name").as_json, :status => :ok
+    render :json => @current_user.meals.order("name").as_json, :status => :ok
   end
 
   def last
