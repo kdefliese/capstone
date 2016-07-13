@@ -55,7 +55,7 @@ class DaysController < ApplicationController
     day_before = @day.day - 86400
     check_day_before = @current_user.days.where("day = ? AND user_id = ?", day_before, @current_user.id)
     if check_day_before.empty?
-      @day.create_day_before(@current_user)
+      @day.create_day_before(@current_user.id)
     end
     @day_before = @current_user.days.where("day = ? AND user_id = ?", day_before, @current_user.id).first
   end
@@ -64,7 +64,7 @@ class DaysController < ApplicationController
     day_after = @day.day + 86400
     check_day_after = @current_user.days.where("day = ? AND user_id = ?", day_after, @current_user.id)
     if check_day_after.empty?
-      @day.create_day_after(@current_user)
+      @day.create_day_after(@current_user.id)
     end
     @day_after = @current_user.days.where("day = ? AND user_id = ?", day_after, @current_user.id).first
   end

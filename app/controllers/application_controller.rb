@@ -18,10 +18,7 @@ class ApplicationController < ActionController::Base
     @today = Date.today
     today = Day.where("day = ? AND user_id = ?", Date.today, @current_user.id)
     if today.empty?
-      d = Day.new
-      d.day = Date.today
-      d.user_id = @current_user.id
-      d.save
+      create_today(@current_user.id)
     end
     @current_day = Day.where("day = ? AND user_id = ?", @today, @current_user.id).first
   end
