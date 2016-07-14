@@ -9,21 +9,9 @@ class EntriesController < ApplicationController
     @entry = Entry.new(entry_params)
     @entry.time = entry_datetime
     if @entry.save
-      if !params[:meal_ids].nil? && !params[:meal_ids].empty?
-        params[:meal_ids].each do |i|
-          @entry.meals << Meal.find(i.to_i)
-        end
-      end
-      if !params[:food_ids].nil? && !params[:food_ids].empty?
-        params[:food_ids].each do |i|
-          @entry.foods << Food.find(i.to_i)
-        end
-      end
-      if !params[:ingredient_ids].nil? && !params[:ingredient_ids].empty?
-        params[:ingredient_ids].each do |i|
-          @entry.ingredients << Ingredient.find(i.to_i)
-        end
-      end
+      add_or_update_meals_in_entry
+      add_or_update_foods_in_entry
+      add_or_update_ingredients_in_entry
       redirect_to day_path(Day.find(params[:day_id]))
     else
       flash[:error] = "We couldn't save your entry! Please try again."
@@ -52,25 +40,9 @@ class EntriesController < ApplicationController
     @entry.category = params[:category]
     @entry.notes = params[:notes]
     if @entry.save
-      # need to update associations
-      if !params[:meal_ids].nil? && !params[:meal_ids].empty?
-        @entry.meals = []
-        params[:meal_ids].each do |i|
-          @entry.meals << Meal.find(i.to_i)
-        end
-      end
-      if !params[:food_ids].nil? && !params[:food_ids].empty?
-        @entry.foods = []
-        params[:food_ids].each do |i|
-          @entry.foods << Food.find(i.to_i)
-        end
-      end
-      if !params[:ingredient_ids].nil? && !params[:ingredient_ids].empty?
-        @entry.ingredients = []
-        params[:ingredient_ids].each do |i|
-          @entry.ingredients << Ingredient.find(i.to_i)
-        end
-      end
+      add_or_update_meals_in_entry
+      add_or_update_foods_in_entry
+      add_or_update_ingredients_in_entry
     end
     render nothing: true
   end
@@ -92,6 +64,33 @@ class EntriesController < ApplicationController
 
   def entry_params
     params.permit(:time, :category, :notes, :user_id, :day_id)
+  end
+
+  def add_or_update_meals_in_entry
+    if !params[:meal_ids].nil? && !params[:meal_ids].empty?
+      @entry.meals = []
+      params[:meal_ids].each do |i|
+        @entry.meals << Meal.find(i.to_i)
+      end
+    end
+  end
+
+  def add_or_update_foods_in_entry
+    if !params[:food_ids].nil? && !params[:food_ids].empty?
+      @entry.foods = []
+      params[:food_ids].each do |i|
+        @entry.foods << Food.find(i.to_i)
+      end
+    end
+  end
+
+  def add_or_update_ingredients_in_entry
+    if !params[:ingredient_ids].nil? && !params[:ingredient_ids].empty?
+      @entry.ingredients = []
+      params[:ingredient_ids].each do |i|
+        @entry.ingredients << Ingredient.find(i.to_i)
+      end
+    end
   end
 
 end
