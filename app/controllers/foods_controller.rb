@@ -48,40 +48,45 @@ class FoodsController < ApplicationController
     if !(Food.find_by factual_id: results["factual_id"]).nil?
       @food = Food.find_by factual_id: results["factual_id"]
     else
-      # save this product to the DB since it's not already in there
-      @food = Food.create(
-      brand: results["brand"],
-      name: results["brand"] + " " + results["product_name"],
-      ingredients_list: results["ingredients"],
-      manufacturer: results["manufacturer"],
-      category: results["category"],
-      ean13: results["ean13"],
-      upc: results["upc"],
-      factual_id: results["factual_id"],
-      image_urls: results["image_urls"]
-      )
-      # if the food has listed ingredients, create ingredients in the db for ingredients that aren't already in the db
+      create_food
       if !@food.ingredients_list.nil?
-        @food.ingredients_list.each do |i|
-          food_exists = Ingredient.find_by name: i
-          if food_exists.nil?
-            @ingredient = Ingredient.create(name: i)
-            @food.ingredients << @ingredient
-          else
-            @food.ingredients << food_exists
-          end
-        end
+        create_new_ingredients
       end
     end
 
     render :json => @food.as_json, :status => :ok
   end
 
-
-
   private
 
   def food_params
     params.permit(food:[:brand, :name, :ingredients_list, :manufacturer, :category, :ean13, :upc, :factual_id, :image_urls, :sensitivity_groups])
   end
+
+  def create_food
+    @food = Food.create(
+    brand: results["brand"],
+    name: results["brand"] + " " + results["product_name"],
+    ingredients_list: results["ingredients"],
+    manufacturer: results["manufacturer"],
+    category: results["category"],
+    ean13: results["ean13"],
+    upc: results["upc"],
+    factual_id: results["factual_id"],
+    image_urls: results["image_urls"]
+    )
+  end
+
+  def create_new_ingredients
+    @food.ingredients_list.each do |i|
+      food_exists = Ingredient.find_by name: i
+      if food_exists.nil?
+        @ingredient = Ingredient.create(name: i)
+        @food.ingredients << @ingredient
+      else
+        @food.ingredients << food_exists
+      end
+    end
+  end
+
 end

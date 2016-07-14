@@ -10,16 +10,8 @@ class MealsController < ApplicationController
   def create
     @meal = Meal.new(meal_params)
     if @meal.save
-      if !params[:food_ids].nil? && !params[:food_ids].empty?
-        params[:food_ids].each do |i|
-          @meal.foods << Food.find(i.to_i)
-        end
-      end
-      if !params[:ingredient_ids].nil? && !params[:ingredient_ids].empty?
-        params[:ingredient_ids].each do |i|
-          @meal.ingredients << Ingredient.find(i.to_i)
-        end
-      end
+      add_or_update_foods_in_meal
+      add_or_update_ingredients_in_meal
     end
     render nothing: true
   end
@@ -45,16 +37,8 @@ class MealsController < ApplicationController
     @meal.foods = []
     @meal.ingredients = []
     if @meal.update(meal_params)
-      if !params[:food_ids].nil? && !params[:food_ids].empty?
-        params[:food_ids].each do |i|
-          @meal.foods << Food.find(i.to_i)
-        end
-      end
-      if !params[:ingredient_ids].nil? && !params[:ingredient_ids].empty?
-        params[:ingredient_ids].each do |i|
-          @meal.ingredients << Ingredient.find(i.to_i)
-        end
-      end
+      add_or_update_foods_in_meal
+      add_or_update_ingredients_in_meal
       render nothing: true
     end
   end
@@ -78,6 +62,22 @@ class MealsController < ApplicationController
 
   def meal_params
     params.permit(:id, :name, :user_id, :category)
+  end
+
+  def add_or_update_foods_in_meal
+    if !params[:food_ids].nil? && !params[:food_ids].empty?
+      params[:food_ids].each do |i|
+        @meal.foods << Food.find(i.to_i)
+      end
+    end
+  end
+
+  def add_or_update_ingredients_in_meal
+    if !params[:ingredient_ids].nil? && !params[:ingredient_ids].empty?
+      params[:ingredient_ids].each do |i|
+        @meal.ingredients << Ingredient.find(i.to_i)
+      end
+    end
   end
 
 end
