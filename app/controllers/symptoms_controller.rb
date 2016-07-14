@@ -3,18 +3,8 @@ class SymptomsController < ApplicationController
   before_action :current_day_for_user
 
   def create
-    date = Day.find(params[:day_id]).day.to_s.slice(0,10)
-    symptom_start_time = params[:start_time]
-    symptom_start_datetime = DateTime.parse(date + " " + symptom_start_time)
-    symptom_end_time = params[:end_time]
-    if symptom_end_time != ""
-      symptom_end_datetime = DateTime.parse(date + " " + symptom_end_time)
-    else
-      symptom_end_datetime = ""
-    end
     @symptom = Symptom.new(symptom_params)
-    @symptom.start_time = symptom_start_datetime
-    @symptom.end_time = symptom_end_datetime
+    set_start_and_end_time
     if @symptom.save
       redirect_to day_path(Day.find(params[:day_id]))
     end
@@ -33,17 +23,7 @@ class SymptomsController < ApplicationController
 
   def update
     @symptom = Symptom.find(params[:id])
-    date = Day.find(params[:day_id]).day.to_s.slice(0,10)
-    symptom_start_time = params[:start_time]
-    symptom_start_datetime = DateTime.parse(date + " " + symptom_start_time)
-    symptom_end_time = params[:end_time]
-    if symptom_end_time != ""
-      symptom_end_datetime = DateTime.parse(date + " " + symptom_end_time)
-    else
-      symptom_end_datetime = ""
-    end
-    @symptom.start_time = symptom_start_datetime
-    @symptom.end_time = symptom_end_datetime
+    set_start_and_end_time
     @symptom.name = params[:name]
     @symptom.severity = params[:severity]
     @symptom.notes = params[:notes]
@@ -57,7 +37,6 @@ class SymptomsController < ApplicationController
     @symptom.destroy
     redirect_to day_path(day_id)
   end
-
 
   def last
     symptom = Symptom.last
@@ -74,6 +53,20 @@ class SymptomsController < ApplicationController
 
   def symptom_params
     params.permit(:name, :severity, :start_time, :end_time, :notes, :user_id, :day_id)
+  end
+
+  def set_start_and_end_time
+    date = Day.find(params[:day_id]).day.to_s.slice(0,10)
+    symptom_start_time = params[:start_time]
+    symptom_start_datetime = DateTime.parse(date + " " + symptom_start_time)
+    symptom_end_time = params[:end_time]
+    if symptom_end_time != ""
+      symptom_end_datetime = DateTime.parse(date + " " + symptom_end_time)
+    else
+      symptom_end_datetime = ""
+    end
+    @symptom.start_time = symptom_start_datetime
+    @symptom.end_time = symptom_end_datetime
   end
 
 
