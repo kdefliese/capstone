@@ -4,7 +4,7 @@ class Day < ActiveRecord::Base
   has_many :entries
   validates :day, presence: true
 
-  def create_today(current_user_id)
+  def self.create_today(current_user_id)
     d = Day.new
     d.day = Date.today
     d.user_id = current_user_id

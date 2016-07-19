@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   get "foods/search_specific" => "foods#factual_search_specific_product", as: :foods_search_specific
 
   resources :days
+  get "days/today" => "days#current_day", as: :current_day
   get "days/:id/summary" => "days#summary", as: :get_day_summary
 
   resources :entries

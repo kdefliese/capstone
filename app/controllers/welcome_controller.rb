@@ -9,7 +9,7 @@ class WelcomeController < ApplicationController
   end
 
   def index
-    redirect_to day_path(@current_user.id)
+    redirect_to current_day_path(@current_user.id)
   end
 
   def about

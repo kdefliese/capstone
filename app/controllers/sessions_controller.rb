@@ -13,10 +13,7 @@ class SessionsController < ApplicationController
           # make sure there is a day for today for that user
           @current_day = Day.where("day = ? AND user_id = ?", Date.today, @user.id).first
           if @current_day.nil?
-            d = Day.new
-            d.day = Date.today
-            d.user_id = @user.id
-            d.save
+            Day.create_today(@user.id)
           end
         else
           flash[:notice] = "Failed to save the user"

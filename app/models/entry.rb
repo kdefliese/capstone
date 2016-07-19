@@ -26,7 +26,7 @@ class Entry < ActiveRecord::Base
     @print_italics = ""
     if !@entry.meals.empty? && !@entry.meals[0].foods.empty?
       @print_italics = @entry.meals[0].foods[0].name
-      if @entry.meals[0].foods.length >= 1
+      if @entry.meals[0].foods.length > 1
         @print_italics += ", #{@entry.meals[0].foods[1].name}"
       end
       @print_italics += "..."

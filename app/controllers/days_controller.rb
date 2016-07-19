@@ -2,6 +2,31 @@ class DaysController < ApplicationController
   before_action :current_user
   before_action :current_day_for_user
 
+  def current_day
+    @day = Day.find_by id: current_day_for_user.id
+    if @day.nil?
+      redirect_to day_path(@current_day.id)
+    end
+    if !@day.nil?
+      # is this the best behavior if the day doesn't belong to the current user?
+      if @day.user_id != @current_user.id
+        redirect_to day_path(@current_day.id)
+      else
+        find_or_create_previous_day
+        find_or_create_next_day
+        @day_id = @day.id
+        @user_id = @current_user.id
+        @entries = @current_user.entries.where("day_id = ?", @day_id).order("time")
+        @entry = Entry.new
+        @all_meals = @current_user.meals.order("name")
+        @all_foods = Food.all
+        @all_ingredients = Ingredient.all
+        @symptom = Symptom.new
+        @symptoms = @current_user.symptoms.where("day_id = ?", @day_id).order("start_time")
+      end
+    end
+  end
+
   def show
     # an oops page would probably be better than redirecting to current day if day doesn't exist...
     @day = Day.find_by id: params[:id]

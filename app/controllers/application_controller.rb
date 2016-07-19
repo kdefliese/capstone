@@ -15,12 +15,11 @@ class ApplicationController < ActionController::Base
   end
 
   def current_day_for_user
-    @today = Date.today
     today = Day.where("day = ? AND user_id = ?", Date.today, @current_user.id)
     if today.empty?
-      create_today(@current_user.id)
+      Day.create_today(@current_user.id)
     end
-    @current_day = Day.where("day = ? AND user_id = ?", @today, @current_user.id).first
+    @current_day = Day.where("day = ? AND user_id = ?", Date.today, @current_user.id).first
   end
 
 end
