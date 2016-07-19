@@ -77,11 +77,9 @@ $(document).on('ready', function() {
         data: { name: $("#meal-name").val(), user_id: $("#user-id").val(), category: $("#category-select").val(), food_ids: foods, ingredient_ids: ingredients }
       })
       .done(function() {
-        console.log("post meal success");
           // retrieves last meal created from db
           $.ajax("/meals/last")
             .done(function(data) {
-              console.log("last meal success");
               // adds meal ID
               mealVals.push(data.meal.id);
               $("#print-new-entry").data("Meal", mealVals);
@@ -92,39 +90,22 @@ $(document).on('ready', function() {
                 data: {notes: $("#notes").val(), time: $("#time").val(), user_id: $("#user-id").val(), day_id: $("#day-id").val(), category: $("#category-select").val(), meal_ids: $("#print-new-entry").data("Meal") }
               })
               .done(function() {
-                console.log("post entry success");
-                  // make another call to get the most recent entry and add it to the page
-                  $.ajax("/entries/last")
-                    .done(function(data) {
-                      console.log("last entry success");
-                      // console.log(data);
-                      // $("#print-new-entry").html("<h4>Meals:</h4><table class=\"table\" id=\"table-meals\"></table><h4>Foods:</h4><table class=\"table\" id=\"table-foods\"></table><h4>Ingredients:</h4><table class=\"table\" id=\"table-ingredients\"></table>");
-                      // $("#print-new-entry").removeData();
-                      // document.getElementById("food-entry-form").reset();
-                      // $("#save-meal-name").addClass("hidden-field");
-                      // $("#save-meal-checkbox").val(false);
-                      // $("#save-meal-checkbox").attr("checked", false);
-                      // mealVals = [];
-                      location.reload();
-                    })
-                    .fail(function() {
-                      console.log("last entry failure");
-                    });
+                  getMostRecentEntry();
                   })
               .fail(function() {
-                console.log("post entry failure");
+                // posting entry failed
               });
             })
             .fail(function() {
-              console.log("last meal failure");
+              // retrieving last meal failed
             });
           })
       .fail(function() {
-        console.log("post meal failure");
+        // posting meal failed
       });
     }
     else {
-      // now make call to create entry in db
+      // not saving meal, make call to create entry in db
       var foods = prepareForSave("#table-foods");
       var ingredients = prepareForSave("#table-ingredients");
       var meals = prepareForSave("#table-meals");
@@ -134,30 +115,24 @@ $(document).on('ready', function() {
         data: {notes: $("#notes").val(), time: $("#time").val(), user_id: $("#user-id").val(), day_id: $("#day-id").val(), category: $("#category-select").val(), meal_ids: meals, food_ids: foods, ingredient_ids: ingredients }
       })
       .done(function() {
-        console.log("post entry success");
-          // make another call to get the most recent entry and add it to the page
-          $.ajax("/entries/last")
-            .done(function(data) {
-              console.log("last entry success");
-              // console.log(data);
-              // $("#print-new-entry").html("<h4>Meals:</h4><table class=\"table\" id=\"table-meals\"></table><h4>Foods:</h4><table class=\"table\" id=\"table-foods\"></table><h4>Ingredients:</h4><table class=\"table\" id=\"table-ingredients\"></table>");
-              // $("#print-new-entry").removeData();
-              // document.getElementById("food-entry-form").reset();
-              // $("#save-meal-name").addClass("hidden-field");
-              // $("#save-meal-checkbox").val(false);
-              // $("#save-meal-checkbox").attr("checked", false);
-              // mealVals = [];
-              location.reload();
-            })
-            .fail(function() {
-              console.log("last entry failure");
-            });
+          getMostRecentEntry();
           })
       .fail(function() {
-        console.log("post entry failure");
+        // failed to post entry
       });
     }
   });
+
+  var getMostRecentEntry = function() {
+    $.ajax("/entries/last")
+      .done(function(data) {
+        location.reload();
+      })
+      .fail(function() {
+        // failed to retrieve most recent entry
+        console.log("failed to retrieve most recent entry");
+      });
+  }
 
   // edit entry link is clicked
   $(".edit-entry").click(function() {
