@@ -18,7 +18,6 @@ $(document).on('ready', function() {
       }
       $.ajax(url)
       .done(function(data) {
-        console.log("success");
         var replace_html = "<select id=\"dynamic-food-list\" class=\"form-control\">";
         for (var i = 0; i < data.length; i++) {
           replace_html += "<option value=\"" + data[i].name + "\" id=\"" + data[i].id + "\">" + data[i].name + "</option>";
@@ -32,7 +31,6 @@ $(document).on('ready', function() {
         );
       })
       .fail(function() {
-        console.log("failure");
       });
     });
   });
@@ -81,14 +79,11 @@ $(document).on('ready', function() {
     var url = "/foods/search_specific?factual_id=" + factual_id;
     $.ajax(url)
       .done(function(data) {
-        console.log("success");
         // adds the food to the food entry on the page
         $("#table-foods").append(
           "<tr id=\"f" + data.id + "\"><td>" + data.name + "</td><td><button type=\"button\" class=\"close close-food\" id=\"f" + data.id +  "\"aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button></td></tr>"
         );
       })
-      .fail(function() {
-        console.log("failure");
       });
     });
 
@@ -113,11 +108,9 @@ $(document).on('ready', function() {
         data: { name: $("#name").val(), user_id: $("#user-id").val(), category: $("#category-select").val(), food_ids: foods, ingredient_ids: ingredients }
       })
       .done(function() {
-        console.log("post meal success");
           $(".new-meal-success").html("<div class=\"alert alert-success alert-dismissible\" role=\"alert\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" + $("#name").val() + " added!</div>");
         })
       .fail(function() {
-        console.log("post meal failure");
       });
     });
 
@@ -145,11 +138,9 @@ $(document).on('ready', function() {
         data: { id: $("#meal-id").val(), name: $("#name").val(), user_id: $("#user-id").val(), category: $("#category-select").val(), food_ids: foods, ingredient_ids: ingredients }
       })
       .done(function() {
-        console.log("patch meal success");
         $(".new-meal-success").html("<div class=\"alert alert-success alert-dismissible\" role=\"alert\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" + $("#name").val() + " updated!</div>");
           })
       .fail(function() {
-        console.log("patch meal failure");
       });
     });
 

@@ -66,14 +66,12 @@ $(document).on('ready', function() {
     var url = "/foods/search_specific?factual_id=" + factual_id;
     $.ajax(url)
       .done(function(data) {
-        console.log("success");
         // adds the food to the food entry on the page
         $("#table-foods").append(
           "<tr id=\"f" + data.id + "\"><td>" + data.name + "</td><td><button type=\"button\" class=\"close close-food\" id=\"f" + data.id +  "\"aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button></td></tr>"
         );
       })
       .fail(function() {
-        console.log("failure");
       });
     });
 
@@ -112,11 +110,9 @@ $(document).on('ready', function() {
         data: { name: $("#meal-name").val(), user_id: $("#user-id").val(), category: $("#category-select").val(), food_ids: foods, ingredient_ids: ingredients }
       })
       .done(function() {
-        console.log("post meal success");
           // retrieves last meal created from db
           $.ajax("/meals/last")
             .done(function(data) {
-              console.log("last meal success");
               // adds meal ID
               mealVals.push(data.meal.id);
               $("#print-new-entry").data("Meal", mealVals);
@@ -128,19 +124,18 @@ $(document).on('ready', function() {
                 data: {id: $("#entry-id").val(), notes: $("#notes").val(), time: $("#time").val(), user_id: $("#user-id").val(), day_id: $("#day-id").val(), category: $("#category-select").val(), meal_ids: $("#print-new-entry").data("Meal") }
               })
               .done(function() {
-                console.log("patch entry success");
                 $(".entry-update-success").html("<div class=\"alert alert-success alert-dismissible\" role=\"alert\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button> Entry updated!</div>");
                   })
               .fail(function() {
-                console.log("patch entry failure");
+                // failed to update entry
               });
             })
             .fail(function() {
-              console.log("last meal failure");
+              // failed to update meal
             });
           })
       .fail(function() {
-        console.log("post meal failure");
+        // failed to post meal
       });
     }
     else {
@@ -155,11 +150,10 @@ $(document).on('ready', function() {
         data: {id: $("#entry-id").val(), notes: $("#notes").val(), time: $("#time").val(), user_id: $("#user-id").val(), day_id: $("#day-id").val(), category: $("#category-select").val(), meal_ids: meals, food_ids: foods, ingredient_ids: ingredients }
       })
       .done(function() {
-        console.log("patch entry success");
             $(".entry-update-success").html("<div class=\"alert alert-success alert-dismissible\" role=\"alert\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button> Entry updated!</div>");
           })
       .fail(function() {
-        console.log("patch entry failure");
+        // failed to update entry
       });
     }
   });

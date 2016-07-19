@@ -130,7 +130,6 @@ $(document).on('ready', function() {
       })
       .fail(function() {
         // failed to retrieve most recent entry
-        console.log("failed to retrieve most recent entry");
       });
   }
 
@@ -138,7 +137,6 @@ $(document).on('ready', function() {
   $(".edit-entry").click(function() {
     event.preventDefault();
     event.stopPropagation();
-    console.log("click");
   });
 
   // autocomplete for food search
@@ -167,14 +165,12 @@ $(document).on('ready', function() {
     var url = "/foods/search_specific?factual_id=" + factual_id;
     $.ajax(url)
       .done(function(data) {
-        console.log("success");
         // adds the food to the food entry on the page
         $("#table-foods").append(
           "<tr id=\"f" + data.id + "\"><td>" + data.name + "</td><td><button type=\"button\" class=\"close close-food\" id=\"f" + data.id +  "\"aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button></td></tr>"
         );
       })
       .fail(function() {
-        console.log("failure");
       });
     });
 
@@ -188,20 +184,17 @@ $(document).on('ready', function() {
         data: { name: $("#symptom-select").val(), severity: $("#symptom-severity").val(), start_time: $("#symptom-start-time").val(), end_time: $("#symptom-end-time").val(), notes: $("#symptom-notes").val(), user_id: $("#user-id").val(), day_id: $("#day-id").val() }
       })
       .done(function() {
-        console.log("post symptom success");
           // make another call to get the most recent symptom and add it to the page
           $.ajax("/symptoms/last")
             .done(function(data) {
-              console.log("last symptom success");
-              // document.getElementById("symptom-entry-form").reset();
               location.reload();
             })
             .fail(function() {
-              console.log("last symptom failure");
+              // failed to retrieve most recent symptom
             });
           })
       .fail(function() {
-        console.log("post symptom failure");
+        // failed to post symptom
       });
     });
 

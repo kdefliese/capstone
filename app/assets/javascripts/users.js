@@ -61,13 +61,10 @@ $(document).on('ready', function() {
     var url = "/users/" + user_id + "/chart_click/" + pointId;
     $.ajax(url)
     .done(function(data) {
-      console.log("success");
       $("#day-heading").empty();
       $("#day-heading").append("<h1>Here's what you ate:</h1>");
-      console.log(data);
     })
     .fail(function() {
-      console.log("fail");
     });
   };
 
@@ -124,7 +121,6 @@ $(document).on('ready', function() {
             point: {
               events: {
                 click: function () {
-                  console.log(this);
                   pointClick(this.id);
                 }
               }
